@@ -1,0 +1,23 @@
+\begin{table}[H]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{XrrcX}
+\toprule
+Predictor & MAE / gain & Gain interval & Directional pass & Interpretation \\
+\midrule
+No Voice predictor & 2.153 & -- & -- & absolute error \\
+Additive predictor & 2.260 & -- & -- & absolute error \\
+Average predictor & 1.599 & -- & -- & absolute error \\
+Weakest Link predictor & 1.453 & -- & -- & absolute error \\
+Wrong Max predictor & 2.616 & -- & -- & absolute error \\
+\midrule
+weakest link vs additive & 0.807 & [0.363, 1.247] & 1 & distinguished \\
+weakest link vs no voice & 0.700 & [0.406, 1.028] & 1 & distinguished \\
+weakest link vs average & 0.146 & [-0.204, 0.440] & 0 & not distinguished \\
+weakest link vs wrong max & 1.162 & [0.780, 1.543] & 1 & distinguished \\
+\bottomrule
+\end{tabularx}
+\caption{Post-hoc predictor comparison on the first held-out compounds. Saturating predictors beat additivity, but weakest-link does not beat average saturation; the unique operator is therefore not identified. Gain intervals are 95\% percentile item-cluster bootstrap intervals.}
+\label{tab:model-comparison}
+\end{table}

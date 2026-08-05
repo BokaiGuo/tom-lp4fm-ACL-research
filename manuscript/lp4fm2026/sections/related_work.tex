@@ -1,0 +1,56 @@
+\section{Related Work}
+
+\paragraph{Theory-of-Mind evaluation in language models.}
+Question-answering benchmarks operationalize belief attribution through
+controlled stories \citep{le-etal-2019-revisiting}, while conversational
+benchmarks test information asymmetry and consistency across related questions
+\citep{kim-etal-2023-fantom}. Subsequent stress tests show that high average
+accuracy can coexist with failures under trivial or adversarial alterations
+\citep{ullman2023trivial,shapira2024cleverhans}. These studies motivate robust
+evaluation, but typically retain answer correctness as the principal object.
+Our work instead holds story semantics fixed, types the competing answer
+sources, and estimates which linguistic description controls arbitration among
+them. It therefore addresses controller identification rather than proposing a
+broader ToM benchmark.
+
+\paragraph{Discourse accessibility and reference.}
+The Givenness Hierarchy links referring form to assumptions about cognitive
+status \citep{gundel1993givenness}, and Centering Theory models local discourse
+coherence through ranked discourse entities \citep{grosz1995centering}.
+Computational coreference work similarly uses mention accessibility to improve
+antecedent selection \citep{webster-nothman-2016-using}. Our intervention axes---
+description order, explicit names versus ambiguous pronouns, and role labels---
+draw on this tradition, but our dependent variable is not human interpretation
+or coreference accuracy. We ask how these forms alter a foundation model's
+typed answer margin under controlled conflict.
+
+\paragraph{Embedding predicates, factuality, and source commitment.}
+Clause-embedding predicates support systematic inferences about the factual
+status and source of embedded events. Large-scale lexicosyntactic studies show
+that neural models acquire some of these patterns while remaining sensitive to
+the lexical and syntactic realization \citep{white-etal-2018-lexicosyntactic}.
+Pragmatic evaluations further find that contextual event factuality is not
+captured by lexical entailment alone \citep{jiang-de-marneffe-2021-thinks}. We
+use reportative and factive predicates as controlled accessibility constraints:
+the relevant question is not whether the embedded proposition is globally
+entailed, but whether its source remains effective in typed answer arbitration.
+
+\paragraph{Behavioral and compositional evaluation.}
+Minimal-pair suites \citep{warstadt-etal-2020-blimp-benchmark}, behavioral test
+matrices \citep{ribeiro-etal-2020-beyond}, and contrast sets
+\citep{gardner-etal-2020-evaluating} all argue that aggregate test accuracy is
+insufficient for characterizing model behavior. Compositional benchmarks test
+whether primitive linguistic operations generalize to unseen combinations
+\citep{kim-linzen-2020-cogs}. We combine these principles but make the
+composition hypothesis quantitative: primitive construction costs are frozen
+before unseen compounds are evaluated, and the additive null is rejected by a
+preregistered compound-minus-additive inequality. This identifies a behavioral
+subadditivity class rather than merely cataloguing another sensitivity.
+
+\paragraph{Language representation as a control interface.}
+Recent work argues that language representation design can alter the activation
+and organization of model knowledge even without parameter updates
+\citep{yang2026schema}. Our results provide a narrow empirical law for that
+broader proposal. In controlled belief-binding worlds, representation design
+changes source access, but simultaneous linguistic constraints exhibit
+saturation rather than independent gains or losses.

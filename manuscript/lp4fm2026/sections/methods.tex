@@ -1,0 +1,150 @@
+\section{Methodology}
+
+% Plan: State the identification principle that organizes all experiments.
+Our design follows one identification principle: change the linguistic route to
+a belief while holding the world fixed, then change the identity of the
+belief's competitors while holding the linguistic contrast fixed. The first
+intervention establishes that form matters; the second reveals what that form
+controls. We separate hypothesis formation from held-out prediction and
+independent confirmation so that a descriptive sensitivity cannot promote
+itself into a compositional law. The complete experimental inventory appears in
+Appendix~\ref{app:evidence-inventory}.
+
+\subsection{The answer is a typed competition}
+
+% Plan: Define the latent world and explain why typed candidates identify source competition.
+Each latent world specifies a queried agent, a comparison agent, an object, an
+initial location, a true final location, and agent-indexed information states.
+The event sequence is generated once and reused across all surface forms. Its
+answer candidates are typed as the queried agent's belief, reality, the
+comparison agent's state, or an object distractor. We construct role conflict,
+object conflict, and joint role-plus-object conflict by changing which typed
+competitors disagree with the instructed source. Candidate strings remain
+invariant within a latent-world block. Consequently, a changing margin cannot
+be attributed to a changing ground truth or answer vocabulary; it records
+which source defeats which competitor.
+
+% Plan: Make explicit the invariant checks that prevent surface changes from changing the task.
+Every crossed block is audited for an identical event manifest, queried target,
+candidate set, and instruction target. All 30 worlds in the same-item,
+multi-realization, factorial, and first compound analyses pass these invariance
+checks. The final confirmation uses 20 newly generated worlds with zero
+normalized latent-signature overlap with the earlier pool. The rejected
+cross-pool main-effect test likewise uses zero item overlap. A replay-equivalent
+intermediate pool with complete identity overlap is retained only as an
+execution check and is excluded from scientific replication claims.
+
+\subsection{Descriptions change the route, not the world}
+
+% Plan: Introduce the high-level linguistic interventions and their theoretical roles.
+The first intervention family varies description order, reference form,
+negation/evidential wording, and role labels. These contrasts manipulate which
+source is introduced first, how explicitly its discourse referent is resolved,
+and whether competing sources are excluded or the target evidence is
+affirmatively licensed. The full inventory contains 10 controlled arms plus the
+original description (Appendix~\ref{app:linguistic-arms}). Description order,
+reference form, and negation/evidential wording are preregistered confirmatory
+axes in the topology cross; role label versus name is retained as exploratory.
+
+% Plan: Explain the realization and construction manipulations that separate robustness from accessibility.
+We next re-express the same event structure as a canonical narrative,
+structured event log, event-wise report, or compact indirect report. The
+critical construction family crosses active versus genuine passive voice,
+global versus event-local embedding, and reportative versus factive predicates.
+These operations alter discourse prominence, grammatical argument realization,
+embedding locality, or source commitment without changing the event sequence.
+The compound test holds out all passive-by-embedding combinations while
+estimating primitive voice and locality effects from the non-compound cells.
+
+% Plan: Document exact-length and candidate-token controls.
+We evaluate target context lengths of 1,024 and 2,048 tokens. Neutral padding is
+inserted outside the answer-bearing event block, and exact length is checked
+with the model tokenizer after the complete description and target block are
+assembled. Every source decision reports full exact-length coverage. All
+confirmatory answer candidates are required to be single tokens, preventing
+multi-token normalization or stopping decisions from entering the margin.
+
+\subsection{A margin identifies the winning source}
+
+% Plan: Specify the model and inference procedure without implying training or hidden-state access.
+Experiments use a fixed Qwen2.5-7B-Instruct checkpoint
+\citep{qwen2024qwen25}. No weights are updated and no free-text decoding is
+used for the primary evidence. The scorer obtains next-token logits at the
+answer position and evaluates every typed candidate under the same prompt. The
+checkpoint, tokenizer, data type, device map, and source manifests are fixed
+before each confirmatory matrix; implementation details appear in
+Appendix~\ref{app:reproducibility}.
+
+% Plan: Define the answer-interface binding margin.
+For prompt $x_i(c,T,a)$, let $\ell_i(y)$ be the next-token log probability of
+candidate $y$. If $y_i^\star$ is the source licensed by the instruction and
+$\mathcal{Y}_i^{-}$ is the set of typed competitors, the binding margin is
+\begin{equation}
+M_i(a,T,c)=\ell_i(y_i^\star)-\max_{y\in\mathcal{Y}_i^{-}}\ell_i(y).
+\label{eq:binding-margin}
+\end{equation}
+A positive margin means that the instructed source wins the answer interface;
+the magnitude records its distance from the strongest typed competitor. This
+definition is intentionally behavioral: it does not assume a localized belief
+representation or source-monitoring circuit.
+
+% Plan: Define the paired linguistic effect and topology interaction.
+For a linguistic contrast with arms $a^+$ and $a^-$, define
+\begin{equation}
+\Delta_i(T,c)=M_i(a^-,T,c)-M_i(a^+,T,c).
+\label{eq:language-effect}
+\end{equation}
+Our primary topology estimand is the excess effect under joint conflict,
+\begin{equation}
+\Gamma_i(c)=\Delta_i(T_{\mathrm{role+object}},c)
+-\tfrac{1}{2}\left[\Delta_i(T_{\mathrm{role}},c)
++\Delta_i(T_{\mathrm{object}},c)\right].
+\label{eq:topology-interaction}
+\end{equation}
+This difference-in-differences removes the average single-conflict effect and
+isolates how language form responds to concurrent typed competitors.
+
+\subsection{Falsification before confirmation}
+
+% Plan: Explain how each experiment changes the epistemic status of the claim.
+Each transition in the argument is triggered by a failed explanation. Pooled
+language effects are tested on an item-disjoint pressure pool before typed
+conflict is introduced. The typed interaction is then challenged across four
+surface realizations; its reportative reversal motivates the accessibility
+hypothesis. Primitive voice and locality costs are estimated in a factorial and
+frozen before unseen compounds are scored. Only after those compounds suggest a
+saturating class do we register its residual sign and predictive controls and
+test them on 20 new latent worlds. Later evidence therefore answers a new
+question rather than adding rows to an earlier grid.
+
+% Plan: State the negative controls and no-promotion rules.
+Three controls prevent a descriptive pattern from being mistaken for
+independent evidence.
+First, the replay-equivalent pool is not counted as independent evidence.
+Second, role label versus name is not promoted with the preregistered axes.
+Third, a held-out additive predictor must beat the no-voice control before
+additive composition can be claimed. It does not; the residual pattern is used
+only to formulate the subsequent saturation hypothesis. Independent
+confirmation then tests that hypothesis without selecting among saturation
+operators.
+
+\subsection{Uncertainty and confirmatory criteria}
+
+% Plan: Define the cluster bootstrap and why the latent world is the sampling unit.
+All estimands are first reduced within latent world by averaging the two context
+lengths. We use nonparametric item-cluster bootstrap intervals, resampling
+latent worlds while preserving every topology, construction, length, and
+instruction arm belonging to a world. Unless stated otherwise, intervals are
+95\% percentile intervals from 8,000 resamples with fixed analysis seeds. This
+avoids treating correlated surface realizations as independent observations.
+
+% Plan: State each confirmatory gate explicitly.
+The topology claim requires the preregistered direction and a directional
+confidence interval for all three primary axes, with the same direction at both
+context lengths. Cross-realization confirmation requires an aggregate
+directional interval and the predicted sign in at least three of four
+realization families. Independent saturation requires a positive lower interval
+bound in both reportative and factive families, together with improvements of
+both weakest-link and average-saturation predictors over the frozen additive
+null. Full cell-level results and decision criteria are reported in the
+appendix.

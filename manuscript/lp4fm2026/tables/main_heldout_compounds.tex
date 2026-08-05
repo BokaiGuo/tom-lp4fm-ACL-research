@@ -1,0 +1,17 @@
+\begin{table}[H]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\columnwidth}{Xrrrrrr}
+\toprule
+Unseen compound & Actual & Additive & Residual & Interval & Additive MAE & No-voice MAE \\
+\midrule
+Passive + global reportative & -0.142 & -0.364 & 0.222 & [-0.615, 1.026] & 1.835 & 2.930 \\
+Passive + local reportative & -0.757 & -3.426 & 2.668 & [2.026, 3.354] & 2.753 & 1.518 \\
+Passive + global factive & 0.120 & -1.034 & 1.154 & [0.350, 1.979] & 1.967 & 2.381 \\
+Passive + local factive & -0.654 & -3.066 & 2.411 & [1.707, 3.134] & 2.486 & 1.786 \\
+\bottomrule
+\end{tabularx}
+\caption{Held-out compound test. Primitive voice and locality costs are frozen before scoring these four passive-by-embedding compounds. Three residual intervals exclude zero in the positive direction, rejecting independent additive costs. Intervals are 95\% percentile item-cluster bootstrap intervals.}
+\label{tab:main-heldout}
+\end{table}

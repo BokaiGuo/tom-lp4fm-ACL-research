@@ -1,0 +1,53 @@
+\section{Discussion}
+
+% Plan: State the methodological implication and identify the paper's unit of analysis.
+The central implication is methodological: answer accuracy is not an identifying
+measurement of belief use. A model can preserve accuracy while changing which
+described source controls the answer, or lose accuracy because a linguistic
+construction restricts access to the correct source. Typed competitors turn
+that ambiguity into an estimable interaction. For linguistically grounded
+evaluation, the relevant unit is therefore not a paraphrase average but a
+triple: the intended source, the competing source types, and the construction
+that regulates access between description and answer.
+
+% Plan: Interpret the held-out residual as a composition result while preserving the operator boundary.
+The second implication is theoretical. Linguistic restrictions need not compose
+as independent penalties. In Qwen2.5-7B-Instruct, voice and embedding constraints
+share a behavioral bottleneck: their joint cost is smaller than the sum of their
+isolated costs. This is stronger than documenting another sensitivity because
+the additive account predicts unseen compounds and fails quantitatively. At the
+same time, positive residuals identify only a subadditive class. The data do not
+distinguish a weakest-link rule from every smooth saturating alternative, and
+they do not imply that the model represents accessibility as a scalar variable.
+
+% Plan: Explain the checkpoint result as a boundary on transfer rather than a causal training claim.
+The checkpoint comparison adds a third implication. The typed source-control
+object remains useful outside the positive checkpoint, but its composition law
+is not portable in direction or magnitude. Because affine readout scaling would
+preserve residual sign and normalized geometry, the failed transfer indicates a
+functional change in how linguistic constraints reach the answer interface.
+The matched Base contrast makes instruction tuning a plausible source of that
+change, but only an association rather than a causal training result.
+
+% Plan: State limitations as claim boundaries, not as a defensive experiment log.
+These boundaries define the paper's scope. The stimuli are controlled synthetic
+English worlds, the answer interface uses audited single-token candidates, and
+the dependent variable is model behavior rather than human interpretation. We
+therefore do not claim unrestricted English generality, broad model-family
+transfer, human source-monitoring equivalence, or a hidden-state belief circuit.
+The linguistic validity audit further treats grammaticality, source identity,
+commitment, and target invariance as properties to be independently checked,
+not assumed from generator intent.
+
+% Plan: Close with the single transferable research question and the next scientific test.
+\section{Conclusion}
+
+This paper reframes linguistic sensitivity in theory-of-mind evaluation as a
+source-binding problem. Typed conflict probes make the answer controller
+identifiable, a frozen compound test reveals subadditive composition, and the
+checkpoint comparison shows that this law is a boundary-sensitive behavioral
+property rather than a portable model-family invariant. The next test is not
+another paraphrase grid, but a controlled transfer of the typed geometry across
+models or languages while freezing the same primitive costs. The central
+question is therefore which linguistic systems make a source govern an answer,
+and how those systems compose.

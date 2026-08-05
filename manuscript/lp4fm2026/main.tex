@@ -1,0 +1,71 @@
+\documentclass{article}
+
+% LP4FM double-blind workshop submission using the NeurIPS 2026 style.
+\usepackage[dblblindworkshop]{neurips_2026}
+\workshoptitle{Linguistic Principles for Foundation Models}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{float}
+\hypersetup{hidelinks}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\title{Descriptions as Controllers: Identifiability and Saturation of Belief-Source Access in Language Models}
+
+\author{Anonymous Authors}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Two descriptions can encode the same false-belief world yet make a language
+model answer from different sources. Accuracy alone cannot reveal whether the
+answer follows the queried agent, reality, another agent, or a distractor. We
+make this hidden controller identifiable by crossing fixed worlds with typed
+competitors and linguistic changes to discourse order, reference, voice,
+embedding locality, and source attribution. What first appears to be erratic
+prompt sensitivity becomes a structured source-routing effect. A reportative
+reversal then suggests a stronger hypothesis: linguistic constraints share an
+accessibility bottleneck rather than imposing independent costs. Freezing the
+primitive costs yields a risky prediction for unseen compound constructions.
+Independent latent worlds confirm strict subadditive composition in
+Qwen2.5-7B-Instruct for both reportative and factive constructions. Frozen
+transfer to Qwen3-8B and matched Qwen2.5-7B Base preserves partial
+control-relative shape but not the directional residual. An affine-gain
+invariance result rules out the explanation that these checkpoints merely
+express the same law at a smaller logit scale. The resulting contribution is a
+checkpoint-sensitive behavioral theory of how descriptions route answers among
+typed sources, not a claim about a unique neural circuit or a causal effect of
+instruction tuning.
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\input{sections/appendix}
+
+% Required NeurIPS paper checklist; it follows the references and appendix.
+\newpage
+\input{checklist}
+
+\end{document}

@@ -1,0 +1,243 @@
+\section{Evidence Inventory and Main Estimates}
+\label{app:evidence-inventory}
+
+The main text is organized by the hypotheses that survive falsification rather
+than by execution order. For completeness, Table~\ref{tab:experiment-inventory}
+lists every evidence matrix and its scientific role. The principal estimates
+are shown in Table~\ref{tab:key-estimates} in the main text; this appendix
+focuses on the complete cell-level audit and reproducibility details.
+
+\input{tables/experiment_inventory}
+
+\section{Latent Worlds and Invariance Audits}
+\label{app:latent-worlds}
+
+% Plan: Specify the latent event schema that remains invariant across linguistic forms.
+Each world contains a queried agent, a comparison agent, an optional role
+decoy, a target object, an optional object decoy, source and destination
+locations, an initial observation, a movement event, information available to
+each agent, and a return/query event. The queried agent receives no information
+about the critical move. Role conflict changes another agent's state; object
+conflict introduces a competing object movement; joint conflict combines both.
+The question and typed candidate set are generated from the latent record rather
+than recovered from surface text.
+
+% Plan: Explain block-level invariance and independence checks.
+For every latent-world block, the generator verifies invariant candidate JSON,
+target source, event manifest, object identity, queried agent, and exact context
+length across all topologies and surface forms. The same-world topology source
+contains 30 blocks and 180 source rows with zero invariant failures. The
+four-realization source expands these to 720 exact-length rows before linguistic
+arms. The final 20-world source has zero normalized latent-signature overlap
+with the earlier 30-world pool. An earlier nominal replication with 80/80
+identity-field overlap is explicitly classified as replay-equivalent and is not
+used as held-out evidence.
+
+\section{Linguistic Intervention Inventory}
+\label{app:linguistic-arms}
+
+% Plan: Present every controlled language arm and its intended operation.
+\input{tables/appendix_linguistic_arms}
+
+% Plan: Give representative prompt contrasts so readers can inspect semantic preservation.
+For description order, the role-first arm begins by identifying the comparison
+character and then excludes the queried character and reality; the state-first
+arm first excludes those competing states and only then names the comparison
+belief. For reference form, the name-explicit arm names both characters, the
+resolved-pronoun arm introduces the comparison character before using
+``their,'' and the ambiguous arm introduces both characters before the same
+pronoun. For evidential wording, the affirmative arm directly licenses the
+comparison belief, the negated arm excludes queried belief and reality, and the
+source-explicit arm distinguishes testimony, queried evidence, and actual
+location. The full deterministic strings are retained in the stimulus
+manifests, making lexical differences auditable.
+
+\section{Complete Pooled and Cross-Pool Results}
+
+% Plan: Expose all positive and negative pooled-effect replication outcomes.
+\input{tables/appendix_cross_pool}
+
+% Plan: Clarify why the failed controls matter to the story.
+The independent pressure pool reverses the description-order effect and removes
+the reference-form effect. Negation/evidential wording and role-label versus
+name also violate their designated null/ratio gates. We therefore do not select
+or refit a ``stable'' wording axis on this pool. Its role is falsification of a
+pressure-invariant main-effect account.
+
+\section{Complete Same-World Topology Results}
+
+% Plan: Report all axes, both context lengths, and exploratory status.
+\input{tables/appendix_same_item}
+
+% Plan: Explain how context-length stability is assessed.
+Length stability requires the sign of the joint-minus-single interaction to
+agree at 1,024 and 2,048 tokens. All four axes meet this descriptive condition,
+but only the three preregistered axes are eligible for confirmatory promotion.
+The role-label effect is therefore visible rather than discarded, while its
+post-hoc status remains explicit.
+
+\section{Complete Cross-Realization Results}
+
+% Plan: Report the full three-axis by four-template matrix.
+\input{tables/appendix_multitemplate}
+
+% Plan: Distinguish sign stability from directional-confidence stability.
+Description order retains the predicted sign in all four realizations but the
+structured event-log interval includes zero. Reference form likewise keeps its
+sign throughout, with an interval crossing zero for the event-wise report.
+Negation/evidential wording reverses under event-wise reportative embedding and
+is weak under compact indirect report. The aggregate gate passes because its
+interval is directional and at least three realization means retain the
+predicted sign; the mixed cells remain central to the accessibility argument.
+
+\section{Construction Factorial}
+
+% Plan: Report every primitive cell and factorial contrast used to derive costs.
+\input{tables/appendix_factorial}
+
+% Plan: State the exact interpretation boundary of the factorial.
+The factorial identifies separable behavioral losses associated with agent
+demotion, local embedding, and reportative-specific locality. It does not show
+that local reportative embedding alone yields a reliably negative topology
+effect, and it does not identify a hidden-state scope or source-monitoring
+module. Its scientific role is to define primitive construction costs and a
+held-out composition problem.
+
+\section{Frozen Compound Prediction}
+
+% Plan: Show all unseen compound forms and their residuals.
+
+% Plan: Document how the frozen prediction avoids fitting each held-out item.
+For each held-out item and construction, the additive prediction combines the
+item's active-construction effect with a leave-one-item-out mean voice cost from
+the factorial pool. Thus the target item does not contribute to its own voice
+cost. The no-voice control uses the corresponding active construction without
+the estimated voice penalty. Additive sign prediction is broadly correct, but
+its aggregate error does not improve over that control.
+
+\section{Saturation-Model Comparison}
+
+% Plan: Expose the complete post-hoc model comparison and operator non-identifiability.
+\input{tables/appendix_model_comparison}
+
+% Plan: Define each comparison model in prose.
+The additive predictor sums primitive costs. The no-voice predictor ignores the
+voice cost. Average saturation predicts the mean of the two primitive
+construction effects. Weakest-link uses the smaller topology effect, equivalent
+to the larger primitive cost under the present sign convention. Wrong-max uses
+the opposite extreme as a specificity control. Weakest-link and average
+saturation both improve over additivity, while their direct comparison is
+unresolved; no unique min, max, or tropical law is claimed.
+
+\section{Independent Saturation Confirmation}
+
+% Plan: Report every confirmatory estimand and control gain on new worlds.
+\input{tables/appendix_independent}
+
+% Plan: Restate the preregistered gate and its outcome.
+The confirmatory gate requires positive lower bounds for the saturation
+residual, weakest-link gain, and average-saturation gain in both predicate
+families. All six lower bounds are positive. The confirmation establishes
+subadditivity while intentionally leaving the competition between saturation
+operators unresolved.
+
+\section{Cross-Checkpoint Affine-Gain Null}
+
+The frozen 1,440-row confirmation manifest was scored without prompt, fit, or
+gate changes on Qwen3-8B. Its pooled directional residual is not distinguishable
+from zero, while both pooled control-relative predictor gains remain positive
+(Table~\ref{tab:main-checkpoint-boundary}). The directional law therefore does not
+replicate, motivating a narrower question: is the difference merely a scalar
+readout-gain change?
+
+\input{../../results/oral_readiness_pack_20260707/affine_gain_null_audit_20260805/affine_gain_invariance_theorem}
+
+We fit the affine map using only active, passive, and local primitive forms in
+four training folds and predict the held-out compound and residual in the
+fifth. Aligned predictions are compared with target-mean, item-shuffled,
+zero-residual, and wrong-predicate controls. The gate fails for both predicate
+families (Table~\ref{tab:affine-gain}). Thus Qwen3 exhibits amplitude
+compression and partial control-relative shape transfer, but not an
+affine-rescaled copy of the Qwen2.5-Instruct saturation geometry.
+
+\input{tables/appendix_affine_gain}
+
+
+\section{Statistical Procedure}
+\label{app:statistics}
+
+% Plan: Detail within-item reduction and cluster resampling.
+The primitive observation is a latent world, not an individual prompt row. For
+each axis and construction, paired arm differences are computed within the same
+parent stimulus. Topology interactions are then computed within world and
+context length; the two lengths are averaged to form one value per world.
+Bootstrap resampling draws worlds with replacement and carries every associated
+arm, topology, construction, and length together. Reported intervals are the
+2.5th and 97.5th percentiles of 8,000 bootstrap means.
+
+% Plan: Explain directional gates and model-comparison gains.
+Directional gates compare the full confidence interval with zero in the
+preregistered direction. Predictor gains are paired absolute-error differences,
+so a positive gain means the named predictor has lower error than its comparator
+on the same world and compound form. No row-level independent-sample test is
+used. The final pooled saturation interval resamples the predicate-specific
+world residuals with the same fixed analysis seed used in the released audit.
+
+\section{Model Scoring and Reproducibility}
+\label{app:reproducibility}
+
+% Plan: Give exact model-loading and scoring details needed to reproduce logits.
+The primary matrices use Qwen2.5-7B-Instruct revision
+\newline\texttt{a09a35458c702b33eeacc393d103063234e8bc28}. Frozen transfer uses
+Qwen3-8B revision
+\newline\texttt{b968826d9c46dd6066d109eabc6255188de91218} and Qwen2.5-7B Base
+revision \newline\texttt{d149729398750b98c0af14eb82c78cfe92750796}. Scoring uses Hugging Face
+Transformers in offline mode, float16 weights, automatic device mapping,
+12~GiB GPU and 48~GiB CPU memory limits, batch size one for the final
+construction matrices, and CPU offload when required. The scorer requests only
+the final-position logits, computes log-softmax once, and indexes the audited
+single-token candidates. Checkpointed CSV writing and resume-by-stimulus ID do
+not change completed rows.
+
+% Plan: Document deterministic generation and audit surfaces.
+Latent-world generation, neutral padding, linguistic-arm rendering, template
+rendering, bootstrap resampling, and source-overlap checks use fixed seeds.
+Every manifest stores the full prompt, target block, candidate JSON, target
+source, context target and realized lengths, tokenizer-based candidate counts,
+latent signature, template/construction labels, and parent stimulus ID. Each
+analysis emits both a complete matrix and a machine-readable decision file.
+The manuscript tables are generated directly from these matrices rather than
+transcribed manually.
+
+\section{Claim Boundary and Theorem-to-Experiment Map}
+
+% Plan: State the exact safe and unsafe claim surfaces before mapping them to evidence.
+The paper supports a controlled, behavioral source-accessibility saturation law
+within Qwen2.5-7B-Instruct and a checkpoint-sensitive composition boundary
+across the tested Qwen checkpoints.
+It does not claim a hidden-state source-monitoring circuit, a portable causal
+belief controller, human psycholinguistic universality, broad model-family
+transfer, unrestricted English generality, or a unique aggregation operator.
+
+% Plan: Separate formal identities, empirical inequalities, and blocked mechanisms.
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{p{0.25\linewidth}p{0.25\linewidth}p{0.38\linewidth}}
+\toprule
+Statement & Status & Evidence and boundary \\
+\midrule
+Topology-moderated effect & Defined and measured & Same-item role, object, and joint conflict crosses; no universality claim. \\
+Cost-residual identity & Proved & Exact under Definitions~\ref{def:topology-effect}--\ref{def:saturation-residual}. \\
+Saturating-composition bound & Conditional proof & Holds for nonnegative costs and an aggregator between maximum and sum; does not assert a neural implementation. \\
+Reportative residual $>0$ & Independently validated & 20 new latent items; the interval remains entirely above zero. \\
+Factive residual $>0$ & Independently validated & 20 new latent items; the interval remains entirely above zero. \\
+Unique min/tropical operator & Not identified & Weakest-link does not reliably beat average saturation. \\
+Affine readout-gain transfer & Rejected & Primitive-only five-fold transport fails both predicate gates on Qwen3-8B. \\
+Matched Base directional law & Not replicated & The pooled interval crosses zero; both pooled predictor-control gates remain positive. \\
+\bottomrule
+\end{tabular}
+\vspace{4pt}
+\caption{Separation of algebraic statements, empirical inequalities, and blocked mechanism claims.}
+\label{tab:theorem-evidence}
+\end{table}

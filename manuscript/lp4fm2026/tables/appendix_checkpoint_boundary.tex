@@ -1,0 +1,17 @@
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lrrcc}
+\toprule
+Checkpoint & Pooled residual & Bootstrap interval & Predicate gates & Control gates \\
+\midrule
+Qwen2.5-7B-Instruct & 4.190 & $[2.931,5.401]$ & 2/2 & 2/2 \\
+Qwen3-8B & 0.250 & $[-0.095,0.580]$ & 0/2 & 2/2 \\
+Qwen2.5-7B Base & $-0.184$ & $[-0.453,0.107]$ & 0/2 & 2/2 \\
+\bottomrule
+\end{tabular}
+\caption{Frozen checkpoint comparison. Directional saturation is specific to
+Qwen2.5-7B-Instruct, while both alternate checkpoints retain pooled
+control-relative predictor gains. Intervals are 95\% percentile item-cluster bootstrap intervals.}
+\label{tab:checkpoint-boundary}
+\end{table}

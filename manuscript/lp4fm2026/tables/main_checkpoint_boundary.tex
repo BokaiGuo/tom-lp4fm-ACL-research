@@ -1,0 +1,15 @@
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lrrcc}
+\toprule
+Checkpoint & Residual & Interval & Predicate gates & Control gates \\
+\midrule
+Qwen2.5-7B-Instruct & 4.190 & [2.931, 5.401] & 2/2 & 2/2 \\
+Qwen3-8B & 0.250 & [-0.095, 0.580] & 0/2 & 2/2 \\
+Qwen2.5-7B Base & -0.184 & [-0.453, 0.107] & 0/2 & 2/2 \\
+\bottomrule
+\end{tabular}
+\caption{Frozen checkpoint boundary. The directional saturation residual is specific to Qwen2.5-7B-Instruct, whereas both alternate checkpoints retain the weaker control-relative predictor preference. Intervals are 95\% percentile item-cluster bootstrap intervals.}
+\label{tab:main-checkpoint-boundary}
+\end{table}

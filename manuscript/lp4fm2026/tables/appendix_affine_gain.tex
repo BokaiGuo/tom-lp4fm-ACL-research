@@ -1,0 +1,17 @@
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{lrrrrc}
+\toprule
+Predicate & Slope & Compound MAE & Gain vs. mean & Residual $r$ & Gate \\
+\midrule
+Reportative & 0.068 & 0.483 & $-0.055$ [$-0.146$, 0.032] & 0.203 & fail \\
+Factive & 0.061 & 0.491 & $-0.130$ [$-0.252$, $-0.020$] & 0.124 & fail \\
+\bottomrule
+\end{tabular}
+\caption{Five-fold primitive-only affine transport from Qwen2.5-7B-Instruct
+to Qwen3-8B. Positive gain would mean the aligned predictor improves over a
+training-fold target-mean control. Neither predicate passes the full affine
+gain gate.}
+\label{tab:affine-gain}
+\end{table}

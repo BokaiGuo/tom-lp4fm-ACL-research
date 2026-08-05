@@ -1,0 +1,63 @@
+\section{Introduction}
+
+Consider two descriptions of the same world. The agents, object movements,
+and false belief are identical; only the linguistic route changes. The relevant
+state may appear earlier or later, under a name or an ambiguous pronoun, in an
+active clause or inside an impersonal report. A language model can reverse its
+answer even though the world has not changed. The usual diagnosis is prompt
+brittleness. Our starting point is different: perhaps the description changed
+\emph{which source was allowed to control the answer}.
+
+Standard Theory-of-Mind evaluation cannot separate these possibilities. A
+correct false-belief answer is compatible with following the queried agent,
+copying reality, tracking another agent, or exploiting a cue that happens to
+agree with the target. Semantics-preserving perturbations expose this fragility
+\citep{ullman2023trivial,shapira2024cleverhans}, but a catalog of reversals still
+identifies only the winning answer. It does not identify the controller that
+made that answer win.
+
+We treat a description as a \emph{binding controller}: a linguistic interface
+that regulates access to source-indexed states while the model arbitrates among
+the queried agent's belief, reality, another agent's state, and an object
+distractor. This reframes the problem from ``does the model contain belief
+information?'' to ``when does a description make one source govern the
+answer?'' The framing connects model evaluation to discourse accessibility,
+where order and referring form alter which entities or propositions remain
+available for interpretation
+\citep{gundel1993givenness,grosz1995centering,webster-nothman-2016-using}.
+
+This change of object turns two failures into the main scientific clues. First,
+pooled wording effects reverse across item pools. They become systematic only
+after we expose the \emph{typed conflict topology}: whether the target source
+competes with reality, another agent, or both. Second, one otherwise successful
+linguistic contrast reverses when each event is placed under a reportative
+predicate. The facts remain present, but their attributed route to the answer
+changes. Together these observations suggest that linguistic form controls
+source access rather than contributing a context-free answer bias.
+
+That hypothesis makes a quantitative prediction. Passive voice, event-local
+embedding, and source attribution each reduce the target source's influence.
+If the reductions are independent, their costs should add in an unseen compound
+construction. If they act through a shared accessibility bottleneck, the second
+constraint should have less room to operate once the first route is limiting.
+The latter predicts a positive compound-minus-additive residual. We freeze the
+primitive costs before observing the compounds and confirm the prediction on
+new latent worlds in Qwen2.5-7B-Instruct.
+
+The law is not universal across the checkpoints we test, and that failure
+sharpens rather than dissolves the result. The identical frozen protocol on
+Qwen3-8B and matched Qwen2.5-7B Base retains partial control-relative predictor
+advantages but not the directional residual. A positive affine change of
+readout scale would preserve residual sign and normalized geometry; it does
+not. The checkpoints therefore differ in the \emph{shape} of linguistic-source
+composition, not merely in confidence or logit amplitude.
+
+The paper's argument has three parts. We first introduce a typed source-control
+object that makes controller identity behaviorally observable under fixed
+semantics. We then derive and independently test a source-accessibility
+saturation law for compound linguistic constraints. Finally, we use frozen
+cross-checkpoint failures and an affine-gain invariance result to delimit the
+law as checkpoint-sensitive. This supports a falsifiable behavioral theory of
+language-mediated source routing. It does not identify a unique aggregation
+operator, a hidden-state circuit, a causal effect of instruction tuning, or a
+human psycholinguistic universal.
