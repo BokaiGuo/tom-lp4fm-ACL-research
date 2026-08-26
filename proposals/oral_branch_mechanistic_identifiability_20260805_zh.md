@@ -20,6 +20,47 @@
 
 Stage-3/4 提供 behavior–probe–patch dissociation；Stage-5/13 展示 flip-budget calibration；Stage-14–16 揭示 final-token shortcut；Stage-17–20 关闭多个 writer/readout localization 假设；Stage-23/25/33 给出 held-out 与 model-family negative boundaries；Stage-34/35 揭示 full-simplex non-identifiability；Stage-36 提供 canonical one-vs-rest relaxation；Stage-37 显示 geometry rescue 与 causal rescue 分离。
 
+## 与 Related Work 的关系
+
+### probe 可读性与因果使用
+
+[Probing Classifiers](https://arxiv.org/abs/2102.12452) 系统总结了 decoder accuracy
+的识别局限；[Amnesic Probing](https://arxiv.org/abs/2006.00995) 更直接指出普通 probe
+表现与 task importance 不必相关，并用信息移除检验行为使用。因此，“readable 不等于
+causal”不是本分支可以单独宣称的新颖性，而是必须继承的起点。
+
+本分支进一步把问题放到 typed multiclass answer interface：干预究竟控制 intended
+source、答案 identifier，还是 final-token readout；它是否优于 wrong-channel controls；
+相同 causal semantics 能否跨 item 和 checkpoint transport。
+
+### 与 belief representation 工作的关系
+
+[Language Models Represent Beliefs of Self and Others](https://proceedings.mlr.press/v235/zhu24o.html)
+和 [Brittle Minds, Fixable Activations](https://arxiv.org/abs/2406.17513) 已经提供 belief
+decoding 与 intervention 的直接先例；[Standards for Belief Representations](https://arxiv.org/abs/2405.21030)
+要求 accuracy、coherence、uniformity、use 四项条件。因此本分支不能只重复“probe
+不够”，而必须给出 typed-controller 特有的识别结果：full-simplex vertex
+non-identifiability、subspace overlap 与 causal transport 分离，以及 same-item
+reconstruction 与 intended-source promotion 分离。
+
+### 与 causal abstraction 和 steering 的关系
+
+[Causal Abstraction](https://arxiv.org/abs/2301.04709) 为 patching、mediation、erasure、
+steering 和 distributed alignment 提供统一形式语言；[ReFT](https://arxiv.org/abs/2404.03592)
+及 [activation steering](https://arxiv.org/abs/2410.12877) 表明 representation
+intervention 可以高效改变行为。这些是可直接比较的方法，但 steering success 与 typed
+identifiability 不是同一 estimand。
+
+[Cross-Encoding Steering Evaluation](https://arxiv.org/abs/2608.22985) 是尤其接近的
+近邻：它显示 steering 可能跟随 extraction index 而不是 semantic label。本框架将其
+视为 answer-encoding specificity failure，并进一步要求 source specificity 与
+checkpoint transport。
+
+本分支不能声称一般 mechanistic interpretability no-go 或唯一 belief circuit。要成为
+独立贡献，必须补 multiclass theorem、至少两个非 ToM 外部任务，以及一套能实际改变
+claim assignment 的审计协议。完整定位见
+[Related Work 定位地图](../research/related_work_positioning_20260826_zh.md)。
+
 ## 四层识别对象
 
 ### Readability
@@ -101,4 +142,3 @@ q_c = w_c - mean_{j != c}(w_j)
 ## 最小下一步
 
 先写出一般 vertex non-identifiability theorem，再在 temporal-source 与 deontic-authority 两个任务上实例化四层 audit；不要先扩展大模型矩阵。
-

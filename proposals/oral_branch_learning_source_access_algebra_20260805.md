@@ -108,6 +108,77 @@ Primary repository artifacts:
 - `results/oral_readiness_pack_20260707/qwen25_7b_base_independent_saturation_replication_20260805/`
 - `results/oral_readiness_pack_20260707/affine_gain_null_audit_20260805/`
 
+## Relationship to Related Work
+
+### The two nearest literatures do not yet meet at our object
+
+The first neighboring literature studies how compositional generalization
+depends on demonstrations, data coverage, and the learning algorithm. [CoFe](https://arxiv.org/abs/2305.04835)
+identifies structural similarity, diversity, simplicity, and linguistic-
+structure coverage as important for in-context composition. [A General Theory
+for Compositional Generalization](https://arxiv.org/abs/2405.11743) introduces
+task-agnostic limits and generative effects. [Fu--Zheng 2025](https://proceedings.mlr.press/v267/fu25j.html)
+separates insufficient supporting data from knowledge-composition capacity and
+emphasizes algorithm--rule compatibility.
+
+The second literature studies when in-context computation and generalization
+change during training. [Induction Heads](https://arxiv.org/abs/2209.11895)
+links an ICL phase change to a candidate circuit; [Learning Plateaus](https://proceedings.mlr.press/v235/fu24h.html)
+separates weights and context components; [Learning Trajectories](https://arxiv.org/abs/2304.12579)
+uses update-path information to explain generalization.
+
+The combined branch sits at their intersection but introduces a narrower state
+variable:
+
+```text
+checkpoint k -> operator over typed source-access relations
+```
+
+The question is not simply whether training improves compositional accuracy.
+It is whether training changes how independently measured source constraints
+compose when several sources compete for the same answer interface.
+
+### Relation to language representation and source-priority training
+
+[Shaping Schema via Language Representation](https://arxiv.org/abs/2605.09271)
+argues that task representation changes knowledge activation and organization.
+[The Instruction Hierarchy](https://arxiv.org/abs/2404.13208) shows that targeted
+training can install an explicit channel-priority policy. These are close
+precedents for representation- and training-induced changes, but neither
+estimates a held-out composition operator from typed primitive source costs.
+
+They also define two rival explanations that the study must retain: the observed
+transition may be a broad schema/representation change, or a learned explicit
+priority heuristic, rather than a change in composition capacity. Cross-
+encoding tests, implicit-source tasks, and primitive-matched controls are needed
+to separate these accounts.
+
+### Relation to current LP4FM and the ACG successor
+
+The submitted LP4FM paper establishes a static, checkpoint-sensitive behavioral
+boundary: language form changes typed source arbitration, and compound effects
+need not be additive. It does not establish a longitudinal operator transition.
+This combined branch adds training trajectory and controlled induction, so its
+main evidence cannot be a relabeling of Stage-51/52.
+
+The newer [Authority Compositional Generalization plan](../research/next_stage_icl_schema_rewriting_20260826_zh.md)
+pushes the object further: demonstrations may induce a relational authority
+program that transfers across content, encodings, and unseen topologies. Under
+that framing, this combined algebra branch becomes the **weights/training lane**
+of a broader ACG paper rather than an obligatory standalone manuscript.
+
+### Exact novelty boundary and direct baselines
+
+The branch cannot claim novelty for ICL training dynamics, compositional
+generalization, phase transitions, or schema shaping. Its separable contribution
+would require all three of the following: held-out source-operator prediction,
+a within-trajectory change point, and selective controlled induction after
+primitive accuracy and data coverage are matched. The direct baseline suite is
+CoFe-style example coverage, additive and flexible operator families,
+primitive-accuracy/calibration trajectories, affine transport, explicit
+instruction-hierarchy training, and no-compound exposure. See the [central
+related-work map](../research/related_work_positioning_20260826_zh.md).
+
 ## Formal Framework
 
 ### Typed binding margin
@@ -625,4 +696,3 @@ Proceed as a combined oral project only if the ternary pilot provides operator
 discrimination or the controlled training pilot selectively changes held-out
 composition. If neither occurs, keep the current LP4FM paper and return to the
 mechanistic-identifiability branch rather than expanding the model matrix.
-

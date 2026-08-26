@@ -20,6 +20,43 @@
 
 Stage-2/6 提供 typed channels 与 arbitration metrics；Stage-44–49 提供 controlled linguistic axes 与 topology-conditioned effects；Stage-50–52 提供 primitive costs 和 compound residual；Stage-13–20 说明 final-token success 不能自动解释为内部 source correction；Base/Instruct/Qwen3 提供自然的训练前后边界。
 
+## 与 Related Work 的关系
+
+### 与 instruction priority 和 context faithfulness 的关系
+
+[The Instruction Hierarchy](https://arxiv.org/abs/2404.13208) 训练模型遵守显式 privilege
+ordering；[Context-faithful Prompting](https://arxiv.org/abs/2303.11315) 用 opinion-based
+prompt 和 counterfactual demonstrations 提高知识冲突时的上下文忠实性；[instruction–data
+separation](https://arxiv.org/abs/2403.06833) 则形式化模型能否区分待执行和待处理文本。
+
+这些都是直接 baseline，因为它们都改变 competing text sources 对答案的影响。但它们
+优化固定 hierarchy、context preference 或 instruction/data boundary；本分支的正确
+source 随 item 和 topology 改变。目标是 **conditional source authority**，而不是无条件
+“更听上下文”。
+
+### 与 consistency 和 representation adaptation 的关系
+
+paraphrase consistency 可能通过抹平所有 construction effect 获胜。[IN2 training](https://arxiv.org/abs/2404.16811)
+证明定向数据可增强长上下文的信息感知和跨片段整合；[ReFT](https://arxiv.org/abs/2404.03592)
+与 [activation steering](https://arxiv.org/abs/2410.12877) 则说明 representation-level
+intervention 可以高效改变行为。这些方法并不保证 intended typed source 而非 label 或
+generic instruction feature 获得控制，因此必须在相同 source margin、answer
+permutation、wrong-channel 和 off-policy leak 指标下比较。
+
+### 与 schema shaping 和组合训练的关系
+
+[Shaping Schema](https://arxiv.org/abs/2605.09271) 强调表示方式可重组知识激活；
+[Fu–Zheng 2025](https://proceedings.mlr.press/v267/fu25j.html) 区分数据不足与
+algorithm–rule compatibility。这意味着训练成功可能只是增加 primitive coverage 或
+改变 representation compatibility，不等于学习了普遍 composition law。
+
+本分支不能声称 instruction robustness、context faithfulness 或 representation
+finetuning 是新的。可成立的新颖性是：在 unseen construction 上改善 typed routing，
+同时保留合法 linguistic source change 的敏感性。决定性结果应是 wrong-source
+suppression 与 valid-language sensitivity 的 Pareto frontier，并与 standard SFT、
+consistency、hierarchy training、context-faithful prompting 和 ReFT/steering 匹配比较。
+完整定位见 [Related Work 定位地图](../research/related_work_positioning_20260826_zh.md)。
+
 ## 训练目标
 
 对 item `i`、construction `c`、topology `T`、intended source `s*`，定义 typed margin：
@@ -107,4 +144,3 @@ linguistic-semantic sensitivity
 ## 最小下一步
 
 在一个 Base checkpoint 上运行四个 adapter/LoRA 条件：standard SFT、paraphrase consistency、typed routing、typed routing plus leak control。先在 Stage-49/52 的 item-disjoint 与 construction-disjoint cells 上评价，再决定是否加入 composition regularization。
-

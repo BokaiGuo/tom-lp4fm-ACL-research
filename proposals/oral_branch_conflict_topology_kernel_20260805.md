@@ -51,6 +51,66 @@ Primary artifacts:
 - `results/oral_readiness_pack_20260707/stage48_same_item_topology_20260804/`
 - `results/oral_readiness_pack_20260707/stage49_multitemplate_20260804/`
 
+## Relationship to Related Work
+
+### Behavioral stress tests and contrastive evaluation
+
+[CheckList](https://aclanthology.org/2020.acl-main.442/) and [contrast sets](https://aclanthology.org/2020.findings-emnlp.117/)
+establish the value of controlled perturbations and local decision-boundary
+tests. ToM evaluations such as [FANToM](https://arxiv.org/abs/2310.15421),
+[Clever Hans](https://aclanthology.org/2024.eacl-long.138/), and [DynToM](https://aclanthology.org/2025.acl-long.1171/)
+show that apparent social reasoning can fail under information asymmetry,
+adversarial changes, or evolving mental states. These works motivate the
+factorial stimulus discipline, but their primary outputs remain correctness,
+consistency, or error rates.
+
+Our proposed invariant is different: the directed graph specifying **which
+typed source must defeat which competitors**. The kernel is only useful if this
+graph predicts the direction of source capture after surface realization,
+domain, and candidate wording change.
+
+### Instruction hierarchy and contextual knowledge conflict
+
+[The Instruction Hierarchy](https://arxiv.org/abs/2404.13208) formalizes an
+explicit priority order among system, user, and third-party instructions.
+[Context-faithful Prompting](https://arxiv.org/abs/2303.11315) studies conflicts
+between parametric knowledge and supplied context, while [instruction--data
+separation](https://arxiv.org/abs/2403.06833) asks whether models can distinguish
+text to execute from text to process. All three concern competing information
+channels and are direct conceptual neighbors.
+
+This branch does not replace those taxonomies. It abstracts them into a common
+behavioral topology and asks whether the same graph-level diagnostic transfers
+across epistemic, temporal, deontic, spatial, and document-authority settings.
+Unlike instruction hierarchy, source priority need not be predeclared; unlike
+context faithfulness, the intended source can vary by item and topology.
+
+### Shared routers and mental spaces
+
+[Belief--reality separation lives in routing over a shared value slot](https://arxiv.org/abs/2607.11945)
+and [One mechanism for many mental spaces](https://arxiv.org/abs/2607.10248)
+provide a particularly close mechanistic alternative: a reusable router/slot
+format can separate belief, reality, temporal, fictional, and counterfactual
+spaces. Those papers identify internal routing structure and causal transfer.
+Our kernel is a behavioral diagnostic over source conflicts; it must not be
+presented as evidence for the same neural router without an independent
+mechanism bridge.
+
+The two programs are complementary. The topology kernel predicts **when and in
+which direction routing should fail**; shared-router work proposes **where and
+how mental-space selection is implemented**. A strong cross-domain result could
+use router/slot interventions as an external validation, but behavioral transfer
+must stand on its own.
+
+### Exact novelty boundary and baselines
+
+This branch cannot claim that prompt robustness, source conflict, or graph
+representations are new. Its separable contribution would be a compact topology
+kernel that predicts held-out prompt families and domains better than surface
+similarity, lexical overlap, context position, explicit hierarchy labels, and
+raw task accuracy. Stage-49 currently supports only a within-setting candidate,
+not a universal kernel. See the [central related-work map](../research/related_work_positioning_20260826_zh.md).
+
 ## Formal Object
 
 Let candidate sources be nodes `V={v_1,...,v_K}`. A task instance defines a
@@ -274,4 +334,3 @@ The main figure should contain:
 Implement one temporal-routing and one deontic-routing stimulus family with the
 same four-channel typed interface, then test whether the Stage-48/49 factorization
 predicts held-out construction effects better than prompt embeddings.
-

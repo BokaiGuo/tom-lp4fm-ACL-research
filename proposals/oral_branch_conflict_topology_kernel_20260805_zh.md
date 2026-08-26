@@ -24,6 +24,43 @@
 
 Stage-2/6 建立 typed candidate space；Stage-44/46 表明语言效应需要独立 latent sources；Stage-47/48 验证 language-form × topology interaction；Stage-49 显示 directional topology pattern 跨四个 controlled realizations 稳定，但 gain 依赖构式；Stage-50–52 进一步证明 topology-moderated margin 可作为 accessibility 与 composition 分析的测量底座。
 
+## 与 Related Work 的关系
+
+### 与行为 stress test 的关系
+
+[CheckList](https://aclanthology.org/2020.acl-main.442/) 和 [contrast sets](https://aclanthology.org/2020.findings-emnlp.117/)
+建立了 controlled perturbation 与局部 decision-boundary 测试范式；[FANToM](https://arxiv.org/abs/2310.15421)、
+[Clever Hans](https://aclanthology.org/2024.eacl-long.138/) 和 [DynToM](https://aclanthology.org/2025.acl-long.1171/)
+则表明 ToM 表现会在信息不对称、对抗改写和动态状态下失效。这些工作提供实验纪律，
+但主要输出仍是 correctness、consistency 或 error rate。
+
+本分支提出的候选 invariant 是有向图：**哪个 typed source 必须击败哪些 competitors**。
+只有当该图能在 surface realization、domain 和 candidate wording 改变后预测 source
+capture 方向，kernel 才超出一般 behavioral testing。
+
+### 与 instruction hierarchy 和知识冲突的关系
+
+[The Instruction Hierarchy](https://arxiv.org/abs/2404.13208) 规定 system/user/third-party
+的显式优先级；[Context-faithful Prompting](https://arxiv.org/abs/2303.11315) 研究参数知识
+与上下文冲突；[instruction–data separation](https://arxiv.org/abs/2403.06833) 研究模型
+是否区分待执行和待处理文本。本分支不替代这些 taxonomy，而是将它们抽象成共同的
+behavioral topology，并检验该对象能否跨 epistemic、temporal、deontic、spatial 和
+document-authority domain 迁移。
+
+### 与 shared-router 机制工作的关系
+
+[Belief–reality routing](https://arxiv.org/abs/2607.11945) 和 [One mechanism for many
+mental spaces](https://arxiv.org/abs/2607.10248) 提出共享 router/value-slot 机制，是最
+接近的机制替代解释。它们定位“mental-space selection 如何在内部实现”；本分支只
+定位“何时、朝哪个 source 发生 routing failure”。behavioral kernel 不能直接写成
+shared neural router，除非另有独立 mechanism bridge。
+
+本分支不能声称 prompt robustness、source conflict 或 graph representation 是新的。
+可成立的新颖性只能是：一个 compact topology kernel 在 held-out prompt family 和新
+domain 上优于 surface similarity、lexical overlap、context position、显式 hierarchy
+label 与 raw accuracy。Stage-49 目前只支持 within-setting candidate。完整定位见
+[Related Work 定位地图](../research/related_work_positioning_20260826_zh.md)。
+
 ## 形式化对象
 
 将候选来源视为图节点 `V={v_1,...,v_K}`。任务实例定义有向 conflict graph `T`，边 `v_a -> v_b` 表示 intended source `v_a` 必须击败 competitor `v_b`。对构式 `c`，定义跨 topology cells 的 effect vector：
@@ -95,4 +132,3 @@ Delta_i(c) ≈ g_i(c) K_i(T) + epsilon_i(c,T)
 ## 最小下一步
 
 实现一个 temporal-routing 与一个 deontic-routing stimulus family，保持与 Stage-48/49 相同的四通道 typed interface，然后检验 topology factorization 是否比 prompt embeddings 更好地预测 held-out construction effects。
-

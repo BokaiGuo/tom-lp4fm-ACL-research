@@ -46,6 +46,65 @@ Primary artifacts:
 - `results/oral_readiness_pack_20260707/stage52_independent_saturation_20260804/`
 - `results/oral_readiness_pack_20260707/qwen25_7b_base_independent_saturation_replication_20260805/`
 
+## Relationship to Related Work
+
+### Instruction priority and context faithfulness
+
+[The Instruction Hierarchy](https://arxiv.org/abs/2404.13208) trains models to
+respect an explicit privilege ordering and selectively ignore lower-priority
+instructions. [Context-faithful Prompting](https://arxiv.org/abs/2303.11315)
+uses opinion-based prompts and counterfactual demonstrations to make models rely
+more strongly on supplied context when it conflicts with parametric knowledge.
+[Can LLMs Separate Instructions From Data?](https://arxiv.org/abs/2403.06833)
+formalizes a related safety property and shows that prompt engineering or
+fine-tuning can trade separation against utility.
+
+These works are direct baselines because they all alter how competing text
+sources influence an answer. Their target, however, is a fixed hierarchy,
+context preference, or instruction/data boundary. Our target varies by item:
+the queried belief may legitimately defeat reality in one topology, while a
+system rule or current state should dominate in another. The objective must
+learn **conditional source authority**, not unconditional context faithfulness.
+
+### Consistency and representation-level adaptation
+
+Paraphrase consistency is a natural robustness baseline, but it can succeed by
+flattening all construction effects. [IN2 training](https://arxiv.org/abs/2404.16811)
+shows that targeted data can improve fine-grained context awareness and
+multi-segment integration. [ReFT](https://arxiv.org/abs/2404.03592) learns
+low-rank representation interventions, while instruction-specific [activation
+steering](https://arxiv.org/abs/2410.12877) improves adherence and composes
+multiple steering vectors.
+
+These methods establish that both data and representation interventions can
+change context use. They do not guarantee that the intended typed source, rather
+than a label or generic instruction feature, gains control. They should be
+compared under identical source-margin, answer-permutation, wrong-channel, and
+off-policy-leak measurements.
+
+### Schema shaping and compositional training
+
+[Shaping Schema via Language Representation](https://arxiv.org/abs/2605.09271)
+argues that language representation can reorganize knowledge activation without
+changing scale. [Fu--Zheng's DCG analysis](https://proceedings.mlr.press/v267/fu25j.html)
+separates data insufficiency from algorithm--rule compatibility. Together they
+imply that a successful training objective may work by changing representation
+compatibility rather than by learning a universal composition law.
+
+The full objective must therefore report whether it improves primitive coverage,
+changes topology sensitivity, or truly improves held-out relation composition.
+An accuracy gain alone cannot distinguish these mechanisms.
+
+### Exact novelty boundary and decisive trade-off
+
+This branch cannot claim that instruction robustness, contextual faithfulness,
+or representation finetuning is new. Its separable contribution would be an
+objective that improves unseen typed routing while preserving sensitivity to
+legitimate linguistic source changes. The decisive display is a Pareto frontier
+between wrong-source suppression and valid-language sensitivity, with standard
+SFT, paraphrase consistency, hierarchy training, context-faithful prompting,
+and ReFT/steering as matched baselines. See the [central related-work map](../research/related_work_positioning_20260826_zh.md).
+
 ## Training Objective
 
 For item `i`, construction `c`, topology `T`, intended source `s*`, and competitor
@@ -282,4 +341,3 @@ Run a small adapter or LoRA comparison on one Base checkpoint with four conditio
 standard SFT, paraphrase consistency, typed routing, and typed routing plus leak
 control. Evaluate on item-disjoint and construction-disjoint Stage-49/52 cells
 before adding composition regularization.
-

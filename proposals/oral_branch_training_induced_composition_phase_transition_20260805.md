@@ -51,6 +51,67 @@ Primary artifacts:
 - `results/oral_readiness_pack_20260707/qwen25_7b_base_independent_saturation_replication_20260805/`
 - `results/oral_readiness_pack_20260707/affine_gain_null_audit_20260805/`
 
+## Relationship to Related Work
+
+### Training dynamics and emergent in-context computation
+
+[In-context Learning and Induction Heads](https://arxiv.org/abs/2209.11895)
+links a sharp change in in-context learning to the emergence of induction heads,
+with causal evidence in small attention-only models and correlational evidence in
+larger models. [Breaking through the learning plateaus of in-context learning](https://proceedings.mlr.press/v235/fu24h.html)
+instead separates a weights component from a context component and studies why
+ICL ability can remain flat during training. [Learning Trajectories are
+Generalization Indicators](https://arxiv.org/abs/2304.12579) treats the sequence
+of optimization updates, rather than only the endpoint, as informative about
+generalization.
+
+This branch shares their longitudinal view but studies a different state
+variable. It does not ask when generic ICL appears or when held-out accuracy
+improves. It asks when a checkpoint-indexed **typed source-access composition
+signature** changes: whether primitive linguistic constraints that act on the
+same answer source remain additive, become saturating, or rewire in an
+item-dependent way.
+
+### Compositional generalization and data coverage
+
+[A General Theory for Compositional Generalization](https://arxiv.org/abs/2405.11743)
+warns against assuming that primitives compose independently and introduces a
+task-agnostic generative effect. [On the Statistical Mechanisms of
+Distributional Compositional Generalization](https://proceedings.mlr.press/v267/fu25j.html)
+separates insufficient supporting data from an algorithm's knowledge-composition
+capacity and emphasizes algorithm--rule compatibility and sensitivity. These
+results directly constrain our interpretation: a checkpoint transition cannot
+be inferred from endpoint differences unless primitive coverage, evaluation
+distribution, and composition rule are held fixed.
+
+Our additional object is not a new general theory of CG. It is a within-
+trajectory diagnostic of whether training changes the **operator class over
+typed source relations**. A valid result requires the same manifest, primitive
+estimator, answer encoding, scorer, and held-out compound protocol at every
+checkpoint.
+
+### Post-training source priorities
+
+[The Instruction Hierarchy](https://arxiv.org/abs/2404.13208) demonstrates that
+targeted training data can teach a model to respect an explicitly specified
+priority ordering among instruction channels. That work is an intervention
+precedent, but it prespecifies the hierarchy and evaluates instruction
+robustness. Our setting contains no privileged system/user order; the question
+is whether ordinary pretraining, SFT, or alignment changes how implicit
+linguistic source constraints compose. A controlled hierarchy-style training
+condition is therefore a positive control, not the research object itself.
+
+### Exact novelty boundary
+
+This branch must not claim that training dynamics, phase-like transitions, or
+compositional generalization are new. Its separable contribution would be a
+held-out, checkpoint-indexed map showing that training changes a typed
+source-access composition rule rather than merely improving primitives or
+rescaling logits. The nearest comparisons are endpoint-only model comparison,
+primitive-accuracy trajectories, calibration/logit-scale trajectories,
+coverage-matched additive prediction, and explicit instruction-hierarchy
+training. See the [central related-work map](../research/related_work_positioning_20260826_zh.md).
+
 ## Formal Object
 
 For checkpoint `k`, latent item `i`, typed topology `T`, and construction `c`,
@@ -237,4 +298,3 @@ robustness table.
 Freeze a 5-checkpoint pilot manifest and run primitive plus binary-compound
 scoring before doing any activation work. The first decision is whether a
 longitudinal residual change exists at all.
-

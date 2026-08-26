@@ -29,6 +29,39 @@ Stage-48/49 已确认 typed conflict topology 对语言效应具有调节作用�
 - `results/oral_readiness_pack_20260707/qwen25_7b_base_independent_saturation_replication_20260805/`
 - `results/oral_readiness_pack_20260707/affine_gain_null_audit_20260805/`
 
+## 与 Related Work 的关系
+
+### 训练动力学不是本分支的新颖性
+
+[In-context Learning and Induction Heads](https://arxiv.org/abs/2209.11895)
+把 ICL 能力的突变与 induction head 的形成联系起来；[Breaking through the learning
+plateaus of in-context learning](https://proceedings.mlr.press/v235/fu24h.html)
+区分 weights component 与 context component；[Learning Trajectories are
+Generalization Indicators](https://arxiv.org/abs/2304.12579) 则把优化轨迹本身作为
+generalization indicator。本分支继承它们的纵向视角，但不研究 generic ICL emergence
+或最终 accuracy，而研究同一训练轨迹上 **typed source-access composition signature**
+何时改变。
+
+### 与组合泛化理论的关系
+
+[A General Theory for Compositional Generalization](https://arxiv.org/abs/2405.11743)
+说明 primitive 不应被默认独立组合；[Fu–Zheng 2025](https://proceedings.mlr.press/v267/fu25j.html)
+进一步区分 supporting-data 不足与算法的 knowledge-composition capacity。因此，
+Base/Instruct 两个终点不同并不足以证明“训练改变组合定律”；必须冻结 primitive
+coverage、manifest、答案编码和 held-out compound protocol。
+
+### 与 instruction hierarchy 的关系
+
+[The Instruction Hierarchy](https://arxiv.org/abs/2404.13208) 证明定向训练可以让模型
+遵守预先规定的 instruction priority。它是 controlled induction 的重要先例，但其
+hierarchy 是显式给定的；本分支研究普通训练阶段是否改变隐式 linguistic source
+constraints 的组合方式。
+
+本分支不能声称训练相变或组合泛化本身是新的。可成立的新颖性只能是：在同一训练
+轨迹上证明 source-relation operator class 改变，且变化不能由 primitive accuracy、
+calibration、logit scale 或数据覆盖解释。完整定位见
+[Related Work 定位地图](../research/related_work_positioning_20260826_zh.md)。
+
 ## 形式化对象
 
 对 checkpoint `k`、latent item `i`、typed topology `T` 与语言构式 `c`，定义 topology-moderated typed binding margin `Gamma_i,k(c,T)`。对两个 primitive 构式 `c1,c2` 及其 compound `c12`，定义：
@@ -102,4 +135,3 @@ controlled SFT 通过后可写：受控构式暴露改变了 held-out compositio
 ## 最小下一步
 
 先冻结一个 5-checkpoint pilot，只运行 primitive 与 binary compound scoring。在任何 activation 工作之前，先判断纵向 residual change 是否存在。
-

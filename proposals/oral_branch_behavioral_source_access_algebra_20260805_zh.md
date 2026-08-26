@@ -18,6 +18,44 @@ Stage-52 已在 Qwen2.5-7B-Instruct 上确认正 subadditive residual，但 weak
 
 Stage-48 验证 conflict-topology moderation；Stage-49 显示 topology kernel 的方向跨 realization 稳定，但 gain 对构式敏感；Stage-50 拒绝过窄的局部 reportative-scope mechanism；Stage-51 揭示 additive cost 对 held-out compound 的系统性 overshoot；Stage-52 在独立 latent worlds 上确认 subadditive residual。Base 与 Qwen3 则构成 operator portability 的重要边界。
 
+## 与 Related Work 的关系
+
+### 与 ICL 示例选择和组合泛化的关系
+
+[CoFe](https://arxiv.org/abs/2305.04835) 是最直接的 ICL 近邻：它研究 structural
+similarity、diversity、complexity 和必要语言结构覆盖如何影响未见组合表现；[COGS](https://aclanthology.org/2020.emnlp-main.731/)
+等组合泛化 benchmark 则考查已见 primitive 能否组成未见语义配置。
+
+本分支把分析单位再下移一层：primitive 不是词、语义槽位或 task label，而是受控
+conflict topology 下的 **typed source-access constraint**。关键问题也不是新 item 是否
+答对，而是冻结 primitive access cost 后，能否在 compound scoring 前预测未见组合。
+CoFe 提供示例因素和 split 设计的先例，但没有定义 source-authority algebra。
+
+### 与分布式组合泛化理论的关系
+
+[A General Theory for Compositional Generalization](https://arxiv.org/abs/2405.11743)
+提醒我们 generative effect 会使 primitive 非独立；[Fu–Zheng 2025](https://proceedings.mlr.press/v267/fu25j.html)
+进一步区分 supporting-data 不足与 knowledge-composition capacity，并强调算法与
+composition rule 的 compatibility/sensitivity。
+
+因此，本分支必须设置 coverage-deficient 与 composition-heldout 条件，不能把所有
+compound failure 都解释为“不会组合”。若结果成立，新增的是 **topology-conditioned
+algebra over source authority**，而不是重新宣称一般组合泛化理论。
+
+### 与行为测试和 shortcut 控制的关系
+
+[CheckList](https://aclanthology.org/2020.acl-main.442/) 和 [contrast sets](https://aclanthology.org/2020.findings-emnlp.117/)
+支持用最小变化替代 aggregate accuracy；[Clever Hans](https://aclanthology.org/2024.eacl-long.138/)
+说明 prompt effect 可能来自 shortcut。因此 operator 评估必须加入答案标签、位置、
+source token、item-shuffled 和 topology controls。这些工作提供评估纪律，但没有
+source-access cost 或 held-out operator 这一对象。
+
+本分支不能把 subadditivity、saturation 或 compositional generalization 本身写成新颖性。
+可成立的分离点只能是：预注册的 typed-source operator family 能在未见 compound 上
+优于 additive、surface-only 和 coverage-only baseline。weakest-link 与
+average-saturation 仍是竞争解释。完整定位见
+[Related Work 定位地图](../research/related_work_positioning_20260826_zh.md)。
+
 ## 形式化对象
 
 令 `C(c)` 表示构式 `c` 的 item-level source-access cost。对三元 compound `c123`，候选算子包括：
@@ -93,4 +131,3 @@ topology mixture:  phi(C1, C2, C3, T)
 ## 最小下一步
 
 构建一个包含五类 primitives、3–4 个 construction-disjoint held-out cells 的 ternary pilot。在 pilot 区分至少两个 operator families 之前，不增加更多模型。
-

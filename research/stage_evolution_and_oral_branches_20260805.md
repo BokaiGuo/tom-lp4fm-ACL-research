@@ -276,3 +276,19 @@ Stage-52 在更多模型上复现，但必须加入外部任务和正式理论�
 4. 若存在 change point，再设计 controlled SFT；若不存在，转向 Branch 3 的 identifiability paper。
 5. 当前 LP4FM 稿件保持 checkpoint-sensitive behavioral composition 的窄 claim，不等待新分支完成。
 
+## 7. 2026-08-26：以 ICL 重新组织五个分支
+
+在纳入付靖文、郑南宁关于 in-context learning、compositional generalization、
+distributional compositional generalization 与 learning trajectory 的工作后，下一阶段
+不再把“训练改变组合算子”作为唯一母对象。五个分支被进一步收束为
+**Authority Compositional Generalization**：模型能否从 demonstrations 中归纳 typed
+source relations，并在未见内容、表示和冲突拓扑中重新实例化这些关系。
+
+旧的 Branch 1–5 继续分别承担 training trajectory、relation composition、
+identifiability、graph topology 和 training objective 的角色；它们不再作为五篇互相
+平行的主叙事。完整的新论文方案见
+[下一阶段论文研究方案：上下文学习中的答案权威组合泛化](next_stage_icl_schema_rewriting_20260826_zh.md)
+与 [English ACG Plan](next_stage_authority_compositional_generalization_20260826.md)。
+五个分支与最近邻工作的统一比较、不可声称的新颖性和直接 baseline 见
+[Related-Work Positioning](related_work_positioning_20260826.md) 与
+[中文定位地图](related_work_positioning_20260826_zh.md)。

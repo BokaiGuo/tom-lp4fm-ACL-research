@@ -44,6 +44,54 @@ primitive construction costs
 
 Stage-2–6 证明 raw accuracy 是多个 typed controllers 的混合观测。Stage-44–49 证明语言构式改变 source arbitration，且 conflict topology 调节效应。Stage-50–52 将 primitive costs 冻结后预测 compound，并在独立世界上确认 Qwen2.5-7B-Instruct 的 subadditivity。weakest-link 与 average saturation 暂时无法区分。Qwen3 与 Qwen2.5 Base 不保留正 directional residual，affine-gain audit 又排除了统一读出压缩。
 
+## 与 Related Work 的关系
+
+### 两个最近邻文献簇尚未在本对象上汇合
+
+第一类工作研究 compositional generalization 如何依赖示例、数据覆盖和学习算法。
+[CoFe](https://arxiv.org/abs/2305.04835) 识别 structural similarity、diversity、
+simplicity 和语言结构覆盖；[general CG theory](https://arxiv.org/abs/2405.11743) 给出
+task-agnostic limit 与 generative effect；[Fu–Zheng 2025](https://proceedings.mlr.press/v267/fu25j.html)
+区分 supporting-data 不足和 knowledge-composition capacity。
+
+第二类工作研究训练中 ICL 和 generalization 何时变化。[Induction Heads](https://arxiv.org/abs/2209.11895)
+把 ICL 突变与候选 circuit 联系起来；[Learning Plateaus](https://proceedings.mlr.press/v235/fu24h.html)
+区分 weights/context component；[Learning Trajectories](https://arxiv.org/abs/2304.12579)
+用 update path 解释 generalization。
+
+本合并分支位于二者交叉处，但定义了更窄的状态变量：
+
+```text
+checkpoint k -> typed source-access relation 上的 composition operator
+```
+
+问题不是训练是否提高一般 composition accuracy，而是多个 source 竞争同一 answer
+interface 时，训练是否改变 independently measured constraints 的组合方式。
+
+### 与 schema shaping 和 source-priority training 的关系
+
+[Shaping Schema](https://arxiv.org/abs/2605.09271) 提出语言表示改变知识激活与组织；
+[Instruction Hierarchy](https://arxiv.org/abs/2404.13208) 表明显式训练可安装 channel
+priority policy。它们是表示/训练诱导变化的近邻，但没有从 typed primitive source cost
+估计 held-out composition operator。它们也构成必须保留的 rival：所谓 transition
+可能只是 broad schema change 或显式 priority heuristic。
+
+### 与当前 LP4FM 和 ACG 后继路线的关系
+
+已投稿 LP4FM 只建立静态、checkpoint-sensitive 的 behavioral boundary，不建立纵向
+operator transition。本分支必须增加 training trajectory 与 controlled induction，不能
+重新命名 Stage-51/52。[Authority Compositional Generalization 方案](../research/next_stage_icl_schema_rewriting_20260826_zh.md)
+则进一步研究 demonstrations 是否诱导可跨 content、encoding 和 unseen topology 的
+authority relation program；在该框架下，本合并分支是 ACG 的 weights/training lane，
+不一定需要独立成稿。
+
+本分支不能声称 ICL dynamics、组合泛化、phase transition 或 schema shaping 本身是新
+颖性。独立贡献必须同时具备 held-out source-operator prediction、within-trajectory
+change point 和 primitive/data-coverage matched 的 selective induction。直接 baseline
+包括 CoFe-style coverage、additive/flexible operators、accuracy/calibration trajectory、
+affine transport、instruction-hierarchy training 与 no-compound exposure。完整定位见
+[Related Work 定位地图](../research/related_work_positioning_20260826_zh.md)。
+
 ## 形式化框架
 
 对 item `i`、checkpoint `k`、construction `c` 与 topology `T`，定义 intended-source 对 strongest typed competitor 的 margin `M_i,k(c,T)`。通过 instruction arms 构造 `Delta_i,k(c,T)`，再以 joint conflict 相对 single conflicts 的差异构造 `Gamma_i,k(c)`。相对 baseline construction `c0` 的 primitive cost 为：
@@ -161,4 +209,3 @@ Figure 1 展示 typed source-access algebra；Figure 2 展示 held-out binary/te
 ## 决策规则
 
 只有当 ternary pilot 能区分 operator，或 controlled training 能选择性改变 held-out composition，才继续作为合并 oral 项目。若两者都失败，应保留当前 LP4FM 稿件，并转向 mechanism-identifiability 分支，而不是继续扩展模型矩阵。
-

@@ -55,6 +55,66 @@ Primary artifacts:
 - `results/oral_readiness_pack_20260707/stage34_checkpoint_basis_transport_20260729/`
 - `results/oral_readiness_pack_20260707/stage37_mathematical_transport_theory_20260730/`
 
+## Relationship to Related Work
+
+### Probing does not identify causal use
+
+[Probing Classifiers: Promises, Shortcomings, and Advances](https://arxiv.org/abs/2102.12452)
+reviews why decoder accuracy alone does not establish how a representation is
+used. [Amnesic Probing](https://arxiv.org/abs/2006.00995) makes the point
+interventional: conventional probing performance need not correlate with task
+importance, so information removal is used to test behavioral use. Our
+readability--controllability distinction is therefore not itself novel; it is a
+required starting point inherited from this literature.
+
+This branch extends the separation to a typed multiclass answer interface. It
+asks whether an intervention controls the intended source rather than merely an
+answer identifier, whether it beats wrong-channel and final-token controls, and
+whether its causal semantics transport across items and checkpoints.
+
+### Belief representations and adequacy criteria
+
+[Language Models Represent Beliefs of Self and Others](https://proceedings.mlr.press/v235/zhu24o.html)
+and [Brittle Minds, Fixable Activations](https://arxiv.org/abs/2406.17513)
+provide direct precedents for decoding and intervening on belief-related
+representations. [Standards for Belief Representations in LLMs](https://arxiv.org/abs/2405.21030)
+argues that belief-like status requires accuracy, coherence, uniformity, and
+use rather than any single signal. These works make a broad claim such as
+"probes do not prove mechanisms" insufficient as a contribution.
+
+Our exact wedge is an identifiability result for **typed controller claims**:
+full competitor-complete answer-simplex projectors can be vertex-nonidentifying;
+high subspace overlap can coexist with asymmetric causal transport; and
+same-item response reconstruction can coexist with failure to promote the
+intended source. These are stronger, source-specific counterexamples to common
+mechanistic inferences.
+
+### Causal abstraction, steering, and intervention methods
+
+[Causal Abstraction](https://arxiv.org/abs/2301.04709) supplies a unified formal
+language for patching, mediation, erasure, steering, and distributed alignment.
+[ReFT](https://arxiv.org/abs/2404.03592) and instruction-specific [activation
+steering](https://arxiv.org/abs/2410.12877) show that learned or contrastive
+representation interventions can efficiently change behavior. These methods
+are applicable baselines, but intervention success is not the same estimand as
+typed identifiability.
+
+The protocol must therefore evaluate each method with the same answer-encoding
+permutations, source-specific argmax, wrong-channel controls, and cross-content
+transport. The recent [Cross-Encoding Steering Evaluation](https://arxiv.org/abs/2608.22985)
+is especially close: it demonstrates that steering can follow extraction
+indices rather than semantic labels. Our proposed framework subsumes this as an
+answer-encoding specificity failure and adds source and checkpoint transport.
+
+### Exact novelty boundary
+
+The paper cannot claim a general no-go theorem for mechanistic interpretability
+or a unique belief circuit. A defensible contribution requires (i) a general
+multiclass readout theorem, (ii) at least two non-ToM tasks, and (iii) a protocol
+that changes which mechanistic claims survive. Without cross-task replication,
+the current evidence remains a ToM-specific mechanism boundary. See the [central
+related-work map](../research/related_work_positioning_20260826_zh.md).
+
 ## Four Distinct Identification Targets
 
 For representation or intervention object `z`, define four claims:
@@ -278,4 +338,3 @@ that changes each verdict.
 Write the general vertex non-identifiability theorem and instantiate the full
 four-tier audit on one temporal-source and one deontic-authority task before
 running any new large model suite.
-
