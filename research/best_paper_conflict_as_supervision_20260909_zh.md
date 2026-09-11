@@ -2,6 +2,10 @@
 
 英文对应稿：[Best-Paper Candidate: When Conflict Becomes Supervision](best_paper_conflict_as_supervision_20260909.md)。
 
+上位升级方案见：[从关系到答案承诺：先验改写](best_paper_relation_to_commitment_20260911_zh.md)。本文件不再单独承担最高层标题；它是新主线中的
+**relation identification** 半部，负责说明哪些 demonstrations 真正区分候选
+source policies。
+
 更新日期：2026-09-09
 
 当前状态：`argument_shaped`。本文档给出一个具有 Best Paper 潜力的研究候选，不把

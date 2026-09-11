@@ -2,6 +2,10 @@
 
 英文对应稿：[Updated Next-Stage Research Plan: From Representation to Commitment](next_stage_relation_preservation_20260909.md)。
 
+本项目目前更高层的 Best-Paper 推演见：[从关系到答案承诺：先验改写](best_paper_relation_to_commitment_20260911_zh.md)。本文件保留项目级总图；新文件把其中的
+“关系能否进入最终答案”收紧为下一篇论文的中心对象。原“当冲突成为监督”方案承担
+关系识别，ACG 方案承担关系执行与组合泛化。
+
 更新日期：2026-09-09
 
 进一步的最近邻核对表明，Paper B 还可以从宽泛 ACG 收紧为一个更具决定性的候选规律：

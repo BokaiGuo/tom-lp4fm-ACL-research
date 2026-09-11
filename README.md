@@ -21,7 +21,17 @@ This repository intentionally contains manuscript and research-planning document
 
 The LP4FM manuscript is **Paper A**, the bounded empirical foundation: it identifies typed source routing, confirms a subadditive composition class in the reference checkpoint, and defines checkpoint-sensitive behavioral and transport limits.
 
-The submitted LP4FM manuscript is **Paper A**, the bounded static source-arbitration result. The strongest proposed **Paper B** candidate is **Conflict Is Supervision**: whether target-consistent source conflict identifies a latent source policy, while across-demonstration policy conflict corrupts it. ACG is retained as Paper B's execution/composition half: after policy identification, does the relation transfer across content and encodings and compose on unseen conflict topologies? Existing Stage-53--57 results motivate these objects but are not counted as Paper B evidence.
+The submitted LP4FM manuscript is **Paper A**, the bounded static source-arbitration result. The proposed **Paper B** program begins with **Conflict Is Supervision**: whether target-consistent source conflict identifies a latent source policy, while across-demonstration policy conflict corrupts it. ACG is retained as its execution/composition half: after policy identification, does the relation transfer across content and encodings and compose on unseen conflict topologies? Existing Stage-53--57 results motivate these objects but are not counted as Paper B evidence.
+
+The 2026-09-11 Best-Paper upgrade places both experiments under a sharper
+relation-to-commitment question. The Imperfective Paradox paper motivates
+separating relation readability from final judgment: a model may distinguish a
+relation yet follow a competing default prior when it commits to an answer. In
+this program, `Conflict Is Supervision` supplies relation identification, ACG
+supplies held-out execution and composition, and the new plan tests whether an
+identified relation survives final commitment. The 2x2 diagnosticity x prior-
+pressure design remains `not_evaluated` until validity-screened ToM,
+independent readout, oracle controls, and an external relation domain are run.
 
 ## Research entry points
 
@@ -29,6 +39,8 @@ The submitted LP4FM manuscript is **Paper A**, the bounded static source-arbitra
 - [Next-stage ACG paper plan](research/next_stage_authority_compositional_generalization_20260826.md)
 - [下一阶段 ACG 中文方案](research/next_stage_icl_schema_rewriting_20260826_zh.md)
 - [Best-Paper candidate: Conflict Is Supervision](research/best_paper_conflict_as_supervision_20260909.md)
+- [Best-Paper candidate: From Relation to Commitment](research/best_paper_relation_to_commitment_20260911.md)
+- [Best-Paper 从关系到答案承诺中文方案](research/best_paper_relation_to_commitment_20260911_zh.md)
 - [Best-Paper 候选中文方案](research/best_paper_conflict_as_supervision_20260909_zh.md)
 - [Program-level relation-preservation map](research/next_stage_relation_preservation_20260909.md)
 - [关系表征到答案承诺中文总图](research/next_stage_relation_preservation_20260909_zh.md)

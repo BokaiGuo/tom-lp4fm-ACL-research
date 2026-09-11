@@ -1,5 +1,10 @@
 # Related-Work Positioning for the Next Research Stage
 
+The current top-level entry point is [From Relation to Commitment](best_paper_relation_to_commitment_20260911.md).
+The ICL, schema, ToM, memory, and steering neighbors below are positioned
+against the narrower question of whether a contextual relation survives into
+the final answer; they are not treated as evidence for one shared mechanism.
+
 ## Purpose
 
 This document is a positioning argument, not a bibliography. It records what

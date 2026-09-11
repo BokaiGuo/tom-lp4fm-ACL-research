@@ -2,6 +2,12 @@
 
 Chinese counterpart: [Best Paper 级下一阶段候选：当冲突成为监督](best_paper_conflict_as_supervision_20260909_zh.md).
 
+The higher-level upgrade is [From Relation to Commitment](best_paper_relation_to_commitment_20260911.md).
+This document now serves as the relation-identification half of that program:
+it specifies when demonstrations distinguish candidate source policies, while
+the upgraded paper studies whether an identified relation survives final answer
+commitment.
+
 Updated: 2026-09-09
 
 Status: `argument_shaped`. This document specifies a research candidate with

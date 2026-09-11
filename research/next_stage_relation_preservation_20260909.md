@@ -2,6 +2,12 @@
 
 Chinese counterpart: [下一阶段研究方案更新：从关系表征到答案承诺](next_stage_relation_preservation_20260909_zh.md).
 
+The sharper Best-Paper candidate is now [From Relation to Commitment](best_paper_relation_to_commitment_20260911.md).
+This document remains the program-level map; the newer document turns the
+relation-to-final-answer boundary into the next paper's central object.
+`Conflict Is Supervision` supplies identification, while ACG supplies held-out
+execution and composition.
+
 Updated: 2026-09-09
 
 This document places the submitted LP4FM paper, the five proposed branches, and
