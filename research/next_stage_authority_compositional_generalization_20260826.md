@@ -1,5 +1,14 @@
 # Next-Stage Paper Plan: Authority Compositional Generalization in Context
 
+> **2026-09-09 positioning update.** ACG remains the execution and composition
+> object: after demonstrations identify a source relation, can it transfer and
+> compose? It is no longer the highest-level novelty claim. Direct prior work
+> already studies task ambiguity, critical disambiguating examples, and
+> conflicting demonstrations. The stronger candidate distinguishes helpful
+> within-item source conflict from harmful across-example policy conflict. See
+> [Conflict Is Supervision](best_paper_conflict_as_supervision_20260909.md) and
+> the [program-level relation-preservation map](next_stage_relation_preservation_20260909.md).
+
 ## Working Title
 
 **What Does In-Context Learning Learn? Authority Compositional Generalization in Language Models**

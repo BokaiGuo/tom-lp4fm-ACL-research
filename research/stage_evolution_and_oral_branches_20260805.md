@@ -292,3 +292,36 @@ identifiability、graph topology 和 training objective 的角色；它们不再
 五个分支与最近邻工作的统一比较、不可声称的新颖性和直接 baseline 见
 [Related-Work Positioning](related_work_positioning_20260826.md) 与
 [中文定位地图](related_work_positioning_20260826_zh.md)。
+
+## 8. 2026-09-09：从 ACG 再升级为“冲突何时构成监督”
+
+补查 AmbiBench、critical disambiguating-example attribution、demonstration conflict 和
+context-faithful prompting 后，一个重要边界被关闭：不能再把“demonstrations 有歧义”
+或“一个关键示例消除歧义”本身当成新发现。
+
+当前最强的下一阶段对象变为：
+
+```text
+source-consensus correct examples
+  -> candidate source policies remain observationally equivalent
+  -> behavior follows checkpoint prior
+
+target-consistent source-conflict example
+  -> candidate policies predict different answers
+  -> label identifies the governing relation
+
+corrupted inter-demonstration conflict
+  -> examples support incompatible policies
+  -> relation learning is damaged or destabilized
+```
+
+这不是第六个平行分支，而是重新组织五个分支的母规律。ACG 负责“policy 已识别之后
+能否迁移和组合”；training branch 负责 prior 与 update efficiency；topology/algebra
+负责 policy-separation graph；mechanism branch 负责 typed transport claim；training
+objective 负责偏好 diagnostic evidence、拒绝 corrupted evidence。
+
+完整中英文方案见：
+
+- [当冲突成为监督：中文方案](best_paper_conflict_as_supervision_20260909_zh.md)
+- [Conflict Is Supervision: English Plan](best_paper_conflict_as_supervision_20260909.md)
+- [关系表征到答案承诺：项目级总图](next_stage_relation_preservation_20260909_zh.md)

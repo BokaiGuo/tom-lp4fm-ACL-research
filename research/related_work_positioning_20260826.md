@@ -12,6 +12,35 @@ generalization, belief representations, routing, or schema are unexplored. Its
 candidate contribution is narrower: **inducing a typed source-relation program
 from demonstrations and composing it over unseen answer-authority topologies**.
 
+## 0. 2026-09-09: Required Narrowing After Nearest-Neighbor Search
+
+Three easy novelty claims are closed by direct prior work:
+
+- [AmbiBench](https://arxiv.org/abs/2212.10711) studies demonstrations that do
+  not uniquely identify the intended task;
+- [Ye et al. (2025)](https://aclanthology.org/2025.findings-acl.1092/) construct
+  a critical disambiguating example and use it to audit ICL attribution;
+- [Jiao et al. (2026)](https://arxiv.org/abs/2603.04464) study conflict caused by
+  a corrupted-rule demonstration.
+
+The project therefore cannot center novelty on task ambiguity, an aha example,
+or the harm caused by conflicting demonstrations. Its stricter separation is:
+
+```text
+within-example source conflict
+  candidate source policies predict different answers
+  + a target-consistent label
+  = diagnostic relational supervision
+
+across-example policy conflict
+  demonstrations support incompatible governing rules
+  = corruption, noise, or unresolved normative ambiguity
+```
+
+ACG is the second half of this argument: once demonstrations identify a source
+policy, test whether it transfers and composes. See the full
+[Best-Paper candidate plan](best_paper_conflict_as_supervision_20260909.md).
+
 ## 1. Nearest-Neighbor Map
 
 | Literature family | Representative work | Existing object | Required separation in this project |

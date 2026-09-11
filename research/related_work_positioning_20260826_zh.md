@@ -11,6 +11,35 @@
 **从 demonstrations 归纳 typed source-relation program，并在未见冲突拓扑中进行
 答案权威组合泛化**这一对象。
 
+## 0. 2026-09-09：最近邻检索后的必要收紧
+
+新检索关闭了三个原本可能被误写成 novelty 的空间：
+
+- [AmbiBench](https://arxiv.org/abs/2212.10711) 已研究 demonstrations 不能唯一识别
+  intended task；
+- [Ye et al. (2025)](https://aclanthology.org/2025.findings-acl.1092/) 已构造一个
+  critical disambiguating example，并用它审计 ICL attribution；
+- [Jiao et al. (2026)](https://arxiv.org/abs/2603.04464) 已研究一个 corrupted rule
+  demonstration 如何造成 inter-example conflict。
+
+因此，本项目不能以“任务会歧义”“一个 aha example 很重要”或“conflicting demos 会
+伤害模型”为中心贡献。新的严格分离点是：
+
+```text
+within-example source conflict
+  candidate source policies predict different answers
+  + target-consistent gold label
+  = diagnostic relational supervision
+
+across-example policy conflict
+  demonstrations support incompatible governing rules
+  = corruption, noise, or unresolved normative ambiguity
+```
+
+在这一定位下，ACG 是后半段：先证明 demonstrations 已唯一识别 source policy，再测
+它能否跨内容、编码和未见 topology 执行。完整论证见
+[Best Paper 级候选方案](best_paper_conflict_as_supervision_20260909_zh.md)。
+
 ## 1. 最近邻总表
 
 | 文献簇 | 代表工作 | 已有工作的对象 | 本项目的真正分离点 |
