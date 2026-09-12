@@ -1,0 +1,180 @@
+study_id: context_conditioned_rule_updating_20260912
+title_en: "When Context Changes the Rule: Separating Fact Updating from Adjudication Updating in Language Models"
+title_zh: "当上下文改变规则：分离语言模型中的事实更新与冲突裁决更新"
+status:
+  design: frozen
+  empirical: not_evaluated
+  oral: oral_shaped_by_design_only
+  prior_source_policy_proposal: superseded
+mother_object: context-conditioned rule updating
+primary_phenomenon: rule-change without fact-change
+scope:
+  domains:
+    - typed_source_arbitration
+  source_ontology:
+    - queried_belief
+    - reality
+    - testimony_or_report
+    - memory_or_record
+  policy_family:
+    - id: queried_belief_first
+      description: "Choose queried belief under a source conflict."
+    - id: reality_first
+      description: "Choose reality under a source conflict."
+    - id: testimony_first
+      description: "Choose testimony or report under a source conflict."
+    - id: topology_conditioned
+      description: "Choose source by a pre-registered conflict topology rule."
+  excluded_from_main_claim:
+    - intrinsic_tom
+    - human_like_semantic_understanding
+    - universal_icl_law
+    - internal_source_policy_module
+    - causal_neural_localization
+formal_object:
+  latent_world: "w"
+  source_value: "z_s(w)"
+  governing_rule: "pi(query_type, conflict_topology) -> selected_source"
+  native_output: "y_pi(w, query, format)"
+  policy_support: "D_pi"
+factorial_separation:
+  factors:
+    facts: [F0, F1]
+    rule: [Pi0, Pi1]
+  cells:
+    - [F0, Pi0]
+    - [F1, Pi0]
+    - [F0, Pi1]
+    - [F1, Pi1]
+  estimands:
+    fact_update_effect: "E[Y(F1,Pi0)-Y(F0,Pi0)]"
+    rule_update_effect: "E[Y(F0,Pi1)-Y(F0,Pi0)]"
+    interaction: "E[Y(F1,Pi1)-Y(F1,Pi0)-Y(F0,Pi1)+Y(F0,Pi0)]"
+experiments:
+  - id: exp1_policy_identifiability
+    question: "Do diagnostic conflicts teach a rule beyond count, similarity, diversity, or coverage?"
+    conditions:
+      - consensus_support
+      - single_diagnostic
+      - balanced_diagnostic
+      - redundant_diagnostic
+      - corrupted_policy
+      - fact_only_context
+    primary_outcome: held_out_native_policy_execution
+    secondary_outcomes:
+      - source_choice_accuracy
+      - rule_report_accuracy
+      - version_space_reduction
+    required_controls:
+      - matched_example_count
+      - matched_token_budget
+      - matched_lexical_similarity
+      - matched_diversity
+      - source_name_permutation
+      - answer_label_permutation
+      - demonstration_order_permutation
+      - explicit_rule_upper_bound
+  - id: exp2_paired_rule_swap
+    question: "Does changing the rule change native commitment when facts do not?"
+    decisive_pair:
+      fixed:
+        - latent_world
+        - source_values
+        - entities
+        - query
+        - answer_candidates
+        - output_format
+      changed:
+        - demonstrations_inducing_governing_rule
+    primary_outcome: native_answer_rule_swap_effect
+    secondary_outcomes:
+      - source_choice_rule_swap_effect
+      - rationale_rule_consistency
+      - first_action_rule_swap_effect
+    controls:
+      - fact_swap
+      - source_name_swap
+      - answer_label_swap
+      - order_swap
+      - explicit_rule_condition
+  - id: exp3_rule_transport
+    question: "Does a context-induced rule survive the world in which it was taught?"
+    transfer_axes:
+      - new_content
+      - new_encoding
+      - unseen_conflict_topology
+    topology_split:
+      train:
+        - binary_A_vs_B
+        - binary_A_vs_C
+        - binary_B_vs_C
+      test:
+        - ternary_A_vs_B_vs_C
+    baselines:
+      - pairwise_composition
+      - majority
+      - recency
+      - first_position
+      - direct_label_memorization
+      - explicit_rule
+    primary_outcome: rule_swap_effect_by_transfer_axis
+validity_screen:
+  must_pass:
+    - source_values_are_explicitly_conflicting
+    - query_has_unique_policy_answer
+    - policy_pair_changes_target_answer
+    - consensus_items_are_non_diagnostic
+    - source_names_do_not_reveal_policy
+    - answer_labels_do_not_reveal_policy
+    - all_sources_are_selected_and_rejected_across_items
+  independent_split: true
+  freeze_before_confirmation: true
+models:
+  primary:
+    - Qwen2.5-7B-Instruct
+  confirmation:
+    - Qwen2.5-7B-Base
+    - Qwen3-8B
+    - Llama-3.1-8B-Instruct
+  minimum_confirmation: one_matched_model_or_checkpoint
+statistics:
+  bootstrap_unit: latent_world_x_policy_pair
+  primary_effect: paired_rule_swap_effect
+  required_intervals: bootstrap_95_percent
+  forbidden_units:
+    - token
+    - answer_option
+    - repeated_generation_from_same_world
+promotion_gate:
+  empirical_oral_core:
+    - exp2_native_rule_swap_passes
+    - exp2_effect_transfers_to_new_content
+    - shortcut_controls_pass
+    - exp1_information_predicts_execution
+    - independent_model_or_checkpoint_replication
+  oral_ready_additional:
+    - independent_confirmation_split
+    - full_provenance
+    - rendered_main_figures_audited
+    - citation_audit
+    - adversarial_reviewer_audit
+failure_routing:
+  readout_without_native_use: "representation_commitment_dissociation"
+  replay_only_effect: "same_item_pattern_following_boundary"
+  natural_names_only: "semantic_prior_dependence"
+  facts_only: "fact_updating_without_adjudication_updating"
+  all_implicit_conditions_fail: "strong_negative_context_rule_update_boundary"
+lp4fm_relation:
+  role: "Paper A motivation and typed-source design precedent"
+  evidence_reuse: forbidden
+  new_paper_must_use:
+    - new_latent_worlds
+    - new_demonstrations
+    - new_entities_and_values
+    - new_confirmation_split
+related_work_claim_boundary:
+  source_preference: "baseline and rival, not novelty"
+  context_faithfulness: "fact-updating neighbor, not rule-updating answer"
+  task_rule_induction: "method precedent, not exact same-world source-rule swap"
+  task_vectors_and_probes: "secondary diagnostic, not primary evidence"
+  functional_tom: "downstream action consequence only after native rule execution"

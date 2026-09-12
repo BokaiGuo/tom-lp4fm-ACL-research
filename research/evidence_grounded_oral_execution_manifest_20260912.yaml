@@ -1,0 +1,113 @@
+schema: evidence_grounded_oral_execution_v1
+updated: 2026-09-12
+research_status: argument_shaped
+empirical_status: not_evaluated
+headline: "Laws Without Shared Programs: Scale-Dependent Transfer in LLM Semantic Composition"
+mother_object: "hierarchical transfer profile of semantic composition behavior"
+central_question: "When an aggregate semantic effect transfers, does the same item-level behavioral structure transfer with it?"
+validated_anchors:
+  - "Stage-48/49: pooled conflict-topology directions can remain stable across crossed topologies and realizations, with construction-sensitive gains."
+  - "Stage-53/54/55: pooled topology contrasts can survive factor substitution while item-level alignment is not automatically portable."
+  - "Stage-52 and checkpoint replications: directional composition residuals and itemwise geometry are checkpoint-sensitive; primitive-only affine transport is insufficient."
+freeze_before_confirmation:
+  - source_and_target_stimulus_manifests
+  - latent_world_and_item_split
+  - construction_and_topology_transfer_pairs
+  - exact_length_and_answer_encoding_rules
+  - scoring_and_effect_estimator
+  - hierarchical_model_specification
+  - item_shuffled_and_world_shuffled_controls
+  - random_seeds_and_repeated_scoring_plan
+  - semantic_validity_annotation_protocol
+transfer_profile:
+  metrics:
+    T_sign: "aggregate effect direction agreement"
+    T_magnitude: "normalized aggregate effect-magnitude agreement"
+    T_rank: "item-level effect-rank correlation"
+    T_operator: "held-out operator-family agreement"
+  claim_firewall: "Do not collapse the four metrics into a universal transfer score."
+experiments:
+  - id: E1
+    name: transfer_profile_decomposition
+    purpose: "Separate sign, magnitude, item ranking, and operator transfer on frozen matched pairs."
+    source_target_pairs:
+      - "construction -> held-out construction"
+      - "single topology -> crossed topology"
+      - "Qwen2.5-7B-Instruct -> matched checkpoint"
+      - "old latent worlds -> new latent worlds"
+    primary_output: "four-level transfer profile with uncertainty and exact source artifacts"
+    sampling_unit: "latent item clustered by predicate and transfer pair"
+    controls:
+      - surface_matched
+      - lexical_similarity
+      - item_shuffled
+      - predicate_shuffled
+      - latent_world_shuffled
+      - primitive_only_affine_null
+    pass_condition: "At least one nontrivial transfer ordering or boundary is replicated across independent pairs."
+    downgrade: "Descriptive transfer table only; no general law if the ordering is pair-specific."
+  - id: E2
+    name: prospective_itemwise_transport
+    purpose: "Test whether source-side item effects predict target-side effects before target labels are unblinded."
+    split:
+      source_fit: "source-construction training items only"
+      target_confirmation: "new target-construction items with zero item identity overlap"
+      selection_blind: true
+    models:
+      - aggregate_only
+      - surface_similarity
+      - hierarchical_item_effect
+      - random_item_effect
+      - item_shuffled
+    primary_output: "target effect direction and rank prediction versus shuffled and aggregate-only baselines"
+    sampling_unit: "target latent item"
+    controls:
+      - leave_one_item_out
+      - predicate_shuffled
+      - latent_world_shuffled
+      - repeated_scoring_reliability
+      - noise_corrected_correlation
+    pass_condition: "A source-derived itemwise model beats aggregate-only and shuffled prediction on blinded target items, or a stable mean-preserved/itemwise-broken boundary is confirmed."
+    downgrade: "No itemwise transport claim if prediction is not above shuffled or reliability limits."
+  - id: E3
+    name: external_semantic_relation_confirmation
+    purpose: "Test whether the transfer object extends beyond ToM without assuming a shared mechanism."
+    domain: "process/result inference using an independently audited imperfective-semantic contrast"
+    prerequisites:
+      - independent_semantic_validity_audit
+      - endpoint_and_scope_invariants
+      - ambiguous_item_exclusion_before_model_scoring
+    measurements:
+      - relation_direction
+      - intermediate_relation_classification
+      - native_final_nli_label
+      - T_sign
+      - T_magnitude
+      - T_rank
+      - T_operator
+    pass_condition: "The same transfer-level structure is confirmed, or a clear domain-specific boundary is identified."
+    downgrade: "If the external relation fails, keep the claim ToM-specific and do not write a general language law."
+execution_order:
+  - "Freeze E1/E2 source-target manifests and analysis before target scoring."
+  - "Run E1 decomposition and reliability audit."
+  - "Run E2 prospective target prediction with selection blinding."
+  - "Run E3 only after E1/E2 survive semantic and statistical audits."
+  - "Replicate the strongest boundary on one additional checkpoint or independent item generator."
+stop_rules:
+  - "No independent validity: stop transfer claim and repair stimuli."
+  - "Only pooled effect survives: report aggregate transfer, not itemwise transport."
+  - "Only same-item reconstruction survives: classify as replay/reconstruction, not transport."
+  - "Only one checkpoint or construction survives: scope claim to that tested boundary."
+  - "Operator classes remain observationally equivalent: report non-identification."
+claim_firewall:
+  allowed:
+    - "scale-dependent transfer profile"
+    - "aggregate direction can survive while item-level alignment fails"
+    - "construction-sensitive or checkpoint-sensitive composition boundary"
+    - "prospective itemwise transport under the tested protocol"
+  forbidden:
+    - "same hidden program"
+    - "no shared representation"
+    - "universal semantic law"
+    - "instruction tuning causally creates the composition rule"
+    - "intrinsic ToM"

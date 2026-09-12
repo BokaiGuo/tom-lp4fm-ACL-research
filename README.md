@@ -38,6 +38,15 @@ optional supporting work. The proposal remains `not_evaluated` until
 validity-screened ToM, held-out transfer, model-family replication, and
 functional action evidence are run.
 
+The 2026-09-12 oral-shape package separates design readiness from empirical
+readiness: the design is `oral_shaped`, while the proposal remains
+`not_evaluated` and `argument_shaped` until the three main experiments pass
+their gates. See `research/oral_shape_upgrade_20260912_zh.md`,
+`research/oral_shape_upgrade_20260912.md`,
+`research/oral_shape_claim_ledger_20260912.csv`,
+`research/oral_shape_display_plan_20260912.csv`, and
+`research/oral_shape_execution_manifest_20260912.yaml`.
+
 ## Research entry points
 
 - [Stage evolution and five-branch map](research/stage_evolution_and_oral_branches_20260805.md)
@@ -51,18 +60,23 @@ functional action evidence are run.
 - [关系表征到答案承诺中文总图](research/next_stage_relation_preservation_20260909_zh.md)
 - [Related-work positioning](research/related_work_positioning_20260826.md)
 - [Related Work 中文定位地图](research/related_work_positioning_20260826_zh.md)
+- [Oral-shape 升级包（中文）](research/oral_shape_upgrade_20260912_zh.md)
+- [Oral-shape upgrade package](research/oral_shape_upgrade_20260912.md)
+- [Oral-shape claim ledger](research/oral_shape_claim_ledger_20260912.csv)
+- [Oral-shape display plan](research/oral_shape_display_plan_20260912.csv)
+- [Oral-shape execution manifest](research/oral_shape_execution_manifest_20260912.yaml)
+- [Exact-neighbor literature audit](research/literature_evidence_map_new_study_20260912_zh.md)
+- [Frozen oral-level design（中文）](research/frozen_oral_research_design_20260912_zh.md)
+- [Frozen execution manifest](research/frozen_oral_research_design_20260912.yaml)
 - [Combined training and source-access algebra proposal](proposals/oral_branch_learning_source_access_algebra_20260805.md)
 - [合并分支中文方案](proposals/oral_branch_learning_source_access_algebra_20260805_zh.md)
 
 ## Related-work discipline
 
 The documents distinguish background, precedent, contrast, and direct
-competition. They do not claim novelty for ICL, task ambiguity, critical
-disambiguating examples, demonstration conflict, compositional generalization,
-schema shaping, belief probing, instruction hierarchy, or activation steering
-as broad topics. The candidate separation is the distinction between
-target-consistent within-example source conflict and across-example policy
-conflict, followed by held-out relation transfer, prior-opposed readout/final
-dissociation, and functional partner adaptation. Until the frozen pilot and
-independent confirmation are complete, the next-stage status remains
-`argument_shaped`.
+competition. The frozen mother object is `context-conditioned rule updating`:
+separating fact updating from adjudication-rule updating under fixed latent
+worlds. The primary phenomenon is `rule-change without fact-change`, tested by
+paired native policy swaps and held-out transfer. The design is frozen, but
+empirical evidence remains `not_evaluated` until the validity screen, native
+swap gate, independent confirmation, and provenance audit are complete.

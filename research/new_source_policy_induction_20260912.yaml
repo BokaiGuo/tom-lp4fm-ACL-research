@@ -1,0 +1,109 @@
+schema: source_policy_induction_v1
+updated: 2026-09-12
+status: not_evaluated
+title: "Who Gets to Be Right? Learning Source-Selection Policies from Context"
+research_question: "Can a model infer which conflicting source has answer authority and execute that policy in new worlds?"
+mother_object: context_induced_source_policy_learning
+lp4fm_role:
+  provides:
+    - source_ontology
+    - conflict_topology_grammar
+    - typed_answer_audit
+  cannot_be_used_as: confirmation_data
+candidate_policies:
+  - belief_first
+  - reality_first
+  - testimony_first
+  - recency_first
+  - instruction_first
+data_pools:
+  - policy_identification
+  - content_holdout
+  - encoding_holdout
+  - topology_holdout
+  - policy_swap_confirmation
+frozen_before_confirmation:
+  - latent_world_generator
+  - candidate_policy_set
+  - source_name_and_position_randomization
+  - answer_label_permutation
+  - exact_length_matching
+  - demonstration_selection_rule
+  - target_item_split
+  - scoring_and_analysis_script
+studies:
+  - id: SP-E1
+    name: demonstration_policy_information
+    conditions:
+      - many_consensus
+      - one_diagnostic
+      - balanced_diagnostic
+      - corrupted_policy
+    primary_estimand: held_out_policy_execution
+    predictor: policy_separation_coverage
+    baselines:
+      - example_count
+      - semantic_similarity
+      - lexical_diversity
+      - structural_coverage
+    sampling_unit: latent_world
+    controls:
+      - matched_token_budget
+      - selection_blinded_holdout
+      - answer_permutation
+      - shuffled_demonstrations
+  - id: SP-E2
+    name: counterfactual_policy_interchange
+    paired_manipulation: same_world_same_query_same_surface_different_governing_policy
+    outputs:
+      - source_choice
+      - native_answer
+      - first_action
+    primary_estimand: paired_policy_swap_effect_on_native_output
+    sampling_unit: paired_latent_world
+    controls:
+      - fact_swap
+      - label_swap
+      - source_name_permutation
+      - demonstration_order
+      - explicit_rule_upper_bound
+      - replay_vs_new_world
+  - id: SP-E3
+    name: compositional_source_policy_transfer
+    training_topology: binary_source_conflicts
+    test_topology: unseen_ternary_source_conflict
+    baselines:
+      - pairwise_composition
+      - majority_heuristic
+      - recency_heuristic
+      - direct_label_memorization
+      - explicit_rule
+      - source_order
+    primary_estimand: held_out_ternary_policy_execution
+    sampling_unit: ternary_latent_world
+functional_extension:
+  name: partner_policy_inference
+  prerequisite: SP-E2_native_policy_swap_pass
+  manipulation: partner_policy_swap_with_identity_tone_reward_and_frequency_matched
+  outcome: held_out_coordination_action_and_reward
+promotion_conditions:
+  - SP-E1_policy_separation_predicts_execution
+  - SP-E2_native_output_changes_under_policy_swap
+  - SP-E3_unseen_ternary_transfer_beats_heuristics
+  - independent_checkpoint_or_model_family_replication
+downgrade_rules:
+  - source_choice_changes_but_native_output_does_not: policy_execution_failure
+  - only_same_item_replay_works: no_transfer_claim
+  - only_binary_topology_works: no_compositional_claim
+  - partner_swap_fails: keep_partner_game_as_future_work
+claim_firewall:
+  allowed:
+    - source_policy_identification
+    - source_policy_execution
+    - counterfactual_policy_swap_sensitivity
+    - held_out_policy_composition
+  forbidden:
+    - intrinsic_tom
+    - internal_policy_module
+    - model_really_understands
+    - universal_semantic_reasoning

@@ -1,0 +1,118 @@
+schema: oral_shape_execution_v1
+updated: 2026-09-12
+design_status: oral_shaped
+empirical_status: not_evaluated
+paper_status: argument_shaped
+paper:
+  title: "Conflict Identifies, Priors Decide: Identification to Commitment in Language Models"
+  central_chain:
+    - policy_identification
+    - final_commitment
+    - functional_partner_adaptation
+  paper_a_boundary: "LP4FM motivates typed source arbitration; its results are not Paper B confirmation data."
+frozen_before_main_run:
+  - stimulus_manifest
+  - candidate_policy_set
+  - answer_encoding
+  - neutral_prior_calibration_split
+  - independent_relation_readout_protocol
+  - random_seeds
+  - analysis_and_bootstrap_script
+  - selection_blinded_holdout_split
+experiments:
+  - id: OS-E1
+    name: information_not_example_count
+    question: "What makes a demonstration informative?"
+    conditions:
+      - consensus_C1
+      - consensus_C2
+      - consensus_C4
+      - consensus_C8
+      - consensus_C16
+      - target_policy_diagnostic
+      - target_plus_rival_policy_diagnostic
+      - shuffled_demonstrations
+      - corrupted_demonstrations
+      - answer_permuted_demonstrations
+    primary_estimand: "prospective held-out policy performance as a function of C_sep and VR"
+    sampling_unit: latent_world
+    required_controls:
+      - matched_token_budget
+      - matched_answer_frequency
+      - matched_source_order
+      - matched_lexical_and_structural_surface
+      - selection_blinded_holdout
+    promotion_gate: "C_sep or VR adds held-out predictive value beyond count, similarity, diversity, and structural coverage"
+    downgrade: "selector becomes supplement; retain only the identification result if supported"
+  - id: OS-E2
+    name: identification_x_prior_pressure
+    question: "Can a readable relation fail at native final commitment?"
+    calibration:
+      split: disjoint_neutral_context
+      prior_pressure: "log P(y_prior|neutral) - log P(y_relation|neutral)"
+      freeze_before_confirmation: true
+    factors:
+      demonstration_diagnosticity:
+        - consensus_non_diagnostic
+        - diagnostic
+      target_prior_relation:
+        - aligned
+        - opposed
+    arms:
+      - independent_relation_readout
+      - native_final_answer
+      - explicit_rule_oracle
+    primary_estimand: "prior-opposed Pr(readout=relation and native_answer=prior)"
+    sampling_unit: item_clustered_by_latent_world
+    required_controls:
+      - wrong_channel_readout
+      - shuffled_demonstrations
+      - answer_permutation
+      - direct_compound_control
+      - semantic_validity_audit
+    promotion_gate: "independent readout remains reliable while native commitment follows calibrated prior above controls"
+    downgrade: "if readout fails, report identification or retention failure rather than dissociation"
+  - id: OS-E3
+    name: functional_partner_adaptation
+    question: "Does inferred partner policy change action on unseen content?"
+    exposure:
+      - consensus_interactions
+      - target_policy_diagnostic_interaction
+      - rival_policy_diagnostic_interaction
+    evaluation:
+      - new_people
+      - new_objects
+      - new_surface_realizations
+      - unseen_conflict_topology
+    primary_estimand: "paired partner-policy-swap effect on native action, message choice, and coordination"
+    sampling_unit: episode_clustered_by_partner_and_latent_policy
+    required_controls:
+      - partner_policy_swap
+      - random_partner
+      - no_conflict_partner
+      - source_order_control
+      - label_only_control
+      - same_policy_replay
+    promotion_gate: "policy swap changes native held-out action and improves coordination"
+    downgrade: "if action does not change, retain identification/commitment boundary only"
+replication:
+  rule: "Replicate the complete main signature on one matched checkpoint or model family before external domains."
+  deferred_domains:
+    - event_semantics
+    - resource_limited_memory
+    - local_attention
+    - activation_steering
+    - controlled_tuning
+claim_firewall:
+  allowed:
+    - "relation identification"
+    - "relation readability"
+    - "native final commitment"
+    - "relation-commitment dissociation under the tested protocol"
+    - "functional partner adaptation under the tested interaction protocol"
+  forbidden:
+    - "intrinsic ToM"
+    - "the model internally knows but refuses"
+    - "universal Bayesian learner"
+    - "localized hidden-state commitment module"
+    - "human-like unconscious memory"
