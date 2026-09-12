@@ -1,12 +1,14 @@
-# 下一阶段论文研究方案：上下文学习中的答案权威组合泛化
+# 历史方案：上下文学习中的答案权威组合泛化
 
 英文对应稿：[Next-Stage Paper Plan: Authority Compositional Generalization](next_stage_authority_compositional_generalization_20260826.md)。
 
-> **2026-09-09 定位更新。** ACG 仍是“已识别 relation 能否迁移和组合”的核心实验对象，
+> **2026-09-11 canonical 更新。** 本文件保留 ACG 作为执行/迁移素材；它已并入
+> [Conflict Identifies, Priors Decide](best_paper_relation_to_commitment_20260911_zh.md)，不再单独承担下一篇论文的最高层标题。ACG 仍是“已识别 relation 能否迁移和组合”的核心实验对象，
 > 但不再作为最高层 novelty。最近邻检索确认 task ambiguity、critical disambiguating
 > examples 和 demonstration conflict 都已有直接工作。更强的论文中心是区分
 > **示例内部、可识别 source policy 的冲突**与**示例之间、破坏 policy consistency 的冲突**。
-> 见 [Best Paper 级候选方案](best_paper_conflict_as_supervision_20260909_zh.md) 和
+> 见 [canonical Best-Paper 方案](best_paper_relation_to_commitment_20260911_zh.md)、
+> [Conflict Is Supervision](best_paper_conflict_as_supervision_20260909_zh.md) 和
 > [项目级关系保持总图](next_stage_relation_preservation_20260909_zh.md)。
 
 ## 暂定标题

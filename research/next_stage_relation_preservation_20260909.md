@@ -1,14 +1,13 @@
-# Updated Next-Stage Research Plan: From Representation to Commitment
+# Updated Next-Stage Research Program: Identification to Commitment
 
-Chinese counterpart: [下一阶段研究方案更新：从关系表征到答案承诺](next_stage_relation_preservation_20260909_zh.md).
+Chinese counterpart: [下一阶段研究方案更新：从 Identification 到 Commitment](next_stage_relation_preservation_20260909_zh.md).
 
-The sharper Best-Paper candidate is now [From Relation to Commitment](best_paper_relation_to_commitment_20260911.md).
-This document remains the program-level map; the newer document turns the
-relation-to-final-answer boundary into the next paper's central object.
-`Conflict Is Supervision` supplies identification, while ACG supplies held-out
-execution and composition.
+The canonical Best-Paper candidate is now [Conflict Identifies, Priors Decide](best_paper_relation_to_commitment_20260911.md).
+This document remains the program-level map; the canonical paper combines policy
+identification, ACG execution, and the relation-to-commitment boundary into one
+three-experiment argument rather than competing paper titles.
 
-Updated: 2026-09-09
+Updated: 2026-09-11
 
 This document places the submitted LP4FM paper, the five proposed branches, and
 the newly reviewed ACL 2026 work in one claim-bounded program. It is a research
@@ -31,20 +30,21 @@ valid task or relation specification
 The project should therefore operate at three levels:
 
 1. **Program-level question:** when is a relation preserved from context to
-   decision?
-2. **Best-Paper candidate law:** a demonstration identifies a latent source
-   policy only where candidate policies disagree. See
-   [Conflict Is Supervision](best_paper_conflict_as_supervision_20260909.md).
-3. **Immediate execution object:** once a source policy is identified, can it
-   transfer across content, answer encoding, and unseen conflict topology? This
-   is the narrower ACG object.
+   decision and action?
+2. **Canonical next paper:** test `identification -> commitment -> functional
+   adaptation` through information value, prior pressure, and partner-policy
+   swap. `Conflict Is Supervision` and ACG are internal components.
+3. **Conditional follow-up branches:** only after the behavioral result is stable,
+   study checkpoint/training, resource/topology, causal mechanism, or an external
+   semantic domain.
 
 The new strongest candidate is not a sixth parallel branch. It reorganizes the
-existing branches around a distinction between **task identification** and
-**relation execution**.
+existing branches around the distinction between **policy identification** and
+**final commitment**, with execution and partner adaptation as the functional test.
 
 Current status: `argument_shaped`. LP4FM motivates and instruments the program;
-it does not validate contextual policy induction or a cross-domain law.
+it does not validate contextual policy induction, commitment dissociation, or a
+cross-domain law.
 
 ## 1. Functional Chain
 
@@ -107,22 +107,26 @@ LP4FM contributes a static behavioral discovery and a mechanism boundary. It
 supplies the typed source ontology, conflict grammar, answer-interface scorer,
 frozen primitive/compound protocol, affine-gain audit, and checkpoint limits.
 
-### Paper B: Conflict as supervision
+### Canonical Paper B: Conflict Identifies, Priors Decide
 
 ```text
 candidate source policies
 -> source-consensus versus source-diagnostic demonstrations
 -> contextual policy identification
--> cross-content and unseen-topology execution
+-> final commitment under prior pressure
+-> partner-policy adaptation and unseen-topology execution
 ```
 
-The central candidate law is that correct examples carry relational supervision
-only where candidate policies disagree. This is the Best-Paper-level bet.
+The central candidate law has two stages: correct examples carry relational
+supervision only where candidate policies disagree, and identifying the relation
+does not guarantee that the native final answer or action will follow it.
+The main paper contains exactly three experiments: information value, the
+identification × prior-pressure phase diagram, and functional partner adaptation.
 
-### Paper C: Cross-domain representation-to-commitment framework
+### Conditional follow-up: substrate, training, and external semantics
 
-Only if at least two independent domains exhibit a reproducible separation
-between relation readability, retention, arbitration, and final commitment:
+Only after the canonical behavioral result is stable should we expand to resource,
+attention, checkpoint/training, causal mechanism, or an external semantic domain:
 
 ```text
 valid specification
@@ -132,8 +136,8 @@ valid specification
 -> answer or action commitment
 ```
 
-Paper C must remain conditional. Cross-domain analogy is not evidence for one
-neural circuit.
+These remain conditional. Cross-domain analogy is not evidence for one neural
+circuit, and event semantics is not required for the main paper's headline claim.
 
 ## 4. How the Five Older Branches Fit
 
@@ -145,16 +149,16 @@ neural circuit.
 | Conflict-topology kernel | Define policy-separation and held-out source graphs | A behavioral graph proves a shared neural router |
 | Source-accessibility training objective | Prefer diagnostic evidence while suppressing wrong-source capture | Accuracy or consistency alone proves repair |
 
-## 5. Core Experimental Sequence
+## 5. Canonical Three-Experiment Sequence
 
-### Study 0: Relation validity
+### Prerequisite: Relation validity
 
 - independently annotate intended relations and intermediate source states;
 - report ambiguity and exclusion rates;
 - use deterministic validators for source agreement and topology;
 - freeze discovery, holdout, and confirmation pools.
 
-### Study 1: Demonstration policy identification
+### Main Experiment 1: Demonstration policy identification
 
 Compare zero-shot, increasing source-consensus demonstrations, a matched single
 diagnostic replacement, two valid diagnostic demonstrations, a genuine
@@ -164,29 +168,52 @@ matched diagnostic item labeled by a rival policy; source-consensus items alone
 do not create policy conflict. Every evaluation query must make candidate
 sources disagree.
 
-### Study 2: Cross-content and cross-encoding transfer
+### Supporting analyses for Main Experiments 1–3: Cross-content and cross-encoding transfer
 
 Change latent worlds, entities, source names, answer labels, constructions, and
 positions. Relation transfer, not same-item response inversion, is the target.
 
-### Study 3: Unseen conflict-topology composition
+### Supporting analyses for Main Experiments 1–3: Unseen conflict-topology execution
 
 Freeze primitive source relations, hold out binary and ternary compounds, and
 separate insufficient policy identification from failure to execute a uniquely
 identified policy.
 
-### Study 4: Resource and architecture boundary
+### Conditional supplement: Resource and architecture boundary
 
 Only after the primary behavioral law is stable, manipulate interference,
 position, encoding precision, and local/global attention in a controlled
 substrate. These variables explain access limits; they do not establish source
 semantics by themselves.
 
-### Study 5: Mechanism and training
+### Conditional supplement: Mechanism and training
 
 Use aligned, wrong-channel, shuffled, norm-matched, and final-token controls.
 Require cross-content policy transport. Longitudinal checkpoint analysis or
-controlled tuning is a separate causal claim and should not block Paper B.
+controlled tuning is a separate causal claim and should not block the canonical paper.
+
+### Main Experiment 3: Functional partner adaptation
+
+Static QA is insufficient to establish that a model uses a partner policy. In the
+partner game, the observer sees consensus interactions plus at least one diagnostic
+interaction in which belief, reality, report, or distractor implies different partner
+actions. The observer must then choose a message or first action on held-out episodes.
+
+Change people, objects, lexical realizations, answer encodings, and conflict topologies
+at test time. A paired policy swap changes only the partner's governing source policy;
+policy-sensitive adaptation should change the observer's communication or action and
+improve coordination. Report coordination success, policy-consistent action,
+policy-swap sensitivity, verbal-report/native-action dissociation, and diagnostic-gain
+relative to matched consensus interactions. Match action frequencies and add identity,
+order, source-label, no-conflict, and random-partner controls. This supports functional
+adaptation, not intrinsic or human-like ToM.
+
+### Small consequence: policy-separation selector
+
+Use a greedy selector that maximizes candidate-policy pair separation or version-space
+reduction. Compare it with random, similarity, diversity, and larger-budget baselines
+under a fixed token budget. Keep this section in the supplement unless the selector
+predicts held-out transfer prospectively.
 
 ## 6. Related-Work Boundary
 
@@ -239,11 +266,14 @@ eight matched true-belief source-consensus demonstrations
 Evaluate Qwen2.5-7B Base/Instruct with Qwen3 as a frozen boundary, independent
 latent worlds, answer/source permutations, and target-versus-competitor margins.
 Directly compare a target-consistent diagnostic replacement with a matched
-rival-policy diagnostic replacement, while auditing selection-blinding.
+rival-policy diagnostic replacement, while auditing selection-blinding. Add a
+small partner-adaptation panel with policy swap and held-out topology; this is
+the functional consequence, not a separate benchmark expansion.
 
-Proceed to cross-domain work only if the diagnostic replacement survives
-position, label, lexical-twin, and confirmation-world controls. Otherwise keep
-the narrower ACG program.
+Proceed to the full canonical paper only if diagnosticity survives position,
+label, lexical-twin, and confirmation-world controls; the prior-opposed cell
+shows readout/final separation; and partner-policy swap changes held-out action.
+Otherwise keep the narrower ACG or conflict-supervision program.
 
 ## 9. Current Position
 
@@ -252,14 +282,15 @@ program object
   relation preservation from context to decision
 
 strongest candidate law
-  source-policy disagreement determines relational teaching information
+  source-policy disagreement determines relational teaching information, while
+  final commitment remains a separate prior-sensitive bottleneck
 
 immediate empirical object
-  identify a source policy, then test ACG transfer and composition
+  identify a source policy, test final commitment, then test partner adaptation
 
 LP4FM role
   static typed arbitration, instruments, and checkpoint/mechanism boundaries
 
 status
-  argument_shaped; no contextual or cross-domain law has been validated
+  argument_shaped; no contextual, commitment, or functional law has been validated
 ```

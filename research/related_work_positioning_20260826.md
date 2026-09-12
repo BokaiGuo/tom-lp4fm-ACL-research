@@ -1,6 +1,6 @@
 # Related-Work Positioning for the Next Research Stage
 
-The current top-level entry point is [From Relation to Commitment](best_paper_relation_to_commitment_20260911.md).
+The current top-level entry point is [Conflict Identifies, Priors Decide](best_paper_relation_to_commitment_20260911.md).
 The ICL, schema, ToM, memory, and steering neighbors below are positioned
 against the narrower question of whether a contextual relation survives into
 the final answer; they are not treated as evidence for one shared mechanism.
@@ -14,8 +14,9 @@ separate each proposed branch from its closest alternatives.
 
 The project should not claim that in-context learning, compositional
 generalization, belief representations, routing, or schema are unexplored. Its
-candidate contribution is narrower: **inducing a typed source-relation program
-from demonstrations and composing it over unseen answer-authority topologies**.
+candidate contribution is narrower: **measuring how demonstrations identify a
+typed source relation, whether that relation survives final commitment, and
+whether it changes functional partner adaptation**.
 
 ## 0. 2026-09-09: Required Narrowing After Nearest-Neighbor Search
 
@@ -42,9 +43,9 @@ across-example policy conflict
   = corruption, noise, or unresolved normative ambiguity
 ```
 
-ACG is the second half of this argument: once demonstrations identify a source
-policy, test whether it transfers and composes. See the full
-[Best-Paper candidate plan](best_paper_conflict_as_supervision_20260909.md).
+ACG is the execution component of this argument: once demonstrations identify a
+source policy, test whether it transfers, composes, and controls action. See the
+full [canonical plan](best_paper_relation_to_commitment_20260911.md).
 
 ## 1. Nearest-Neighbor Map
 
@@ -63,6 +64,14 @@ policy, test whether it transfers and composes. See the full
 | Shared routers and mental spaces | [Belief--reality routing](https://arxiv.org/abs/2607.11945), [One mechanism for many mental spaces](https://arxiv.org/abs/2607.10248) | A shared router/value-slot implementation across mental spaces | Study contextual induction of the authority rule, not rediscovery of the router mechanism |
 
 ## 2. Branch-Specific Positioning
+
+The canonical paper also inherits a functional-ToM boundary from
+[ToMBench](https://aclanthology.org/2024.acl-long.847/),
+[Theory of Mind Benchmarks are Broken](https://proceedings.mlr.press/v267/riemer25a.html),
+and recent partner-adaptation/planning work
+([reference](https://arxiv.org/abs/2606.31916)). These works make static belief QA an
+insufficient endpoint. Our partner-policy swap is narrower: it tests whether a typed
+source relation inferred from diagnostic behavior changes a new coordination action.
 
 ### Branch 1: Training-Induced Composition Phase Transition
 
@@ -143,7 +152,7 @@ reference, commitment, or evidential scope. The decisive comparison is a Pareto
 frontier between wrong-source suppression and valid-language sensitivity, not
 accuracy alone.
 
-## 3. Paper A and Paper B
+## 3. Paper A and the canonical next paper
 
 The submitted LP4FM manuscript is Paper A:
 
@@ -154,15 +163,18 @@ language form -> typed source arbitration -> checkpoint-sensitive boundary
 It supplies the source ontology, conflict-topology grammar, answer-interface
 measurements, and negative transport boundaries.
 
-The proposed ACG study is Paper B:
+The canonical next paper is Paper B:
 
 ```text
-demonstrations -> source-relation program -> unseen-content/topology composition
+demonstrations -> policy identification -> final commitment -> partner adaptation
 ```
 
-Paper B must use new demonstrations, cross-content factorials, answer-encoding
-permutations, unseen topologies, and at least one new typed domain. Stage-53--57
-can motivate the study but cannot count as its primary evidence.
+It contains the `Conflict Is Supervision` identification comparison, the ACG
+cross-content/topology execution audit, and a partner-policy swap. It must use new
+demonstrations, cross-content factorials, answer-encoding permutations, and unseen
+topologies. Stage-53--57 can motivate the study but cannot count as its primary
+evidence. Event semantics is optional validity-screened supplement, not a required
+headline domain.
 
 ## 4. Likely Novelty Objections
 
@@ -180,13 +192,14 @@ can motivate the study but cannot count as its primary evidence.
 ```text
 related work: verified background, precedent, contrast, and nearest neighbors
 current LP4FM evidence: static typed arbitration and composition boundaries
-next-stage hypothesis: contextual induction of a source-relation program
+next-stage hypothesis: policy identification, commitment dissociation, and functional adaptation
 next-stage result: not yet validated
 status: argument_shaped
 ```
 
-The ACG object becomes a paper contribution only after cross-content,
-cross-encoding, and unseen-topology transfer are demonstrated.
+The canonical object becomes a paper contribution only after policy-separation
+effects, prior-opposed readout/final separation, held-out transfer, and partner
+policy-swap evidence are demonstrated.
 
 ## Reference Entry Points
 
@@ -202,3 +215,6 @@ cross-encoding, and unseen-topology transfer are demonstrated.
 - [Context-faithful Prompting](https://arxiv.org/abs/2303.11315)
 - [Belief--reality separation lives in routing over a shared value slot](https://arxiv.org/abs/2607.11945)
 - [One mechanism for many mental spaces](https://arxiv.org/abs/2607.10248)
+- [ToMBench](https://aclanthology.org/2024.acl-long.847/)
+- [Theory of Mind Benchmarks are Broken](https://proceedings.mlr.press/v267/riemer25a.html)
+- [Partner adaptation and planning](https://arxiv.org/abs/2606.31916)

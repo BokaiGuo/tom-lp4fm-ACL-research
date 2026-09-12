@@ -1,8 +1,8 @@
-# Best-Paper Candidate: When Conflict Becomes Supervision
+# Supporting Protocol: When Conflict Becomes Supervision
 
-Chinese counterpart: [Best Paper 级下一阶段候选：当冲突成为监督](best_paper_conflict_as_supervision_20260909_zh.md).
+Chinese counterpart: [Canonical 主线支撑协议：当冲突成为监督](best_paper_conflict_as_supervision_20260909_zh.md).
 
-The higher-level upgrade is [From Relation to Commitment](best_paper_relation_to_commitment_20260911.md).
+The canonical upgrade is [Conflict Identifies, Priors Decide](best_paper_relation_to_commitment_20260911.md).
 This document now serves as the relation-identification half of that program:
 it specifies when demonstrations distinguish candidate source policies, while
 the upgraded paper studies whether an identified relation survives final answer
@@ -10,9 +10,15 @@ commitment.
 
 Updated: 2026-09-09
 
-Status: `argument_shaped`. This document specifies a research candidate with
-Best Paper potential. It does not claim an award, an oral decision, or an
-empirically established result.
+Status: `argument_shaped`. This document is the identification-support protocol
+inside the canonical paper, not an independent paper candidate. It does not
+claim an award, an oral decision, or an empirically established result.
+
+> **Canonical role after the 2026-09-11 revision:** this document is the detailed
+> identification protocol for Main Experiment 1 of [Conflict Identifies, Priors
+> Decide](best_paper_relation_to_commitment_20260911.md). Its dose-response and
+> policy-conflict analyses are retained; final commitment and partner adaptation
+> are specified only in the canonical document.
 
 ## 0. Verdict
 
@@ -54,10 +60,12 @@ This separates two phenomena that are usually grouped together:
    incompatible governing policies. This is corruption, noise, or genuine
    normative uncertainty.
 
-If this distinction yields a cross-domain law and a prospective demonstration
-selector, the contribution is not another benchmark. It changes the effective
-unit of supervision from the number of correct examples to the candidate
-relations those examples distinguish.
+In the canonical paper, this identification claim first has to survive held-out,
+selection-blinded, and answer-permutation controls in ToM, then connect to final
+commitment and a partner-policy swap. Event/context tasks are optional external
+validity stress tests. If the chain holds, the contribution is not another
+benchmark: it changes the effective unit of supervision from the number of
+correct examples to the candidate relations those examples distinguish.
 
 ## 1. Why This Can Exceed the Current ACG Plan
 
@@ -88,7 +96,9 @@ True-belief examples do not establish belief tracking
      sources agree.
 ```
 
-A Best-Paper candidate requires four aligned contributions:
+The historical candidate listed four aligned contributions; under the canonical
+revision these are supporting requirements for identification, not four parallel
+headline contributions.
 
 1. a surprising but necessary law about when labels contain relational
    information;

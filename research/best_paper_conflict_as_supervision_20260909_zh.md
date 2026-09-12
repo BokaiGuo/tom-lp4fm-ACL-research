@@ -1,19 +1,25 @@
-# Best Paper 级下一阶段候选：当冲突成为监督
+# Canonical 主线支撑协议：当冲突成为监督
 
-英文对应稿：[Best-Paper Candidate: When Conflict Becomes Supervision](best_paper_conflict_as_supervision_20260909.md)。
+英文对应稿：[Supporting Protocol: When Conflict Becomes Supervision](best_paper_conflict_as_supervision_20260909.md)。
 
-上位升级方案见：[从关系到答案承诺：先验改写](best_paper_relation_to_commitment_20260911_zh.md)。本文件不再单独承担最高层标题；它是新主线中的
+canonical 升级方案见：[Conflict Identifies, Priors Decide](best_paper_relation_to_commitment_20260911_zh.md)。本文件不再单独承担最高层标题；它是新主线中的
 **relation identification** 半部，负责说明哪些 demonstrations 真正区分候选
 source policies。
 
 更新日期：2026-09-09
 
-当前状态：`argument_shaped`。本文档给出一个具有 Best Paper 潜力的研究候选，不把
-奖项、oral 或经验结论写成已经实现的事实。
+当前状态：`argument_shaped`。本文档是 canonical 方案的 identification 支撑协议，不再
+作为独立论文候选；它不把奖项、oral 或经验结论写成已经实现的事实。
+
+> **2026-09-11 canonical 定位：** 本文件现在是
+> [Conflict Identifies, Priors Decide](best_paper_relation_to_commitment_20260911_zh.md)
+> 主实验 1 的详细 identification 协议。这里保留 dose-response、policy separation
+> 和 inter-demonstration conflict；final commitment 与 partner adaptation 只在 canonical
+> 方案中承担主线角色。
 
 ## 0. 直接判断
 
-当前 ACG 方案已经有主会论文形状，但还没有 Best Paper 级的中心发现。它的问题不是
+旧版 ACG 方案已经有主会论文形状，但还没有 Best Paper 级的中心发现。它的问题不是
 实验不够多，而是“demonstrations 学习 source-authority relation”仍像一个新的任务家族，
 尚未改变领域对 ICL 的基本认识。
 
@@ -45,10 +51,11 @@ source policies。
 2. **示例之间的规则冲突**：不同 demonstrations 支持互不相容的控制规则。这是噪声、
    corruption 或真正的规范不确定性。
 
-如果该规律跨 ToM、context--knowledge conflict 和事件语义成立，并且能前瞻性预测或
-选择高价值 demonstrations，它才可能从“一个新 benchmark”上升为改变 ICL 数据观的
-研究：**有效样本量不是 correct-example count，而是被 demonstrations 区分开的候选关系
-数量及其拓扑。**
+在 canonical 方案中，这个 identification 规律首先必须在 ToM 上通过 held-out、
+selection-blinded 和 answer-permutation 控制，并与最终 commitment 和 partner-policy
+swap 接上；event/context 只承担可选的外部有效性压力测试。通过后，研究才可能从“一个
+新 benchmark”上升为改变 ICL 数据观的结果：**有效样本量不是 correct-example count，
+而是被 demonstrations 区分开的候选关系数量及其拓扑。**
 
 ## 1. 为什么这比当前 ACG 更接近 Best Paper
 
@@ -82,7 +89,7 @@ Best Paper 级工作需要一个可以反过来解释既有矛盾的规律，而
   因为 belief 与 reality 一致时，follow-belief 与 follow-reality 行为等价。
 ```
 
-### 1.2 Best Paper 候选所需的四个同时成立条件
+### 1.2 历史候选曾要求的四个条件
 
 1. **一个反直觉但必然的规律**：agreement 可以让大量正确标签变成关系层面的零信息，
    而受控 source conflict 可以成为最有价值的监督。

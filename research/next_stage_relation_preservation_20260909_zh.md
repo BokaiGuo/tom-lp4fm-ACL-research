@@ -1,17 +1,17 @@
-# 下一阶段研究方案更新：从关系表征到答案承诺
+# 下一阶段研究方案更新：从 Identification 到 Commitment
 
-英文对应稿：[Updated Next-Stage Research Plan: From Representation to Commitment](next_stage_relation_preservation_20260909.md)。
+英文对应稿：[Updated Next-Stage Research Program: Identification to Commitment](next_stage_relation_preservation_20260909.md)。
 
-本项目目前更高层的 Best-Paper 推演见：[从关系到答案承诺：先验改写](best_paper_relation_to_commitment_20260911_zh.md)。本文件保留项目级总图；新文件把其中的
-“关系能否进入最终答案”收紧为下一篇论文的中心对象。原“当冲突成为监督”方案承担
-关系识别，ACG 方案承担关系执行与组合泛化。
+本项目目前的 canonical Best-Paper 方案见：[Conflict Identifies, Priors Decide](best_paper_relation_to_commitment_20260911_zh.md)。本文件保留项目级总图；canonical
+论文把原“当冲突成为监督”的关系识别、ACG 的关系执行，以及 relation-to-commitment
+边界合并为一条三实验论证，不再把它们拆成两个互相竞争的论文标题。
 
 更新日期：2026-09-09
 
-进一步的最近邻核对表明，Paper B 还可以从宽泛 ACG 收紧为一个更具决定性的候选规律：
-**只有当候选来源策略在 demonstration 上给出不同答案时，正确标签才提供关系监督。**
-完整方案见 [Best Paper 级下一阶段候选：当冲突成为监督](best_paper_conflict_as_supervision_20260909_zh.md)。
-本文件继续承担项目级总图；新文件承担下一篇论文的最强中心命题。
+进一步的最近邻核对表明，宽泛 ACG 和单独的“关系—承诺断裂”都不是最终标题。当前
+最强对象是：**demonstrations 何时识别 governing relation，以及已识别的 relation
+能否在先验压力下控制最终答案和协调行动。** 详细协议见
+[Conflict Identifies, Priors Decide](best_paper_relation_to_commitment_20260911_zh.md)。
 
 本方案吸收并核对了五篇 ACL 2026 论文、`Shaping Schema via Language Representation`
 以及 ICL、组合泛化、ToM 表征、记忆、激活干预和基准有效性方面的近邻工作。这里的
@@ -31,18 +31,19 @@
 -> 最终答案或第一次行动是否兑现该关系
 ```
 
-下一阶段应把研究计划更新为两层：
+下一阶段应把研究计划更新为三层：
 
-1. **项目层母对象（更高层视角）**：关系从上下文到最终决策的保持。它解释为什么
+1. **项目层母对象（更高层视角）**：关系从上下文到最终决策与行动的保持。它解释为什么
    “内部可读”“上下文适应”“行为变化”和“因果 steering”不能互相替代。
-2. **下一篇论文的窄对象**：上下文学习是否从 demonstrations 中归纳 typed
-   source relation，并在新内容、新编码和未见冲突拓扑上执行它。这就是原来的
-   Authority Compositional Generalization（ACG），但现在被放回一个更清楚的关系
-   保持框架中。
+2. **canonical 下一篇论文**：用 `identification -> commitment -> functional adaptation`
+   三个阶段检验 demonstrations 的信息量、先验竞争和行动后果；Conflict Is Supervision
+   与 ACG 分别成为第一、第三实验的内部组件。
+3. **条件性后续分支**：只有主行为规律成立后，才展开 checkpoint/training、resource/
+   topology、causal mechanism 或外部语义域。
 
-因此，ACG 不应被删除，也不应扩张成一个包揽五篇论文的总名词。它是下一篇最适合
-落地的**论文级实例**；“关系保持”是研究计划级的解释框架，而不是现在就宣称已被
-验证的统一神经机制。
+因此，ACG 不应被删除，也不应扩张成一个包揽五篇论文的总名词。它是 canonical 论文
+中的执行与迁移组件；“关系保持”是研究计划级的解释框架，而不是现在就宣称已被验证
+的统一神经机制。
 
 当前状态：`argument_shaped`。新文献提高了研究对象的清晰度，但没有替代新的
 cross-content、cross-encoding、unseen-topology 和独立语义有效性证据。
@@ -225,20 +226,21 @@ topology composition    = 新的联合 source-conflict graph
 
 ## 4. 推荐的论文分层，而不是一篇“大一统论文”
 
-### 4.1 论文 B：立即推进的主线
+### 4.1 历史组件：识别与执行的素材层
 
-工作标题：
+旧工作标题：
 
 **What Does Context Teach? Composing Source Relations Beyond Task Mapping**
 
 中文：**上下文究竟教会了什么：超越任务映射的来源关系组合**。
 
-论文 B 保留 ACG 作为唯一主对象：
+这是旧版把 ACG 单独作为论文对象时的稳妥但较窄的方案。它现在保留为
+canonical 论文的素材层和降级发表路径，不再与主线并列：
 
 > demonstrations 是否诱导了一个可迁移、可组合的 typed source relation，而不是
 > 仅仅提高相似样例检索、改变答案标签偏好或复制表面格式？
 
-建议主域为：
+它的实验素材仍然有用，但不再是当前最高层标题。建议主域为：
 
 1. **ToM source arbitration**：继承 LP4FM 的 latent world、queried belief、reality、
    other-agent 和 distractor；
@@ -249,7 +251,7 @@ topology composition    = 新的联合 source-conflict graph
 原因是：前两个域都能给出明确的 relation label 和 held-out composition；ImplicitMemBench
 的 judge 依赖、心理学构念映射和任务异质性更适合做外部边界，而不是核心定义。
 
-论文 B 的主结论若成立，应是：
+若只发表这一窄版本，主结论应是：
 
 ```text
 ICL can induce a typed relation over competing sources,
@@ -263,16 +265,24 @@ under a bounded set of representation changes.
 LLMs acquire human-like schemas / intrinsic ToM / a universal reasoning circuit.
 ```
 
-### 4.2 项目层的论文 C：更颠覆但要等 pilot
+### 4.2 Canonical 下一篇论文：Identification to Commitment
 
-若论文 B 的 ToM 与 event-semantic pilot 显示相同的“representation readable but
-decision relation not preserved”结构，才推进项目层论文：
+外部意见吸收后，不再把它作为“论文 C”或等待跨域后才启动的远期项目。当前首选
+标题是：
 
-**From Representation to Commitment: How Language Models Select and Preserve Relations**
+**Conflict Identifies, Priors Decide: Identification to Commitment in Language Models**
 
-中文：**从关系表征到答案承诺：语言模型如何选择并保持上下文关系**。
+中文：**冲突识别关系，先验决定承诺：语言模型中的 Identification-to-Commitment**。
 
-论文 C 的贡献不是把五篇论文并列引用，而是提出一个新的测量分层：
+它把三个已有素材压缩成一个主文论证：
+
+```text
+Experiment 1  policy-separation determines teaching information
+Experiment 2  relation identification and final commitment can dissociate
+Experiment 3  partner-policy inference must change coordination action
+```
+
+论文的贡献不是把五篇论文并列引用，而是提出一个新的测量分层：
 
 ```text
 benchmark validity != representation readability
@@ -282,21 +292,23 @@ source arbitration != final commitment
 ```
 
 这条线真正改变的是社区如何解释“模型理解了但答错”“steering 后变好了”“干扰后
-仍然会做对”这些互相冲突的结果。只有当跨域 relation-preservation pattern 成立时，
-它才有资格成为主会级的更高层论文；否则应回退为论文 B 的 discussion framework。
+仍然会做对”这些互相冲突的结果。它的主证据不再以 event domain 的跨域复现为必要
+条件；更关键的是 policy-separation、prior-opposed readout/final 分离和 partner
+policy swap。若功能性实验失败，就收紧为 relation/commitment boundary，不伪装成
+社会适应理论。
 
 ### 4.3 机制和训练论文作为后续分支
 
 ```text
-论文 B: context -> typed source relation -> unseen composition
-论文 C: specification/encoding/access/arbitration/commitment 的测量分层
+canonical paper: context -> policy identification -> commitment -> partner adaptation
+earlier ACG paper: context -> typed source relation -> unseen composition
 机制分支: resource/topology/activation 如何改变 relation retention 或 transport
 训练分支: 能否选择性修复 wrong-source capture 而不抹平合法语言差异
 ```
 
 这样既保留颠覆性上限，也不让一篇论文承担互不等价的心理学、形式语言和工程命题。
 
-## 5. 论文 B 的核心研究问题和预测
+## 5. Canonical 论文的核心研究问题和预测（对应三项主实验）
 
 ### RQ1：示例诱导的是关系，还是标签/相似度？
 
@@ -373,6 +385,10 @@ compatibility-shift
 上。否则任何失败都可能被错误地叫作“上下文不够”。
 
 ## 6. 实验总架构
+
+下面的 Study 0–6 是支撑协议、边界实验和条件性后续的历史编号；canonical 主文只
+保留第 12 节定义的三个主实验。保留这些编号是为了追踪既有设计和证据来源，不代表
+它们是七项并列贡献。
 
 ### Study 0：关系规定与语义有效性
 
@@ -453,7 +469,7 @@ direct-compound upper bound
 
 对 Best Paper 候选的额外要求是：source-consensus、target-diagnostic 和
 rival-policy-diagnostic 必须由同一 generator 生成，并满足 selection-blinded。不能把
-不能把一个孤立的 corrupted item 加到若干 consensus items 后就称为
+一个孤立的 corrupted item 加到若干 consensus items 后就称为
 inter-demonstration conflict；真正的冲突条件必须像 `D1+X1+C6` 一样，同时含有支持
 目标 policy 和支持 rival policy 的 diagnostic items。
 
@@ -599,10 +615,10 @@ ImplicitMemBench      -> Branch 1 的 exposure/adaptation axis + first-attempt p
 - [Learning Task Representations from In-Context Learning](https://arxiv.org/abs/2502.05390)：从 attention heads 提取 task vector；
 - [Breaking through the learning plateaus of in-context learning](https://proceedings.mlr.press/v235/fu24h.html)：区分 weights component 与 context component。
 
-这些工作回答“示例如何帮助任务学习/识别”。论文 B 必须继续追问：示例究竟指定了
-哪一个 typed relation，且该 relation 是否在 source competition 和 unseen topology
-中保留。task vector、schema retrieval 或 representation similarity 本身不是 source
-authority evidence。
+这些工作回答“示例如何帮助任务学习/识别”。canonical 论文必须继续追问：示例究竟指定了
+哪一个 typed relation、该 relation 是否在 source competition 和 unseen topology 中保留，
+以及它是否真的改变 partner 的协调行动。task vector、schema retrieval 或 representation
+similarity 本身不是 source-authority evidence。
 
 ### 9.2 组合泛化与关系推理
 
@@ -658,7 +674,7 @@ CoSToM、ReFT 和 activation steering 提供干预工具。它们分别位于 su
 和 intervention 层，不能被合并成“发现了一个 semantic circuit”。本项目的主结果仍
 应是 relation-level transfer；机制工具只承担解释或边界任务。
 
-## 10. 论文 B 的主图和主表
+## 10. Canonical 论文的主图和主表
 
 ### Figure 1：同一关系的五环节
 
@@ -670,33 +686,31 @@ valid relation specification
 -> final answer or first action
 ```
 
-图中用 ToM 和 event semantics 作为两个具体实例；不要把 local attention、memory
-noise 和 CoSToM 画成已被证实的共同神经通路。
+图中以 ToM source arbitration 为主实例；event semantics 只作为可选 validity-screened
+补充。不要把 local attention、memory noise 和 CoSToM 画成已被证实的共同神经通路。
 
-### Figure 2：ICL relation induction
+### Figure 2：Information, not example count
 
-- 横轴：support regime；
-- 纵轴：source/relation-consistent decision；
-- series：label mapping、surface retrieval、content update、relation induction controls；
+- 横轴：`C1/C2/C4/C8/C16`、matched diagnostic 和 policy-corrupted conditions；
+- 纵轴：held-out policy-consistent decision；
+- 旁侧显示 `C_sep(D)` 或 `VR(D)`，并比较 count、similarity、diversity 的预测力；
 - 所有 content、answer encoding 和 source token 均做独立置换。
 
-### Figure 3：cross-content / cross-encoding transfer
+### Figure 3：Identification × Prior Pressure 与 partner adaptation
 
-最小显示是 paired matrix：
+上半部分显示 2×2 的 independent relation readability、native final commitment 和
+prior override；下半部分显示 partner-policy swap 前后的协调行动：
 
 ```text
-induced relation x new content x new representation
+induced relation x new content x new representation x partner policy
 ```
 
 不把 same-item reconstruction 与 cross-content transfer 放在同一柱状图里混合。
 
-### Figure 4：unseen topology composition
+### Small consequence：policy-separation selector
 
-- primitive support；
-- binary held-out；
-- ternary held-out；
-- cross-family held-out；
-- topology-conditioned prediction intervals。
+- 固定 token budget 下比较 greedy `C_sep/VR`、random、similarity、diversity；
+- 若 selector 不具备前瞻性，留在 supplement，不影响主命题。
 
 主图只放预注册 operator family 和 coverage-adjusted comparison，详细 item geometry
 放 supplement。
@@ -761,35 +775,41 @@ confirmation   = 新 latent worlds、new predicates 或 independent annotation p
 
 ## 12. 最小高信息量 pilot
 
-### 必做版本：论文 B
+### 必做版本：canonical 论文 B（已覆盖旧版 ACG 方案）
 
 ```text
-domains          = ToM source arbitration + validity-screened event semantics
+main experiments = information value + identification/prior pressure + partner adaptation
+domains          = ToM source arbitration; event semantics is optional supplement
 checkpoints      = Qwen2.5-7B-Instruct + matched Qwen2.5-7B Base
-worlds           = at least 20 independent latent worlds per support regime
-support regimes  = none, coverage-deficient, compound-heldout, compatibility-shift, upper bound
-topologies       = primitive, binary held-out, ternary held-out
-representations  = natural/controlled language + answer-label permutation
-outputs          = intermediate relation judgment + final answer/source identity
+worlds           = 96 independent ToM worlds plus a small partner panel
+support regimes  = C1/C2/C4/C8/C16, matched diagnostic, rival-policy diagnostic, oracle
+topologies       = binary and ternary held-out; policy swap in partner game
+representations  = natural/controlled language + answer/source-label permutation
+outputs          = native answer, independent relation readout, action, coordination outcome
 ```
 
-先跑 Study 0 和 Study 1 的小面板，再决定是否扩展 1,440-row 全量矩阵。不要先扩大
-模型数或模板数。
+先跑 validity audit、Experiment 1 的 dose-response 和 Experiment 2 的 2×2 小面板，再
+决定是否扩展 partner game 与 topology matrix。不要先扩大模型数、模板数或机制实验。
 
-Best Paper 候选的 Study 1 具体对照见
-[当冲突成为监督](best_paper_conflict_as_supervision_20260909_zh.md)：`C8`、`D1+C7`、
-`D2+C6` 和真正的 `D1+X1+C6`，不使用把 corrupted item 单独加到 consensus items 上的
-旧式简写。
+Experiment 1 的具体对照见 [Conflict Is Supervision](best_paper_conflict_as_supervision_20260909_zh.md)：
+`C1/C2/C4/C8/C16`、`D1`、`D1+C7` 和真正的 rival-policy diagnostic pair。不得把
+corrupted item 单独加到 consensus items 上再称为 inter-demonstration policy conflict。
 
-### 可选版本：论文 C 触发条件
+### 不再单独使用的旧版“论文 C”条件
 
-只有同时观察到以下三点，才启动跨域大论文：
+旧版曾把跨域 representation-to-commitment framework 写成等待触发的 Paper C。当前
+canonical 方案已将其中可验证的 commitment 部分前移到主实验 2，并把功能性部分前移
+到 partner adaptation；剩余的跨域统一框架仍然只是条件性后续分支。它不能作为当前
+论文的第二标题。
 
-1. 两个 domain 都存在 readability 与 final relation enactment 的可重复分离；
-2. 分离对 content/representation transformation 有稳定方向；
-3. validity-screened controls 能排除主要 label、surface、judge 和 benchmark artifact。
+只有同时观察到以下条件，才可在后续论文中讨论更广的跨域框架：
 
-否则保持论文 B 的窄 ACG 叙事，不把跨域相似性写成统一规律。
+1. canonical 主实验在至少两个模型族或 checkpoint 上复现；
+2. partner-policy swap 在新内容上改变 native action 并改善协调；
+3. 至少一个独立 relation domain 通过 validity-screened controls；
+4. 主要分离不由 label、surface、judge 或 benchmark artifact 解释。
+
+否则保持 canonical 论文的窄行为边界，不把跨域相似性写成统一规律。
 
 ### 分支决策
 
@@ -837,15 +857,16 @@ same latent world
 - response reconstruction 与 controller transport 的分离；
 - 对 benchmark validity 和 construction purity 的现实警告。
 
-下一篇 Paper B 是：
+下一篇 canonical Paper B 是：
 
 ```text
 demonstrations
--> source-relation induction
--> unseen content/encoding/topology execution
+-> policy identification
+-> final commitment under prior pressure
+-> partner adaptation and unseen topology execution
 ```
 
-项目层 Paper C 才是：
+条件性后续才是：
 
 ```text
 valid specification
@@ -857,8 +878,8 @@ valid specification
 
 因此 Paper A 与 Paper B 的主结果不能重复：Paper A 的 Stage-53--57 只能作为 motivation、
 measurement provenance 和 negative boundary；Paper B 必须使用新的 demonstrations、
-cross-content factorial、answer permutation、unseen topology，最好加入 event-semantic
-外部域。
+cross-content factorial、answer permutation、unseen topology、independent relation
+readout 和 partner-policy swap。event-semantic 外部域不再是主文必需条件。
 
 ## 14. 五个新论文对 LP4FM 的具体增量
 
@@ -946,8 +967,9 @@ hierarchy-following baseline。
 
 | 观察 | 最合理的论文选择 | 不应做的解释 |
 |---|---|---|
-| ToM 有 transfer，event 域无 transfer | 论文 B 的 source-authority ACG | 跨语义域普遍 relation law |
-| 两域都有 transfer，且 topology 可预测 | 论文 B oral-shaped，考虑 Paper C | intrinsic unified neural mechanism |
+| ToM 的识别、承诺分离和 partner swap 均通过 | canonical 论文具备 oral-shaped 证据链 | intrinsic unified neural mechanism |
+| 只有 ToM 有 transfer，event 域无 transfer | canonical 论文保留 ToM-specific 边界；event 转补充材料 | 跨语义域普遍 relation law |
+| 两域都有 transfer，且 topology 可预测 | 作为后续跨域扩展的动机，不自动新增 Paper C | intrinsic unified neural mechanism |
 | 两域都有 readability gap，但 validity/control 不稳 | benchmark/measurement paper | LLM 完全不理解 |
 | 只有 passive exposure 改变 style | Implicit adaptation boundary | human-like unconscious memory |
 | resource/topology 系统性改变 retention | 独立 substrate/resource paper | attention topology 直接证明语义 |
@@ -974,13 +996,13 @@ relation_intermediate_scorer.py
 answer_label_permutation_report.md
 ```
 
-### Phase 3：ACG pilot
+### Phase 3：canonical policy-identification/commitment pilot
 
 ```text
-acg_support_regimes.csv
-acg_cross_content_results.csv
-acg_unseen_topology_results.csv
-acg_claim_matrix.md
+policy_identification_results.csv
+identification_commitment_2x2.csv
+partner_adaptation_results.csv
+canonical_claim_matrix.md
 ```
 
 ### Phase 4：可选 substrate/mechanism
@@ -1009,13 +1031,13 @@ program-level object
   relation preservation from context to decision
 
 immediate paper-level object
-  authority compositional generalization from demonstrations
+  policy identification -> final commitment -> partner adaptation
 
 LP4FM contribution
   static typed source arbitration and checkpoint-sensitive composition boundary
 
-new papers' role
-  validity, resource, topology, intervention, and passive-adaptation axes
+supporting branches' role
+  ACG execution, validity, resource, topology, intervention, and passive-adaptation axes
 
 current status
   argument_shaped; no unified mechanism claim
@@ -1078,10 +1100,10 @@ current status
 
 ```text
 mother object: relation preservation from context to decision
-paper B: authority compositional generalization
-paper C: cross-domain relation-preservation framework, conditional on pilot
-novelty: conceptually sharpened; empirical cross-domain novelty not validated
-main risk: broad framing collapses into ordinary prompt sensitivity or benchmark artifacts
-next gate: validity-screened ToM + event-semantic relation pilot
+canonical paper B: policy identification -> commitment -> partner adaptation
+supporting components: Conflict Is Supervision + ACG execution/topology audit
+novelty: conceptually sharpened; empirical law not validated
+main risk: collapse into prompt sensitivity, benchmark ambiguity, or passive QA
+next gate: validity audit + ToM dose-response + identification/prior-pressure 2x2
 status: argument_shaped
 ```

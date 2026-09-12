@@ -1,6 +1,6 @@
-# Best Paper 级下一阶段方案：从关系到答案承诺
+# Best Paper 级下一阶段方案：Conflict Identifies, Priors Decide
 
-英文对应稿：[From Relation to Commitment: Prior Rewriting in Language Models](best_paper_relation_to_commitment_20260911.md)。
+英文对应稿：[Conflict Identifies, Priors Decide: Identification to Commitment in Language Models](best_paper_relation_to_commitment_20260911.md)。
 
 更新日期：2026-09-11
 
@@ -8,17 +8,23 @@
 《The Imperfective Paradox in Large Language Models》的研究推演方案；它不是新规律
 已经成立的经验结论。
 
+> **2026-09-11 canonical revision**：本版本充分吸收外部意见，将原来的“关系—承诺
+> 断裂”收紧为一个两阶段理论：`identification -> commitment`。主文只保留三个实验：
+> 信息量而非示例数量、识别 × 先验压力相图、以及 partner-adaptation 功能验证。旧版
+> Study 0–6 的细节全部保留为支撑协议或条件性扩展，不再把研究计划写成七项并列贡献。
+
 ## 0. 直接判断
 
 这张截图真正值得借鉴的地方，不是再做一个“语言学现象 benchmark”，而是它把一个
-非常细的关系拆成了两个不同问题：
+非常细的关系拆成了两个不同问题，并把语义有效性放在模型解释之前：
 
 ```text
 模型是否能区分关系
 -> 模型是否在最终判断中使用了这个关系
 ```
 
-这会把我们当前的下一阶段从“demonstrations 能否诱导 source policy”再推进一步：
+这会把我们当前的下一阶段从“demonstrations 能否诱导 source policy”推进为一条完整
+的功能链：
 
 ```text
 Conflict Is Supervision       = 关系在上下文中是否被识别
@@ -34,15 +40,60 @@ Relation-to-Commitment         = 被识别的关系能否 survive 到最终答�
 
 暂定的读者可见标题是：
 
-> **From Relation to Commitment: When Language Models Represent a Relation but Follow a Prior**
+> **冲突识别关系，先验决定承诺：语言模型中的 Identification-to-Commitment**
 
 “Commitment Gap”可以作为本文内部的操作性简称，但目前不能写成领域已经公认的
 理论术语。第一处正式定义应使用普通描述：**relation–commitment dissociation**，并
-明确说明本文把它操作化为一个测量量。
+明确说明本文把它操作化为一个测量量。真正要抢的不是“内部知道但没用出来”这一句，
+而是：**demonstration 的信息量由它能否区分竞争 policy 决定；关系识别完成后，最终
+答案还要通过一次独立的先验竞争。**
 
-这条线比单独扩张 ACG 更接近 Best Paper，原因是它试图改变基本测量单位：不再把
-准确率、probe 分数、steering gain 和上下文适应都叫作“理解”，而是追踪同一个关系
-从规定、表征、访问、来源仲裁到最终答案的完整传递。
+这条线比单独扩张 ACG 更接近 Best Paper，原因是它试图改变 ICL 的基本测量单位：不
+再把准确率、probe 分数、steering gain 和上下文适应都叫作“理解”，而是追踪同一个
+关系从规定、政策识别、可访问性、来源仲裁到最终答案或行动的完整传递。
+
+### 主文的唯一中心命题
+
+> **Relational in-context learning contains two separable bottlenecks: identification
+> and commitment. Demonstrations identify a governing relation only where competing
+> policies make different predictions; even after the relation becomes identifiable and
+> behaviorally accessible, a competing prior can override it at final commitment.**
+
+中文表述为：
+
+> **上下文示例只有在排除竞争关系时才真正提供关系监督；而完成关系识别以后，最终
+> 答案仍可能在先验竞争处重新服从默认来源。**
+
+### 主文三实验，不再并列铺开
+
+1. **Information, not example count**：在固定词面、长度、答案频率和选择分布下，比较
+   `C1/C2/C4/C8/C16` 个 source-consensus 示例、一个 source-diagnostic 示例，以及
+   一个目标诊断示例加一个 rival-policy 诊断示例。核心不是“一个关键例子更重要”，
+   而是 `policy-separation coverage / version-space reduction` 是否比数量、相似度和
+   多样性更能预测 held-out policy performance。
+2. **Identification × Prior Pressure**：用 `consensus/diagnostic × prior-aligned/opposed`
+   的 2×2，同时画独立 relation readout 与 native final commitment。关键格子是“关系
+   已读出、最终答案却跟随 prior”，并用完全分离的 native、independent-readout 和
+   explicit-rule-oracle 三个 arm 排除测量污染。
+3. **Functional partner adaptation**：把 passive “Alice believes where?” 推进到交互
+   行动。模型先从 partner 的 source-conflict 行为识别其 latent policy，再在新人物、
+   新对象、新表达和未见 topology 中选择沟通或行动，以检验关系是否真正控制协调行为。
+
+理论到方法的闭环只增加一个很小的实用 section：用 greedy selector 最大化候选 policy
+   的 pairwise separation 或 version-space reduction，与 random、similarity、diversity
+   和更多示例比较。它是理论的 consequence，不把 active example selection 重新包装
+   成本文原创问题。
+
+### 明确砍掉或降级的内容
+
+- LP4FM 的 saturation、affine transport 和 checkpoint geometry：作为 Paper A 的发现
+  来源与边界证据，不再成为 Paper B 的第二主线。
+- mechanistic interpretability：只有在行为层 dissociation 成立后作为 boundary/optional
+  section；当前证据不能支持 universal typed controller。
+- event semantics：只做 validity-screened external replication 或补充材料，不作为主
+  cross-domain novelty，避免直接贴近 Imperfective 的争议边界。
+- “模型真正理解/内部知道”之类全局断言：改用 relation identification、readability、
+  commitment、execution 等可测量层级。
 
 ## 1. 截图论文真正提供了什么
 
@@ -135,6 +186,22 @@ h_pi(x, T) = z_{pi(x,T)}(x)
 关系与表面叙事冲突时，模型倾向采用的默认答案。`M` 是可通过独立 probe、受限
 中间输出或 oracle 对照观察到的关系状态；它不是“真实 hidden state”的同义词。
 
+### Prior pressure 必须在主实验前独立校准
+
+“先验压力”不能根据主实验中模型答错与否事后指定。应先用不重叠的 calibration split，
+在无诊断 demonstrations 的 neutral context 下估计每个模型/checkpoint 的默认 policy：
+
+```text
+P_k(y | x, T, neutral context)
+prior policy      = argmax_y P_k(y | neutral context)
+prior pressure    = log P_k(y_prior) - log P_k(y_relation)
+```
+
+校准结果在选择 confirmation items 之前冻结。主分析使用预注册的 aligned/opposed 分箱，
+连续压力分数只作为次要分析。如果一个 item 的 calibration prior 在释义之间不稳定，它
+不能作为 prior-pressure 主实验样本。叙事显著性、source order 和答案频率只能作为匹配
+控制，不能反过来定义先验。
+
 ### 2.3 四种断裂必须分开
 
 ```text
@@ -179,6 +246,23 @@ Commitment dissociation rate:
 `RR - FC` 可以作为摘要性描述，但不是跨不同输出空间的天然可比量。主结论应优先
 报告 `PO` 和 `CD`，并在同一模型、同一 item、同一答案编码和同一先验冲突条件下估计。
 
+示例信息量不由数量定义。令候选 policy 集合为 `Pi`，每个 policy 对 demonstration
+`d` 的预测为 `h_pi(d)`，则定义：
+
+```text
+V(D) = {pi in Pi : h_pi(d) = y_d for every d in D}
+
+C_sep(D) = 1 / choose(|Pi|, 2)
+           * sum_{a<b} 1[there exists d in D such that h_pi_a(d) != h_pi_b(d)]
+
+VR(D) = log |Pi| - log |V(D)|
+```
+
+`C_sep` 是 demonstrations 覆盖了多少候选 policy 对之间的可分辨冲突，`VR` 是观察
+标签后候选 version space 的缩减。二者都不是需要包装成新数学定理的对象；本文真正
+需要证明的是，它们对 LLM 的 held-out relation use 是否比 example count、semantic
+similarity、lexical diversity 和格式覆盖更有预测力。
+
 如果使用语言模型生成中间判断，必须把它标为 proxy，并至少加入：
 
 - 不要求中间解释的 native final-answer arm；
@@ -186,6 +270,17 @@ Commitment dissociation rate:
 - 不同 readout wording 的重复；
 - shuffled/wrong-channel readout control；
 - 对 intermediate label 与 final label 的一致性单独报告。
+
+### 2.5 术语台账
+
+| 术语 | 本文用法 | 写作决定 |
+|---|---|---|
+| relation identification | demonstrations 是否排除竞争 source policies | 普通功能描述，不声称新模块 |
+| relation readability | 独立协议能否读出目标 relation | proxy；不等于模型实际使用 |
+| final commitment | native final label、答案 token 或第一次行动 | 本文操作性定义 |
+| relation–commitment dissociation | readout 支持目标 relation，但 native 输出稳定服从竞争 prior | 本文操作性定义，需联合证据 |
+| policy-separation coverage | demonstrations 区分候选 policy 对的覆盖率 | 本文显式定义的分析量 |
+| partner adaptation | 根据对方行为推断 policy 并调整自己的沟通/行动 | 功能性社会推理，不等于证明 intrinsic ToM |
 
 ## 3. 论文的中心规律候选
 
@@ -317,13 +412,40 @@ retention boundary -> commitment boundary 的解释性对照
 
 而不是主标题或主结论。
 
-## 5. 实验总架构
+### 4.6 与 ToM benchmark、belief representation 和 partner adaptation 的区别
 
-### Study 0：关系有效性、选择盲化和答案编码审计
+[ToMBench](https://aclanthology.org/2024.acl-long.847/) 和 OpenToM 已经扩展了 ToM 的
+任务与叙事覆盖；因此本文不能把“更全面的 false-belief benchmark”当贡献。
+[Theory of Mind Benchmarks are Broken](https://proceedings.mlr.press/v267/riemer25a.html)
+进一步主张，静态问答不足以检验模型是否会依据 partner behavior 在上下文中适应。
+这正是主实验 3 必须从问答转向协调行动的原因。
+
+[Language Models Represent Beliefs of Self and Others](https://proceedings.mlr.press/v235/zhu24o.html)
+及后续 belief-representation 工作已经占据“belief 可以从 activation 中读出”的空间；
+[CoSToM](https://aclanthology.org/2026.acl-long.421/) 又直接研究 internal-to-behavior
+misalignment 与 steering。因此本文不把 probe/readout 或 steering 本身写成 novelty。
+分离点是：**先用 policy-separation 解释 demonstrations 何时识别 relation，再证明
+该 relation 是否控制 native answer 与新的协调行动。**
+
+## 5. 主文三实验与支撑协议
+
+主文只呈现三个实验，不再把下面所有协议并列包装成贡献：
+
+```text
+Experiment 1  Information, not example count
+Experiment 2  Identification x Prior Pressure
+Experiment 3  Functional partner adaptation
+Small consequence  Policy-separation demonstration selector
+```
+
+语义有效性是三项实验共同的前置审计；跨域 prior、prompt repair、checkpoint、资源和
+机制分析只在主结果成立后进入补充材料或后续论文。
+
+### 前置协议：关系有效性、选择盲化和答案编码审计
 
 这是所有主结果的前置条件，不是附录清单。
 
-#### 5.1 三个关系域
+#### 5.1 主域与可选外部域
 
 **Domain A：ToM source arbitration**
 
@@ -336,7 +458,7 @@ R = query type selects the typed source
 表面表达。必须确保 query 真正询问哪个 source，而不是靠名字位置或最后出现实体
 猜答案。
 
-**Domain B：event process/result**
+**Optional Domain B：event process/result**
 
 沿用事件语义的理论关系，但只使用 lexically matched minimal pairs，并明确写出：
 
@@ -348,10 +470,12 @@ R = query type selects the typed source
 不能把“没有被证明完成”机械地转成“完成为假”。对有争议的实例保留 `unknown`
 或从 primary analysis 排除。
 
-**Domain C：context versus parametric default**
+**Optional Domain C：context versus parametric default**
 
 构造一个局部上下文与模型常识/参数默认答案相冲突的 target。context policy 和
 default policy 在 consensus items 上给相同答案，在 diagnostic items 上给不同答案。
+Domain B/C 都是 validity-screened stress test，不是主文必须的 headline domain，也不能
+用来挽救不稳定的 ToM 主结果。
 
 #### 5.2 必做控制
 
@@ -376,9 +500,11 @@ q(x, T, surface | pi_a) = q(x, T, surface | pi_b)
 至少在可观察的 lexical、length、position、answer-frequency 和 target-selection 统计
 上近似成立。否则模型可能从例子的分布而非 label 学到 policy。
 
-### Study 1：一张 2×2 主图决定主命题
+### 设计先行：Identification × Prior Pressure（主实验 2）
 
-第一阶段只在 ToM 上做窄而干净的实验，避免一开始横跨三域导致每个域都不深。
+第一阶段只在 ToM 上做窄而干净的实验，避免一开始横跨三域导致每个域都不深。为便于
+论证，先定义 2×2 的 commitment 判别，再给出上游的 dose-response；论文主文仍按
+Experiment 1 → 2 → 3 呈现。
 
 #### 5.4 因子
 
@@ -417,6 +543,8 @@ gold relation。每一个 pressure manipulation 都要有 neutral matched contro
 3. **Oracle-guided arm**：提供 gold relation，再测量剩余 execution/commitment gap。
 
 不能用同一次 chain-of-thought 同时证明“模型读出了关系”和“模型使用了关系”。
+先在独立 neutral calibration pool 上估计 prior pressure，再冻结 target split；不能因为
+模型在主实验中碰巧答错，就事后把该 item 标为 prior-opposed。
 
 #### 5.7 关键结果判别
 
@@ -428,20 +556,21 @@ gold relation。每一个 pressure manipulation 都要有 neutral matched contro
 | prompt 后 target 变好但邻近合法项变差 | decision shift / calibration trade-off |
 | 只在一个表面模板成立 | surface-form attraction 或模板特异性 |
 
-### Study 2：Conflict Is Supervision 的严格识别实验
+### 主实验 1：Information, not example count
 
 这是新主线的上游部分，沿用既有方案但把它放进 2×2 框架。
 
-#### 5.8 demonstrations 条件
+#### 5.8 demonstrations 剂量条件
 
 ```text
-C1/C4/C8/C16       只有 source-consensus 的正确示例
-D1 + C7            一个 target-consistent diagnostic example 加七个 consensus
-D1 + X1 + C6       一个 target-consistent 与一个 rival-policy diagnostic pair 加六个 consensus
+C1/C2/C4/C8/C16    只有 source-consensus 的正确示例
+D1                  一个 target-consistent diagnostic example
+D1 + C7             一个 diagnostic example 加七个 consensus
+D1 + incompatible D1 两个分别支持不同 policy 的 diagnostic examples
 Explicit policy    直接给出 source rule 的上界条件
 ```
 
-`D1 + X1 + C6` 必须明确区分：两个 diagnostic examples 支持不同 policy 时，测量的是
+`D1 + incompatible D1` 必须明确区分：两个 diagnostic examples 支持不同 policy 时，测量的是
 inter-demonstration policy conflict；它不能再被误称为“一个冲突示例提供更多信息”。
 
 #### 5.9 版本集合
@@ -457,14 +586,30 @@ V(D) = {pi : h_pi(d) = y_d for every demonstration d}
 ```text
 policy identification = Pr(V(D) = {pi*})
 diagnostic gain        = target performance(D1) - target performance(Cn)
-policy-conflict cost   = performance(D1 + X1 + C6) - performance(D1 + C7)
+policy-conflict cost   = performance(D1 + incompatible D1) - performance(D1)
 ```
 
 这些量在同一候选 policy class、同一 item-selection 分布和同一 target split 上计算。
 
-### Study 3：关系到最终承诺的 prior boundary
+主分析还必须比较 `C_sep(D)` 与 `VR(D)` 对 held-out performance 的预测力，并控制：
 
-在 Study 1 的 ToM 结果稳定后，把 prior pressure 从一个 ToM 变量扩展为一组明确的
+- demonstration 数量；
+- embedding similarity；
+- lexical/semantic diversity；
+- label balance、position 与长度；
+- format/task cue 覆盖。
+
+最有记忆点、但必须经 held-out confirmation 才能写入摘要的签名是：
+
+```text
+one diagnostic example > sixteen matched consensus examples
+adding a rival diagnostic example reverses part of the gain
+performance tracks policy separation better than example count
+```
+
+### 补充边界：跨域 prior pressure
+
+在主实验 2 的 ToM 结果稳定后，把 prior pressure 从一个 ToM 变量扩展为一组明确的
 默认策略：
 
 | 域 | intended relation | rival/default prior |
@@ -488,7 +633,7 @@ policy-conflict cost   = performance(D1 + X1 + C6) - performance(D1 + C7)
 即使具体 prior 不相同，也可以得到一个更保守但仍有价值的结论：**不同领域存在
 不同的 default policy，但它们在 relation-to-commitment 断裂处具有可比较的结构。**
 
-### Study 4：Prompt repair 是否真的修复关系
+### 补充诊断：Prompt repair 是否真的修复关系
 
 复制事件语义论文最有价值的设计，但把它转译到 LP4FM：
 
@@ -514,28 +659,67 @@ cross-content transfer
 如果 prompt 让模型从“总跟现实”变成“总跟上下文”，那是 prior replacement 或
 decision shift，不是 source arbitration 已被正确学习。
 
-### Study 5：cross-content、cross-encoding 和 unseen topology
+### 主实验 3：Functional partner adaptation
 
-这是 ACG 的执行半部，也是区别于事件语义论文的关键。
+静态 QA 只能证明模型会输出关于他人状态的标签；它不能证明模型会依据对方的 policy
+改变自己的行为。因此第三个主实验使用一个最小 partner-adaptation game。
 
-训练/示例阶段只覆盖：
+#### 5.10 任务结构
 
-- 一部分人物、物体和关系词；
-- 一部分 answer encoding；
-- 一部分二元 source topology。
+每个 episode 包含一个 partner、多个信息来源和一个需要协调的目标：
 
-测试阶段加入：
+```text
+source state       = {partner belief, reality, report, distractor}
+partner policy     = latent mapping from source topology to partner action
+observer evidence = several partner interactions
+model decision     = message to partner or first coordination action
+outcome            = coordination success / payoff
+```
 
-- 新人物、新物体、新句法表达；
-- yes/no、choice、short span 等不同 answer encoding；
-- 三元 source topology；
-- 未见 source conflict graph；
-- relation reversal 与 paired counterfactual。
+观察阶段包含两类 interaction：
 
-如果 relation identification 很好但 unseen topology 失败，应写成 execution gap；如果
-cross-content transfer 失败，不能把同 item reconstruction 叫作 relation generalization。
+- **source-consensus interactions**：所有候选 policies 都导致 partner 采取同一动作；
+- **source-diagnostic interaction**：belief、reality 或 report 导致不同动作，partner 的
+  实际行动第一次排除竞争 policy。
 
-### Study 6：checkpoint、资源和机制桥
+测试阶段冻结 partner policy，替换人物、物体、词汇、答案编码和 conflict topology，
+要求模型选择“告诉 partner 什么”或“自己先做什么”以最大化协调成功。随后做 paired
+policy swap：只改变 partner 遵循的 source policy，检验模型行动是否相应反转。
+
+不同 partner policy 的 action vocabulary、频率、时序和表面描述必须匹配。diagnostic
+action 不附带显式 source label，否则测量的是 label following 而不是 policy inference。
+policy-swap pair 固定 world、goal、action set 和 partner identity，只改变控制 partner
+action 的 source。
+
+#### 5.11 主要条件与指标
+
+```text
+evidence     = consensus-only / diagnostic / policy-corrupted / explicit-policy
+prior        = model-default action aligned / opposed to partner policy
+transfer     = seen topology / unseen topology
+output       = verbal policy report / native action
+```
+
+主要指标为：
+
+- held-out coordination success；
+- policy-consistent action rate；
+- partner-policy-swap sensitivity；
+- verbal policy report 与 native action 的 dissociation；
+- diagnostic interaction 相对大量 consensus interactions 的增益。
+
+必须加入 action-frequency matching、partner identity swap、message/action order swap、
+source label permutation、no-conflict control 和 random-partner baseline。功能结果只允许
+说明模型是否把推断出的 policy 用于适应，不直接证明 intrinsic ToM 或人类式心智化。
+
+#### 5.12 迁移审计
+
+训练/示例阶段只覆盖部分人物、物体、关系词、answer encoding 和二元 topology；测试
+阶段加入新人物、新句法、三元 source topology、未见 conflict graph 与 paired
+counterfactual。如果 relation identification 很好但行动不随 policy swap 改变，应写成
+execution/commitment failure；同 item reconstruction 不能叫 functional adaptation。
+
+### 条件性附录：checkpoint、资源和机制桥
 
 机制实验只能在主行为规律成立后开始。
 
@@ -591,11 +775,16 @@ across-example policy conflict 若支持相反规则，应产生 conflict cost�
 如果 generic strict prompt 降低 prior override，却同时增加另一类合法关系的 false
 rejection，说明修复改变了决策阈值或 policy prior，而非完成结构性关系学习。
 
-### P6：跨域共享功能形状，而非共享具体偏差
+### P6：功能性结果优先于跨域拼接
 
-ToM、context 和 event 可以有不同的 default prior；Best Paper 级结果要求它们都能
-在同一 2×2 逻辑中被比较，而不要求它们有相同的内部向量、attention head 或错误
-方向。
+跨域 event/context 不是主文的必要条件。更重要的功能性检验是：在 partner-policy
+swap 后，模型是否改变 native communication/action；如果只在静态 ToM readout 中出现
+分离，结论应停留在 passive relation–commitment boundary。
+
+### P8：模型族边界
+
+若 identification × prior-pressure interaction 只出现在单一模型或 checkpoint，必须
+把结论标成 model/checkpoint-specific，不能写成语言模型的普遍规律。
 
 ### P7：oracle relation 只消除部分错误
 
@@ -631,14 +820,14 @@ answer ~ diagnosticity * prior_pressure * domain
 - checkpoint 之间 law direction 改变的条件。
 
 这些结果不是需要隐藏的“失败”，而是决定论文到底写 relation induction、commitment
-boundary 还是 domain-specific effect。
+boundary、functional adaptation 还是 domain-specific effect。
 
 ## 8. Best Paper 级证据门槛
 
 ### Gate A：关系真的被规定了
 
-至少一个外部语义域和 ToM 域通过 human/linguistic validity audit；主结果不依赖有
-实质多重解释的样本。
+ToM source relation 和 partner-action protocol 通过独立的 human/functional validity audit；
+外部语义域是可选 supplement，主结果不依赖有实质多重解释的样本。
 
 ### Gate B：不是普通 ambiguity 或 aha-example 重做
 
@@ -655,21 +844,25 @@ boundary 还是 domain-specific effect。
 diagnostic gain 迁移到新 world、新 lexical realization、新 answer encoding 或 unseen
 topology；否则只能写成局部 source arbitration。
 
-### Gate E：修复不是简单 label replacement
+### Gate E：模型族复现
 
-干预降低目标 prior override，同时保留邻近合法关系，或明确展示不可避免的 calibration
-frontier。只报告一个准确率提升不够。
+关键 identification × prior-pressure interaction 至少要在两个独立模型族或两个
+checkpoint 上复现；如果只在 Qwen2.5-7B-Instruct 成立，标题必须收紧为 checkpoint-或
+模型特异的行为边界。
 
-### Gate F：跨域结果改变领域直觉
+### Gate F：功能后果
 
-至少两个语义域呈现同一关系—承诺交互结构，且每个域的 validity、source policy 和
-default prior 都有独立定义。跨域相似不能由同一模板或同一 judge 产生。
+partner-policy swap 必须改变模型的沟通或行动，并在新内容上改善协调结果；只会口头
+报告 partner policy、却不改变 native action，不足以支持 functional adaptation。
 
-### Gate G：机制只在被许可时上升
+### Gate G：修复具有选择性
 
-若 causal/steering 不能通过 specificity、wrong-channel、transportability 和
-final-token-only controls，主论文仍可成立，但只能保留行为层 commitment boundary，
-不能写成内部 typed controller。
+干预要么降低目标 prior override 而保留邻近合法关系，要么明确展示 calibration frontier。
+只报告一个准确率提升，或把所有答案推向 context label，均不算结构性修复。
+
+机制语言单独受限：若 causal/steering 未通过 specificity、wrong-channel、
+transportability 和 final-token-only controls，主论文仍可成立，但只能保留行为层
+commitment boundary，不能写成内部 typed controller。
 
 ## 9. 与 LP4FM 和五个分支的重新分工
 
@@ -693,31 +886,26 @@ Best-Paper upgrade: identifying a relation is not the same as committing to it
 
 ## 10. 论文主图和主表
 
-### Figure 1：同一关系的四个功能状态
+### Figure 1：诊断信息而非示例数量
 
-横轴为 demonstration diagnosticity，纵轴为 prior pressure；每个 cell 同时显示：
+横轴为 demonstration budget，纵轴为 held-out policy performance；同时显示
+`C1/C2/C4/C8/C16`、一个 matched diagnostic example、以及 policy-corrupted condition。
+旁边叠加 `C_sep(D)` 或 `VR(D)`，让主视觉回答：**what teaches the relation?**
 
-- native final commitment；
-- independent relation readability；
-- prior override rate。
+### Figure 2：Identification × Prior Pressure 相图
 
-图标题应直接问：**When does a relation survive to the final answer?** 不使用内部
-“claim/gate/status”字段。
+展示 2×2 的 independent relation readability、native final commitment 和 prior override
+三层结果。关键视觉是 prior-opposed cell 中的 readout/final separation，而不是总准确率。
 
-### Figure 2：正确示例数量与诊断覆盖
+### Figure 3：Partner adaptation 与 policy swap
 
-展示 C1/C4/C8/C16 与 D1 的 matched comparison，以及 `V(D)` 的候选 policy 数量。
-核心视觉不是“更多 examples 更好”，而是“更多非诊断 examples 可能不减少 ambiguity”。
+展示 consensus-only、diagnostic、corrupted 三种观察条件下的协调成功率、policy-consistent
+action 和 partner-policy-swap sensitivity；按 seen/unseen topology 分面。
 
-### Figure 3：跨域 relation–commitment profile
+### Small consequence：policy-separation selector
 
-ToM、context 和 event 各自显示 consensus、diagnostic、prior-aligned、prior-opposed
-四个条件；用 domain-specific semantic labels，不把不同关系压成一个“reasoning score”。
-
-### Figure 4：prompt repair 的 trade-off frontier
-
-横轴为目标 prior override reduction，纵轴为邻近合法关系的 false rejection；显示
-strict definition、counterfactual、explicit rule 和 diagnostic demonstration。
+用固定 demonstration budget 比较 greedy `C_sep/VR` selector、random、similarity、
+diversity 和 larger-budget baseline。若该结果不稳定，将其留在 supplement，不影响主命题。
 
 ### Table 1：候选解释比较
 
@@ -740,7 +928,10 @@ strict definition、counterfactual、explicit rule 和 diagnostic demonstration�
 - 每个 world 四个 2×2 条件；
 - 每个条件至少两个 lexical realization；
 - 训练/发现、holdout 和 confirmation 使用不重叠人物、物体和模板；
-- 另建小规模 event/context validity-screened replication，不与 ToM 共享模板。
+- 48 个 partner-adaptation episodes，包含 consensus、diagnostic、policy swap 和
+  seen/unseen topology 条件；
+- 另建小规模 event/context validity-screened replication，作为可选 supplement，不与
+  ToM 共享模板。
 
 ### 11.2 输出
 
@@ -758,13 +949,15 @@ strict definition、counterfactual、explicit rule 和 diagnostic demonstration�
 1. ToM diagnosticity 在 holdout target 上产生稳定 policy gain；
 2. prior-opposed 条件存在 relation readout 与 final answer 的可重复分离；
 3. 分离不由 lexical、position、answer frequency 或同 item leakage 解释；
-4. 至少一个 prompt repair 显示“目标改善—邻近损失”的可测量 trade-off，或显示
-   一个真正选择性的修复；
-5. event 或 context 至少有一个独立域复现 2×2 功能形状。
+4. partner-policy swap 在 held-out episode 上改变 native action，并改善协调结果；
+5. 至少两个模型族或 checkpoint 显示同方向的 identification × prior-pressure interaction；
+6. policy-separation selector 至少在一个冻结 budget 下优于 random/similarity baseline，
+   或明确记录其失败而不把它写进主贡献。
 
 如果第 2 条失败，回到窄 ACG/Conflict Is Supervision；如果第 1 条失败，不应再把
-论文包装成 relation induction；如果第 5 条失败，保留为 ToM-specific commitment
-boundary，不声称跨域规律。
+论文包装成 relation induction；如果第 4 条失败，保留为 passive relation/commitment
+boundary，不声称 functional social reasoning；如果第 5 条失败，收紧为模型或 checkpoint
+特异结果。
 
 ## 12. 实施顺序与产物
 
@@ -803,10 +996,10 @@ diagnostic_gain_report.json
 paired_2x2_main_figure.pdf
 ```
 
-### Phase 4：独立域和跨结构泛化
+### Phase 4：partner adaptation 与跨结构泛化
 
-只在 Study 1 的主命题成立后增加 event/context、new encoding 和 unseen topology；不
-以扩大模型数量替代独立语义域。
+只在主实验 1–2 成立后增加 partner game、new encoding 和 unseen topology；event/context
+只作为 validity-screened supplement，不以跨域数量替代功能性证据。
 
 ### Phase 5：机制和训练
 
@@ -834,8 +1027,8 @@ belief 还是 reality。
 2. 正确 demonstrations 只有在区分候选 policy 时才提供 relation supervision；
 3. diagnostic evidence 能识别关系，但 relation readability 不保证 final commitment；
 4. prior pressure 在 commitment boundary 处重写部分关系；
-5. prompt repair 可能重新分配错误，而不是恢复一个统一的“理解能力”；
-6. 该结构在至少一个外部关系域中复现，或明确收紧为 ToM-specific boundary。
+5. 被识别的 partner policy 只有在控制新情境下的沟通/行动时才具有功能后果；
+6. 该结构必须跨模型族复现，或明确收紧为模型/ checkpoint-specific boundary。
 
 ### 不采用的叙事
 
@@ -848,37 +1041,34 @@ belief 还是 reality。
 
 ## 14. 摘要骨架
 
-> Language models often succeed on relational tasks when the default answer agrees with
-> the relation required by the context. This makes it difficult to determine whether a
-> model has identified the relation or merely followed a familiar prior. We introduce a
-> matched diagnostic protocol that separates source-consensus demonstrations from
-> demonstrations that distinguish competing source policies, and separates independent
-> relation readout from the native final answer. Across typed belief-source, contextual-
-> versus-parametric, and event process-result settings, we test when a relation survives
-> from context to final commitment. The central prediction is that diagnostic evidence
-> improves policy identification, but relation readability and final commitment can
-> dissociate under prior-conflicting targets. Prompt interventions may reduce one class of
-> prior-driven errors while increasing rejection of neighboring valid relations. We use
-> semantic validity audits, selection-blinded matched pairs, unseen-content transfer, and
-> oracle controls to distinguish task ambiguity, surface attraction, retention failure,
-> policy identification, and final commitment failure. The resulting framework treats
-> demonstrations as relational supervision and final answers as a separate commitment
-> boundary, without claiming a single hidden mechanism across domains.
+> 语言模型在默认答案恰好与上下文关系一致时，可能表现得像是在进行关系推理；这使得
+> 我们无法仅凭准确率判断模型究竟识别了关系，还是跟随了熟悉的先验。我们提出一个
+> matched protocol，将 source-consensus demonstrations 与区分竞争 source policies 的
+> diagnostic demonstrations 分开，并将独立 relation readout 与 native final answer 分开。
+> 第一项实验检验关系监督量是否由 policy separation 而非示例数量决定；第二项实验在
+> identification × prior-pressure 相图中检验关系可读性与最终承诺是否分离；第三项实验
+> 将这一分离推进到 partner-adaptation game，要求模型依据推断出的 partner policy 改变
+> 沟通或行动。我们通过语义有效性审计、选择盲化、未见内容/拓扑、policy swap 和 oracle
+> controls，区分 ambiguity、surface attraction、access、identification、commitment 与
+> execution failure。本文把 demonstrations 视为关系监督，把最终答案和协调行动视为
+> 独立的承诺边界，但不声称存在跨域统一的隐藏神经机制。
 
 ## 15. 最终定位
 
 当前最值得推进的不是“再加一个 benchmark”，而是把 LP4FM 已经发现的 source
-arbitration 与新的 ICL 识别问题连接起来：
+arbitration 与新的 ICL 识别问题、功能性 partner adaptation 连接起来：
 
 > **上下文并不只是告诉模型答案；它首先决定哪一种关系有资格控制答案。即使关系
 > 被识别，最终答案仍可能被默认先验改写。**
 
-如果 2×2、独立 readout、oracle、跨内容和独立语义域都成立，这会形成一个真正有
-期望改变作用的研究更新：**模型的“会不会推理”不是一个标量，而是关系从上下文
-到最终承诺是否保持的问题。**
+如果“一个 diagnostic example 胜过许多 consensus examples”、2×2 独立 readout/final
+分离、partner policy swap 和跨模型复现都成立，这会形成一个真正有期望改变作用的
+研究更新：**模型的“会不会推理”不是一个标量，而是关系从上下文到最终承诺与行动
+是否保持的问题。**
 
 如果这些证据不成立，方案也提供了清晰的收缩路径：保留有效的 diagnostic
-demonstration/ACG 结果，删除跨域或内部机制叙事，不用漂亮的新术语掩盖证据边界。
+demonstration/ACG 结果，删除 functional、跨模型或内部机制叙事，不用漂亮的新术语
+掩盖证据边界。
 
 ## 16. 参考入口
 
@@ -890,6 +1080,8 @@ demonstration/ACG 结果，删除跨域或内部机制叙事，不用漂亮的�
 ### ICL 与关系识别
 
 - [AmbiBench](https://arxiv.org/abs/2212.10711)
+- [ToMBench](https://aclanthology.org/2024.acl-long.847/)
+- [Theory of Mind Benchmarks are Broken](https://proceedings.mlr.press/v267/riemer25a.html)
 - [Critical Example Attribution](https://aclanthology.org/2025.findings-acl.1092/)
 - [Demonstration Conflict](https://arxiv.org/abs/2603.04464)
 - [Context-Faithful Prompting](https://aclanthology.org/2023.findings-emnlp.968/)
@@ -899,6 +1091,7 @@ demonstration/ACG 结果，删除跨域或内部机制叙事，不用漂亮的�
 ### ToM、schema 与机制
 
 - [CoSToM](https://aclanthology.org/2026.acl-long.421/)
+- [Partner adaptation and planning](https://arxiv.org/abs/2606.31916)
 - [Shaping Schema via Language Representation](https://arxiv.org/abs/2605.09271)
 - [Structured Task Hypothesis](https://aclanthology.org/2024.acl-long.669/)
 - [Schema Learning and Rebinding](https://arxiv.org/abs/2307.01201)

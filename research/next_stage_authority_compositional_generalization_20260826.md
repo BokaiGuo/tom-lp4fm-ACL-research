@@ -1,6 +1,7 @@
-# Next-Stage Paper Plan: Authority Compositional Generalization in Context
+# Historical Plan: Authority Compositional Generalization in Context
 
-> **2026-09-09 positioning update.** ACG remains the execution and composition
+> **2026-09-11 canonical update.** This file retains ACG as execution and transfer
+> material inside [Conflict Identifies, Priors Decide](best_paper_relation_to_commitment_20260911.md); it is no longer the highest-level paper title. ACG remains the execution and composition
 > object: after demonstrations identify a source relation, can it transfer and
 > compose? It is no longer the highest-level novelty claim. Direct prior work
 > already studies task ambiguity, critical disambiguating examples, and

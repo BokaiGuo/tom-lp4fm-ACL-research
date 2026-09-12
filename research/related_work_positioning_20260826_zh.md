@@ -1,6 +1,6 @@
 # 下一阶段研究的 Related Work 定位地图
 
-最新的总方案入口是：[从关系到答案承诺：先验改写](best_paper_relation_to_commitment_20260911_zh.md)。本定位地图中的 ICL、schema、ToM 表征、记忆和 steering
+最新的总方案入口是：[Conflict Identifies, Priors Decide](best_paper_relation_to_commitment_20260911_zh.md)。本定位地图中的 ICL、schema、ToM 表征、记忆和 steering
 近邻，现统一服务于“关系从上下文到最终答案是否保持”这一更窄的比较问题；并不把
 这些工作拼成一个共同的内部机制。
 
@@ -11,9 +11,9 @@
 拉开距离。
 
 当前项目不应声称“此前没有人研究过上下文学习、组合泛化、belief representation
-或 schema”。更准确的说法是：已有工作分别研究了这些对象，但尚未把它们统一为
-**从 demonstrations 归纳 typed source-relation program，并在未见冲突拓扑中进行
-答案权威组合泛化**这一对象。
+或 schema”。更准确的说法是：已有工作分别研究了这些对象，但尚未把它们放进同一
+个可测量链条：**demonstrations 如何识别 typed source relation、该 relation 是否
+能 survive final commitment，以及是否会改变功能性 partner adaptation。**
 
 ## 0. 2026-09-09：最近邻检索后的必要收紧
 
@@ -40,9 +40,9 @@ across-example policy conflict
   = corruption, noise, or unresolved normative ambiguity
 ```
 
-在这一定位下，ACG 是后半段：先证明 demonstrations 已唯一识别 source policy，再测
-它能否跨内容、编码和未见 topology 执行。完整论证见
-[Best Paper 级候选方案](best_paper_conflict_as_supervision_20260909_zh.md)。
+在这一定位下，ACG 是执行组件：先证明 demonstrations 已识别 source policy，再测它能否
+跨内容、编码和未见 topology 执行并控制行动。完整论证见
+[canonical 方案](best_paper_relation_to_commitment_20260911_zh.md)。
 
 ## 1. 最近邻总表
 
@@ -61,6 +61,13 @@ across-example policy conflict
 | shared router / mental spaces | [Belief–reality routing](https://arxiv.org/abs/2607.11945)、[One mechanism for many mental spaces](https://arxiv.org/abs/2607.10248) | 一个共享 value slot 和 router 是否支持多种 mental spaces | 这些工作研究模型内部已有的路由机制；本项目研究 ICL 如何从示例中学习并组合“谁应获授权”的关系规则，属于功能归纳层而非同一机制复现 |
 
 ## 2. 五个分支分别如何与 Related Work 拉开距离
+
+canonical 论文还必须吸收 ToM 评测从静态问答走向功能适应的边界：[ToMBench](https://aclanthology.org/2024.acl-long.847/)
+扩大了任务覆盖，[Theory of Mind Benchmarks are Broken](https://proceedings.mlr.press/v267/riemer25a.html)
+指出静态 belief QA 不能替代依据 partner behavior 的上下文适应，相关 planning/partner
+adaptation 工作也把评价终点推进到行动。本文的 partner-policy swap 不追求再造一个
+ToM benchmark，而只检验：由 diagnostic behavior 识别出的 typed source relation 是否改变
+新的协调行动。
 
 ### Branch 1：Training-Induced Composition Phase Transition
 
@@ -144,7 +151,7 @@ activation steering 和 representation finetuning。它们大多优化“遵循�
 source-specific margin、off-policy leak、topology sensitivity 和 cross-content
 transfer。它是一个 intervention branch，不是对已有 instruction tuning 的重新命名。
 
-## 3. 当前 LP4FM 稿件与下一阶段的关系
+## 3. 当前 LP4FM 稿件与 canonical 下一篇论文的关系
 
 当前 LP4FM 稿件是 Paper A：
 
@@ -156,16 +163,17 @@ language form -> typed source arbitration -> checkpoint-sensitive composition bo
 correctness 改写为 typed source arbitration，并明确 compound transport 和机制识别
 边界。
 
-下一阶段 ACG / Paper B 则是：
+canonical 下一篇论文则是：
 
 ```text
-demonstrations -> source-relation program -> unseen-content/topology composition
+demonstrations -> policy identification -> final commitment -> partner adaptation
 ```
 
-Paper B 不应把 Paper A 的 Stage-53–57 重新命名为 ICL 证据。Paper A 的结果只提供
-source ontology、topology grammar、measurement substrate 和负边界；Paper B 的主结果
-必须来自新 demonstrations、cross-content factorial、answer-encoding permutation、
-unseen topology，以及至少一个新 typed domain。
+它把 Conflict Is Supervision 的识别比较、ACG 的跨内容/拓扑执行审计和 partner-policy
+swap 合并为一篇论文。Paper A 的 Stage-53–57 不能重新命名为 ICL 证据；它们只提供
+source ontology、topology grammar、measurement substrate 和负边界。新论文主结果必须
+来自新 demonstrations、cross-content factorial、answer-encoding permutation、unseen
+topology 与功能性行动控制。event semantics 只作为可选的 validity-screened supplement。
 
 ## 4. 审稿人最可能提出的“这不新”与回答方式
 
@@ -201,13 +209,14 @@ unseen topology，以及至少一个新 typed domain。
 ```text
 已有文献关系 = 已核实的背景、先例、最近邻和对照
 当前 LP4FM 证据 = static typed arbitration 与 composition boundary
-下一阶段假设 = ACG / relation-program induction
+下一阶段假设 = policy identification -> final commitment -> functional adaptation
 下一阶段主结果 = 尚未验证，状态为 argument_shaped
 ```
 
 因此，本文档中的“新”“更强”“oral 潜力”都是研究设计层判断，不是已完成的经验
-结论。只有当 cross-content、cross-encoding 和 unseen-topology 结果成立后，才能把
-ACG 从候选母对象晋级为论文贡献。
+结论。只有当 policy-separation、prior-opposed readout/final separation、held-out
+transfer 和 partner-policy swap 结果成立后，才能把 canonical 对象晋级为论文贡献；
+ACG 只作为其中的执行与拓扑支撑，不再单独承担最高层标题。
 
 ## 参考入口
 
@@ -225,13 +234,16 @@ ACG 从候选母对象晋级为论文贡献。
 - [Context-faithful Prompting for Large Language Models](https://arxiv.org/abs/2303.11315)
 - [Belief–reality separation lives in routing over a shared value slot](https://arxiv.org/abs/2607.11945)
 - [One mechanism for many mental spaces](https://arxiv.org/abs/2607.10248)
+- [ToMBench](https://aclanthology.org/2024.acl-long.847/)
+- [Theory of Mind Benchmarks are Broken](https://proceedings.mlr.press/v267/riemer25a.html)
+- [Partner adaptation and planning](https://arxiv.org/abs/2606.31916)
 
 ## 当前状态
 
 ```text
-purpose: related-work positioning for five branches and ACG
+purpose: related-work positioning for the canonical identification-to-commitment paper
 novelty: relation-level object is conceptually differentiated; empirical novelty not validated
-main risk: ACG may collapse to prompt sensitivity or ordinary compositional generalization
-required evidence: cross-content + cross-encoding + unseen-topology transfer
+main risk: the identification/commitment split may collapse to prompt sensitivity or passive QA
+required evidence: policy separation + readout/final dissociation + held-out action adaptation
 status: argument_shaped
 ```

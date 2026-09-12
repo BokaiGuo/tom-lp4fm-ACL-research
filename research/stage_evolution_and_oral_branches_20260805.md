@@ -1,8 +1,8 @@
-# 从 Typed Belief Binding 到 Checkpoint-Sensitive Composition
+# 从 Typed Belief Binding 到 Identification → Commitment
 
 ## 1. 总判断
 
-这个项目不是沿着一个预先确定的机制假设不断补实验，而是经历了四次研究对象升级：
+这个项目不是沿着一个预先确定的机制假设不断补实验，而是经历了五次研究对象升级：
 
 ```text
 false-belief accuracy / description sufficiency
@@ -10,19 +10,21 @@ false-belief accuracy / description sufficiency
 -> readable state versus causal answer interface
 -> linguistic source accessibility and saturating composition
 -> checkpoint-sensitive composition-shape rewiring
+-> policy identification -> final commitment -> functional partner adaptation
 ```
 
 每次升级都来自前一个对象没有通过更严格的 identification gate。项目最有价值的
 积累不是某一个连续成立的 hidden-state 机制，而是已经建立了一套逐步排除错误对象、
 重新定义可识别对象的研究程序。
 
-当前 LP4FM 主线已经可以形成一篇 claim-safe 论文，但如果目标是更强的主会 oral，最值得
-分叉的对象不是继续扩大模板或模型数量，而是研究：
+当前 LP4FM 主线已经可以形成一篇 claim-safe 论文。若目标是更强的主会 oral，当前
+canonical 分叉不是继续扩大模板或模型数量，而是研究：
 
 > 为什么相同架构、不同 checkpoint 会保留控制相对形状，却改变语言构式组合的方向和幅度？
 
-这比“某个模型存在 subadditive saturation”更深，因为它把 prompt sensitivity、instruction
-tuning、functional geometry 和 behavioral composition 统一到一个可证伪对象中。
+这比“某个模型存在 subadditive saturation”更深，因为它把 demonstrations 的信息量、
+prior pressure、functional adaptation 和 behavioral composition 组织到一个可测量的
+`identification -> commitment` 链条中；完整方案见 [canonical 研究方案](best_paper_relation_to_commitment_20260911_zh.md)。
 
 ## 2. 研究变迁
 
@@ -322,6 +324,48 @@ objective 负责偏好 diagnostic evidence、拒绝 corrupted evidence。
 
 完整中英文方案见：
 
+- [Conflict Identifies, Priors Decide：canonical 中文方案](best_paper_relation_to_commitment_20260911_zh.md)
+- [Conflict Identifies, Priors Decide: canonical English plan](best_paper_relation_to_commitment_20260911.md)
 - [当冲突成为监督：中文方案](best_paper_conflict_as_supervision_20260909_zh.md)
 - [Conflict Is Supervision: English Plan](best_paper_conflict_as_supervision_20260909.md)
 - [关系表征到答案承诺：项目级总图](next_stage_relation_preservation_20260909_zh.md)
+
+## 9. 2026-09-11：从“关系—承诺断裂”收紧为 Identification → Commitment
+
+进一步吸收《The Imperfective Paradox in Large Language Models》及其后续有效性讨论后，
+研究对象再次收紧。不能把“模型可以读出关系但最终答错”单独当作新颖性，因为
+ToM belief probing、context-faithful prompting、CoSToM 和 representation/decision
+dissociation 已分别覆盖相邻现象。真正的升级是把两个阶段连成同一条可测量链：
+
+```text
+demonstrations
+  -> policy identification: 哪个 source relation 被示例真正区分出来
+  -> commitment competition: 该 relation 能否抵抗 default prior
+  -> functional adaptation: 是否改变新情境中的沟通或行动
+```
+
+因此当前 canonical 下一篇论文是：
+
+> **Conflict Identifies, Priors Decide: Identification to Commitment in Language Models**
+
+主文只保留三个实验：
+
+1. `Information, not example count`：比较 source-consensus 与 source-diagnostic 示例，
+   用 policy-separation coverage / version-space reduction 解释示例信息量；
+2. `Identification × Prior Pressure`：分离 independent relation readout 与 native final
+   commitment，并在独立 calibration pool 上冻结 prior pressure；
+3. `Functional partner adaptation`：在 held-out world、encoding 和 topology 中做
+   partner-policy swap，要求模型改变协调行动。
+
+LP4FM 是 Paper A，提供 typed source ontology、conflict grammar、answer-interface
+scorer 和 checkpoint-sensitive boundary；Conflict Is Supervision 负责第一实验的
+识别层；ACG 负责跨内容/编码/拓扑执行层。event semantics、checkpoint/training、
+resource/attention 和 causal steering 降为 validity-screened supplement 或后续分支。
+
+这一步不是把研究价值缩减为“可证伪的一个效应”，而是把研究单位从单一准确率改成
+关系在 `specification -> identification -> readability -> commitment -> action` 链条
+上的功能状态。所有新结论仍须标记为 `argument_shaped`，直到独立 world、模型族、
+policy swap 和选择盲化证据完成。
+
+完整 canonical 方案见：[Conflict Identifies, Priors Decide](best_paper_relation_to_commitment_20260911_zh.md)
+及其 [English version](best_paper_relation_to_commitment_20260911.md)。
