@@ -1,82 +1,113 @@
-# ToM / LP4FM Research Documents
+# ToM–LP4FM Research Program
 
-Private document repository for the Theory-of-Mind / LP4FM research program.
+Private collaboration repository for the submitted LP4FM study and its long-term research program on language, representation, source arbitration, rule updating, and behavioral control.
 
-本仓库同步保留英文原稿与中文研究版本。英文文件是正式投稿与原始研究方案；文件名以 `_zh.md` 结尾的文档是中文阅读、讨论和执行版本。
+## Current Position
 
-## Contents
+- **Submitted foundation**: LP4FM studies typed source arbitration under linguistic pressure.
+- **Next flagship**: `context-conditioned rule updating` under `rule-change without fact-change`.
+- **Design status**: `oral_shaped` and frozen.
+- **Evidence status**: `not_evaluated`; the next-study design is not an interpretation of old results.
+- **Program hypothesis**: reasoning depends not only on what a representation entails, but on what it constructs as recoverable, identifiable, accessible, and behaviorally controlling.
 
-- `manuscript/lp4fm2026/`: current LP4FM manuscript source, figures, tables, and rendered PDF.
-- `manuscript/lp4fm2026/manuscript_zh.md`: 当前 LP4FM 稿件中文阅读版。
-- `proposals/`: five independent oral branches plus the combined source-access algebra proposal. Every proposal now contains an explicit nearest-neighbor, novelty-boundary, and baseline discussion, with synchronized Chinese versions.
-- `research/`: stage evolution, the historical ACG plan, the canonical Best-Paper plan, the project-level relation-preservation map, and bilingual related-work positioning maps.
-- `theory/`: source-accessibility saturation theory in English and Chinese.
-- `evidence/`: contribution, validation, claim-boundary, and project-report documents, including Chinese counterparts.
+## Start Here
 
-## Scope
+1. [Long-term research program](MASTER_RESEARCH_PLAN.md)
+2. [Frozen next-study design](research/frozen_oral_research_design_20260912_zh.md)
+3. [Exact-neighbor literature map](research/literature_evidence_map_new_study_20260912_zh.md)
+4. [Document governance index](docs/program/DOCUMENT_GOVERNANCE_zh.md)
+5. [Machine-readable roadmap](docs/program/long_term_research_roadmap.json)
+6. [LP4FM evidence report](evidence/PROJECT_REPORT_zh.md)
+7. [Evidence ledger](evidence/EVIDENCE_LEDGER.md)
 
-This repository intentionally contains manuscript and research-planning documents only. It excludes model weights, prompts with operational secrets, run logs, large experiment outputs, caches, and local environment files.
+## Repository Structure
 
-## Current manuscript position
+```text
+.
+├── MASTER_RESEARCH_PLAN.md        # Canonical 4–5 year program
+├── manuscript/lp4fm2026/          # Submitted manuscript, PDF and Chinese reading version
+├── evidence/                      # Verified, partial and negative LP4FM evidence
+├── research/                      # Current study designs and exact-neighbor audits
+├── proposals/                     # Candidate oral branches; not evidence
+├── theory/                        # Theory notes tied to the submitted LP4FM line
+└── docs/
+    ├── program/                   # Governance and machine-readable roadmap
+    ├── foundations/               # Type, witness, harmony and focusing plans
+    ├── context-representation/    # Long-context and task-description branch
+    └── archive/
+        ├── chat-exports/          # Historical idea provenance
+        ├── synthesis-notes/       # Supplied integrative advice; not evidence
+        └── legacy-plans/          # Superseded roadmaps
+```
 
-The LP4FM manuscript is **Paper A**, the bounded empirical foundation: it identifies typed source routing, confirms a subadditive composition class in the reference checkpoint, and defines checkpoint-sensitive behavioral and transport limits.
+## Evidence Vocabulary
 
-The submitted LP4FM manuscript is **Paper A**, the bounded static source-arbitration result. The canonical **Paper B** begins with **Conflict Is Supervision** as its identification protocol, retains ACG as its execution/composition analysis, and then tests final commitment and partner adaptation. Existing Stage-53--57 results motivate these objects but are not counted as Paper B evidence.
+| Status | Meaning |
+|---|---|
+| `validated` | Protocol-valid evidence supports the bounded claim |
+| `partial` | Real evidence with incomplete coverage, controls or transfer |
+| `negative` | A tested gate failed; the boundary is retained |
+| `submitted` | Included in the current submitted manuscript |
+| `not_evaluated` | Design or hypothesis without sufficient empirical evidence |
+| `exploratory` | Early analysis that cannot carry a paper claim |
+| `conditional` | Starts only after named dependencies pass |
+| `historical` / `superseded` | Preserved for provenance but not current guidance |
 
-The 2026-09-11 Best-Paper upgrade places the earlier identification and
-execution components under a sharper
-relation-to-commitment question. The Imperfective Paradox paper motivates
-separating relation readability from final judgment: a model may distinguish a
-relation yet follow a competing default prior when it commits to an answer. In
-this program, `Conflict Is Supervision` supplies relation identification, ACG
-supplies held-out execution and composition, and the new plan tests whether an
-identified relation survives final commitment. The main paper has exactly three
-experiments: policy-separation information value, identification x prior
-pressure, and functional partner adaptation. Event and context domains,
-checkpoint trajectories, resource limits, and mechanism interventions remain
-optional supporting work. The proposal remains `not_evaluated` until
-validity-screened ToM, held-out transfer, model-family replication, and
-functional action evidence are run.
+When documents conflict, use this order:
 
-The 2026-09-12 oral-shape package separates design readiness from empirical
-readiness: the design is `oral_shaped`, while the proposal remains
-`not_evaluated` and `argument_shaped` until the three main experiments pass
-their gates. See `research/oral_shape_upgrade_20260912_zh.md`,
-`research/oral_shape_upgrade_20260912.md`,
-`research/oral_shape_claim_ledger_20260912.csv`,
-`research/oral_shape_display_plan_20260912.csv`, and
-`research/oral_shape_execution_manifest_20260912.yaml`.
+```text
+source artifacts and provenance
+> evidence ledgers and project report
+> frozen design and exact-neighbor audit
+> master plan
+> active proposals
+> historical plans and chat exports
+```
 
-## Research entry points
+## Research Programs
 
-- [Stage evolution and five-branch map](research/stage_evolution_and_oral_branches_20260805.md)
-- [Historical ACG paper plan](research/next_stage_authority_compositional_generalization_20260826.md)
-- [历史 ACG 中文方案](research/next_stage_icl_schema_rewriting_20260826_zh.md)
-- [Identification support protocol: Conflict Is Supervision](research/best_paper_conflict_as_supervision_20260909.md)
-- [Best-Paper candidate: Conflict Identifies, Priors Decide](research/best_paper_relation_to_commitment_20260911.md)
-- [Best-Paper 中文方案：Conflict Identifies, Priors Decide](research/best_paper_relation_to_commitment_20260911_zh.md)
-- [Identification 支撑协议中文方案](research/best_paper_conflict_as_supervision_20260909_zh.md)
-- [Program-level relation-preservation map](research/next_stage_relation_preservation_20260909.md)
-- [关系表征到答案承诺中文总图](research/next_stage_relation_preservation_20260909_zh.md)
-- [Related-work positioning](research/related_work_positioning_20260826.md)
-- [Related Work 中文定位地图](research/related_work_positioning_20260826_zh.md)
-- [Oral-shape 升级包（中文）](research/oral_shape_upgrade_20260912_zh.md)
-- [Oral-shape upgrade package](research/oral_shape_upgrade_20260912.md)
-- [Oral-shape claim ledger](research/oral_shape_claim_ledger_20260912.csv)
-- [Oral-shape display plan](research/oral_shape_display_plan_20260912.csv)
-- [Oral-shape execution manifest](research/oral_shape_execution_manifest_20260912.yaml)
-- [Exact-neighbor literature audit](research/literature_evidence_map_new_study_20260912_zh.md)
-- [Frozen oral-level design（中文）](research/frozen_oral_research_design_20260912_zh.md)
-- [Frozen execution manifest](research/frozen_oral_research_design_20260912.yaml)
-- [Combined training and source-access algebra proposal](proposals/oral_branch_learning_source_access_algebra_20260805.md)
-- [合并分支中文方案](proposals/oral_branch_learning_source_access_algebra_20260805_zh.md)
+| Program | Object | Current role |
+|---|---|---|
+| Relational Control | evidence, governing relation, prior, native action | Current flagship |
+| Constructed Representation | types, witnesses, rules, proof search | Formal foundation |
+| Structure Recovery | serialization, latent graph, internal recovery | Low-cost pilot |
+| Linguistic Experience | language medium and controlled exposure | Conditional expansion |
 
-## Related-work discipline
+Mechanistic interpretability, human studies and representation synthesis are validation or capstone layers. They are not parallel active projects.
 
-The documents distinguish background, precedent, contrast, and direct
-competition. The frozen mother object is `context-conditioned rule updating`:
-separating fact updating from adjudication-rule updating under fixed latent
-worlds. The primary phenomenon is `rule-change without fact-change`, tested by
-paired native policy swaps and held-out transfer. The design is frozen, but
-empirical evidence remains `not_evaluated` until the validity screen, native
-swap gate, independent confirmation, and provenance audit are complete.
+## Current Execution Rule
+
+The next study starts with one decisive pilot:
+
+```text
+same world + same facts + same query + same interface
+different demonstration-induced adjudication rule
+```
+
+Only a native answer/action change on new content supports rule updating. Rule reporting alone is readout; accepting a changed value is fact updating; same-item replay is not transfer.
+
+## Collaboration Workflow
+
+1. Put new ideas in `proposals/` and mark them `not_evaluated`.
+2. Add exact-neighbor and construct comparisons before promoting novelty.
+3. Freeze the object, primary estimand, independent unit and stop condition before running confirmation experiments.
+4. Update source artifacts and `evidence/PROJECT_REPORT_zh.md` before changing the master plan.
+5. Preserve failed gates and negative results.
+6. Move superseded plans to `docs/archive/` rather than deleting provenance.
+
+## Important Boundaries
+
+The current repository does **not** establish:
+
+- intrinsic or human-like Theory of Mind;
+- a universal belief/source controller;
+- a construction-general or checkpoint-invariant composition law;
+- broad hidden-state causal mediation;
+- causal linguistic relativity from natural-language switching;
+- the numerical or mechanistic claims described only in unavailable posters or secondary summaries.
+
+The exact current claim boundary lives in `evidence/PROJECT_REPORT_zh.md` and `evidence/EVIDENCE_LEDGER*`.
+
+## Archived Materials
+
+The chat exports and supplied synthesis notes are intentionally retained for collaborator discussion. They are **idea provenance**, not citable evidence and not executable instructions. Their per-document status is recorded in `docs/program/DOCUMENT_GOVERNANCE_zh.md`.

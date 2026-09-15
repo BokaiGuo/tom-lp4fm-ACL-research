@@ -1,8 +1,258 @@
 # Pressure-Stable Belief Binding 中文总报告
 
-更新日期：2026-08-04
+## 2026-08-19 hierarchical topology audit：pooled effect 与 item specificity 分离
+
+Stage-53/54 的 `288` 条 topology-interaction 记录已完成统一 item-level audit。该
+审计不新增 GPU scoring；每个阶段保持 24 个 latent items、2 个 predicate families
+和 3 个 pressure topologies。specificity 的 bootstrap 单元保持为 `item × predicate`，
+并另外估计 item random-intercept variance 与 predicate-within-item residual variance。
+
+| 阶段 | pooled specificity | 95% CI | item variance | within-item residual |
+|---|---:|---:|---:|---:|
+| clause-order factor | `1.615` | `[0.494, 2.801]` | `13.620` | `3.684` |
+| coreference factor | `1.334` | `[0.247, 2.411]` | `11.350` | `3.695` |
+
+两个阶段的 pooled contrast 都为正，但 joint role-object interaction 的跨阶段
+item-level correlation 仅为 `0.008`；role-only 和 object-only 分别为 `0.165` 和
+`0.168`。因此 Stage-54 更像是保留 pooled behavioral contrast、同时重排具体
+item 方向和幅度，而不是把 Stage-53 的同一个 item-level pattern 换一种语言表达。
+
+当前正贡献边界是：
+
+```text
+typed-topology effects can survive factor substitution in the pooled mean,
+but their item-level alignment is not automatically portable.
+```
+
+这支持 **behavioral specificity boundary / cross-construction rewiring**，但不支持
+construction-general topology law、shared latent mechanism 或 neural causal localization。
+
+Artifact：`scripts/build_stage55_hierarchical_topology_audit.py`；
+`results/oral_readiness_pack_20260707/stage55_hierarchical_topology_audit_20260819/`。
+
+更新日期：2026-08-07
 
 用途：论文重写、组会汇报、oral-readiness 讨论的 paper-facing 底稿。主文叙事已经避免内部实验编号式表达；内部编号只保留在最后的复现索引中。
+
+## 2026-08-19 三元组合结果与 factor-substitution 复现
+
+Stage-54 已于 **2026 年 8 月 19 日**完成全部 `3,456` 行 scoring，并完成自动审计。
+结果是一个有区分度的 partial negative，而不是简单的全盘失败：
+
+- joint-topology localization 仍为正：`1.334 [0.254, 2.424]`，通过；
+- coreference primitive effect 非零，通过；
+- matched-item localization 相对于 item-shuffled control 的 absolute-loss reduction
+  为 `0.153 [-0.515, 0.806]`，未通过。
+
+因此 Stage-54 **没有通过完整 replication gate**。最准确的科学表述是：
+
+```text
+coreference substitution preserves a positive pooled topology contrast,
+but does not establish item-level matched localization beyond the shuffled control
+```
+
+这使 Stage-53 的结论仍然是 construction-specific typed-topology candidate，不能
+升级为“非加性跨 linguistic factor 稳定复现”。同时，Stage-54 的结果也不是简单的
+zero effect：coreference 条件下仍观察到 joint topology 的正向 aggregate contrast，
+但它缺少 item-level pairing specificity，因此不能排除 pooled composition、stimulus
+heterogeneity 或 topology-independent variation。
+
+本轮还修正了一个 gate 实现问题。旧 control 计算的是
+`mean(joint - shuffled_single)`；由于 permutation 保持 shuffled single 的边际均值，
+该量在数学上必然接近零，不能检验 matched pairing。现在改为预注册意图对应的：
+
+```text
+mean(|joint - shuffled_single|) - mean(|joint - matched_single|)
+```
+
+并使用 item-cluster bootstrap。修正只作用于 audit statistic，不改变任何 prompt、
+manifest、模型评分或 scoring rows。修正后 gate 仍未通过，所以不影响最终方向判断，
+反而避免把一个无效 control 当作负证据。
+
+当前 claim ladder：
+
+```text
+允许：Stage-53 joint typed-topology localization；
+允许：Stage-54 coreference substitution shows pooled but non-specific contrast；
+禁止：construction-general topology law；
+禁止：unique composition operator、shared bottleneck、neural mechanism。
+```
+
+Artifact：
+
+```text
+runs/stage54_factor_substitution_20260807/stage54_factor_substitution_scores.csv
+results/oral_readiness_pack_20260707/stage54_factor_substitution_20260807/audit/stage54_factor_substitution_decision.json
+```
+
+### 下一步研究决策
+
+不再继续堆第三、第四个 linguistic factor。Stage-54 已经告诉我们：当前最有价值
+的正贡献不是“普遍 composition law”，而是一个**specificity boundary**：pooled
+typed-topology effects 可以在 factor substitution 后保留，但 item-level causal-like
+localization 并不自动迁移。下一步优先级应转向：
+
+1. 对 Stage-53 与 Stage-54 的 item-level interaction 做统一 hierarchical model，
+   区分 pooled topology effect、item heterogeneity 和 matched pairing specificity；
+2. 只在该模型显示稳定 latent topology component 后，设计一个新的 causal intervention；
+3. 论文主文写“topology-localized behavioral candidate with a specificity boundary”，
+   Discussion 明确 Stage-54 未支持 construction-general transfer。
+
+Stage-53 已完成全部 `3,456` 个真实 scoring rows。最重要的结果不是某个
+scalar operator 获胜，而是三阶非加性显著局部化在 joint role-object pressure：
+
+```text
+|M123(joint)| - 0.5 * (|M123(role)| + |M123(object)|)
+= 1.615 [0.513, 2.819]
+```
+
+与此同时，`average_compression` 虽有最低平均 MAE，却没有通过对所有竞争
+operator、item-shuffled 和 wrong-predicate controls 的决定性 gate；第三个 primitive
+的 cost 也与另外两个方向相反。因此正式 verdict 已从过强的
+`operator_class_identified` 修正为：
+
+```text
+typed-topology-localized third-order nonadditivity;
+unique composition operator remains unidentified
+```
+
+这个结果把论文的机制解释推进了一步，但没有越过机制不可识别边界：非加性不是只看
+三个 primitive 的 scalar magnitude，而是随 typed answer-source conflict topology
+变化。它与 typed-source competition 相容，但仍可能由 topology-conditioned
+normalization、interference 或其他 downstream interaction 产生。
+
+为区分“typed topology insight”与“clause-order 特例”，Stage-54 冻结了第二个
+三元 lattice，只替换第三个 linguistic factor：
+
+```text
+passive voice × local source embedding × coreference ambiguity
+```
+
+latent worlds、pressure topology、context lengths、answer candidates、paired linguistic
+contrast、scorer 和 bootstrap unit 均保持不变。它不再尝试从同一组数据中挑选一个
+operator，而预注册三个更直接的 gate：joint topology 的三阶 interaction 必须强于
+两个 single topology；matched-item localization 必须击败 item-shuffled control；
+coreference primitive 必须确实非零。
+
+Manifest 已冻结为 `3,456` rows，SHA256 为
+`647584d9ff8e8161f772b282b2d3d240785b606231934dc1191f87a84a5ebb09`。GPU
+scoring 使用非抢占等待队列，只有在至少 `13 GB` 显存空闲后才自动启动。
+
+若 Stage-54 通过，论文可写：
+
+```text
+nonadditive composition follows typed source topology across distinct
+linguistic factorizations
+```
+
+若失败，则 Stage-53 保留为 construction-specific localization，不扩大 claim。两种
+结果都不能写 unique neural mechanism。
+
+Artifact：
+
+```text
+scripts/build_stage54_coreference_operator_manifest.py
+scripts/build_stage54_factor_substitution_gate.py
+scripts/queue_stage54_factor_substitution.sh
+results/oral_readiness_pack_20260707/stage54_factor_substitution_20260807/
+```
+
+## 2026-08-07 三元组合算子区分：从“多种解释”到可证伪 operator classes
+
+Llama 3.1 复现说明 directional subadditivity 不是 instruction tuning 的充分
+条件，但它没有回答更深的理论问题：shared access limitation、typed-source
+competition、average-like normalization 和 pairwise interference 是否能由行为
+数据区分。继续增加模型不能解决这个 identification hole，因此新增一个正交的
+三元组合实验。
+
+Stage-53 的母对象是三因子 Boolean lattice：
+
+```text
+passive voice × local source embedding × description order
+```
+
+三阶 cell 在预先看不到时作为 held-out target。对每个 latent item 和 predicate
+family，先冻结所有 singleton/pair cells，再让四个参数自由的 behavioral proxies
+预测 triple cost：
+
+| operator class | triple prediction |
+|---|---|
+| additive independence | `C1 + C2 + C3` |
+| shared-access max proxy | `max(C1, C2, C3)` |
+| average-compression proxy | `(C1 + C2 + C3) / 3` |
+| pairwise-only interference | `C12 + C13 + C23 - C1 - C2 - C3` |
+
+同时计算三阶 Möbius interaction：
+
+```text
+M123 = C123 - C12 - C13 - C23 + C1 + C2 + C3
+```
+
+如果 scalar operator 全部失败，但 `M123` 只在 role+object joint topology
+中显著，则升级为 typed competition candidate；否则保持
+`operator_not_identified`。所有 operator 都必须通过 item-shuffled、
+wrong-predicate、competitor MAE 和 coverage gates。即使某一 behavioral class
+被识别，也不能写 unique neural implementation。
+
+该节记录预注册设计；真实结果以上一节的修正版 verdict 为准。执行状态：
+
+- 24 个全新 latent worlds，0 个与 Stage-48/52 的 latent-signature overlap；
+- 144 source rows，0 个 invariant failure；
+- 3,456-row manifest，全部 exact-length，24/24 candidate-invariant blocks；
+- Qwen2.5-7B-Instruct scoring 已完成全部 `3,456` rows；
+- 合成 pairwise-only 数据已让 gate 正确识别 `pairwise_only`，静态逻辑通过。
+
+Protocol 与 artifact：
+
+```text
+results/oral_readiness_pack_20260707/stage53_operator_discrimination_20260807/preregistration.md
+scripts/build_stage53_ternary_operator_manifest.py
+scripts/build_stage53_operator_discrimination_gate.py
+scripts/queue_stage53_operator_discrimination.sh
+```
+
+这一步的论文叙事价值不是“又做了一个三因素实验”，而是把当前机制边界从
+“存在多个 observationally equivalent explanations”推进为一个可证伪的
+behavioral operator-discrimination problem。真实结果无论支持哪一类或全部不支持，
+都会直接改变 Discussion 中的理论层级。
+
+## 2026-08-07 Llama 3.1 独立架构复现：instruction tuning 不是充分条件
+
+为检验 Qwen2.5-7B-Instruct 上观察到的定向次可加组合是否只是
+instruction tuning 的一般产物，冻结 Stage-52 的完整 `1,440`-row manifest、
+scorer、primitive cost、answer interface 与 statistical gate，在
+`LLM-Research/Meta-Llama-3.1-8B-Instruct` 上原样运行。模型权重已完整下载，
+tokenizer audit 通过，实验与 audit 均已完成。
+
+结果为明确的 negative architecture/alignment boundary：
+
+- pooled residual：`-0.134 [-0.539, 0.278]`；
+- reportative residual：`-0.132 [-0.695, 0.457]`，predicate gate 失败；
+- factive residual：`-0.135 [-0.704, 0.428]`，predicate gate 失败；
+- average-based non-additive predictor 有正的 pooled gain，但 weakest-link
+  predictor 与完整双 predicate gate 均未通过。
+
+因此，Qwen2.5-7B-Instruct 的正结果不能写成“instruction tuning 自动产生
+subadditive composition”。目前更准确的表述是：
+
+```text
+the directional subadditive composition law is checkpoint- and
+alignment-specific under the tested protocol; instruction tuning alone is
+not sufficient to guarantee it
+```
+
+这项结果不是把论文变成模型横向实验报告，而是收紧理论边界：跨 checkpoint
+可以保留较弱的 non-additive predictor preference，但定向 residual 的符号和
+幅度并不自动迁移。它进一步支持论文在 Discussion 中坚持的机制边界：我们观察到
+subadditive composition，但没有识别唯一的 composition operator、shared
+access bottleneck 或 neural implementation。
+
+Artifact：
+
+```text
+runs/llama31_8b_instruct_independent_saturation_replication_20260807/
+results/oral_readiness_pack_20260707/llama31_8b_instruct_independent_saturation_replication_20260807/
+```
 
 ## 2026-08-05 跨 checkpoint 结果与 affine-gain 理论边界
 
@@ -87,30 +337,31 @@ compound 的 saturation residual 分别为 `4.609 [2.646, 6.447]` 和
 所以论文只识别 `saturating composition class`，不声称 unique min/tropical
 operator。
 
-当前只剩两个真正会改变投稿 claim tier 的 identification holes：
+当前两个原始 identification holes 已得到不同形式的回答：
 
-1. **Cross-checkpoint portability。** 已冻结原 1,440-row manifest、scorer 与
-   statistical gate，并在 Qwen3-8B 上原样复现；不修改 prompt、不重估 primitive
-   cost、不改变 gate。后台任务为 `tom-qwen3-independent-saturation.service`。
-   全 gate 通过才允许写 tested-checkpoint cross-model saturation；部分通过写
-   architecture/training-sensitive boundary；全部失败则标题和 claim 改为单数
-   checkpoint scope，并停止继续追加模型。
-2. **Linguistic manipulation validity。** 已生成 120-pair 双盲 stimulus audit，
-   覆盖 voice、reportative/factive attribution、commitment、event-state、answer
-   target、source identity、reference 与 discourse coherence。至少两名独立标注者
-   完成并通过 preservation/grammaticality gates 前，只能写 annotation pack ready，
-   不能写 linguistic validity validated。
+1. **Cross-checkpoint portability 是已验证边界。** Qwen3-8B、Qwen2.5-7B Base 与
+   Llama-3.1-8B-Instruct 均未复制 Qwen2.5-7B-Instruct 的 directional residual。
+   因此正文写 checkpoint-sensitive composition boundary，不写 broad transfer。
+2. **Stimulus invariance 通过，但 linguistic dimension purity 未通过。** 两个相互
+   独立、对 hidden key 盲审的 reviewer agents 完成全部 120 pairs。两者对
+   event-state、answer-target、source-identity preservation 均为 `120/120`，没有
+   unintended truth/scope/reference change 或排除 pair，平均 grammaticality 为
+   `4.567/5`。但 primary changed dimension 只在 `20/120` 上一致，commitment relation
+   只在 `60/120` 上一致。故允许写 task-invariant controlled construction contrasts；
+   禁止写 human-validated、pure accessibility manipulation 或 unique linguistic
+   primitive。
 
-当前最准确 verdict：论文已经是 **single-checkpoint behavioral oral-shaped**；还不是
-cross-checkpoint oral-ready，也不是 hidden-state mechanism paper。旧 final-readout、
-writer localization 与 checkpoint transport 结果保留为机制和外推边界，不再作为
-平行主线。
+当前最准确 verdict：论文已经形成 **checkpoint-sensitive behavioral composition
+story**，同时公开 construction-label non-identifiability boundary；还不是 hidden-state
+mechanism paper。专门的双向 cross-construction activation transport 正在运行，只在
+完整 item-clustered control gate 通过后才可能提升机制 claim。
 
 最新执行与审稿防御 artifacts：
 
 ```text
 results/oral_readiness_pack_20260707/qwen3_8b_independent_saturation_replication_20260804/
 results/oral_readiness_pack_20260707/linguistic_validity_annotation_20260804/
+results/oral_readiness_pack_20260707/linguistic_validity_annotation_20260804/independent_agent_review_20260820/
 results/oral_readiness_pack_20260707/lp4fm_reviewer_attack_audit_20260804/
 paper/lp4fm2026/main.pdf
 ```
@@ -1222,3 +1473,81 @@ bash -n scripts/queue_stage33_high_capacity_anchor.sh \
   scripts/resume_process_group_after_pid.sh \
   scripts/refresh_high_capacity_anchor_after_pid.sh
 ```
+
+## 2026-08-19 截稿前最终实验与 claim 装配
+
+在“不要继续堆 linguistic factor”的原则下，现有实验已经按证据对象装配为三层：
+
+1. **answer-interface transport**：Stage-34/37/40/41/42 已完成，支持 named typed
+   answer-interface transport、typed response operator 和 bounded predictive gain；
+2. **construction composition**：Stage-53/54/55 已完成，支持 joint typed-topology
+   nonadditivity 的 behavioral candidate，但 Stage-54 显示 pooled effect 与 item-level
+   transport 分离；
+3. **mechanism boundary**：Stage-37 的 held-out stitching 只对部分 named rows 有
+   causal rescue，Stage-39 downstream functional metric 双向 gate 未通过，因此不能把
+   checkpoint transport 与 cross-construction transport 合并为一个 global mechanism。
+
+最终主线应写成：
+
+```text
+Language descriptions alter typed source arbitration.
+The answer interface admits a measurable, locally transportable geometry,
+but compound composition rewires across linguistic factorizations and is not
+construction-general at the item level.
+```
+
+最终 claim matrix 已生成：
+
+```text
+results/oral_readiness_pack_20260707/stage56_final_claim_matrix_20260819/stage56_final_claim_matrix.md
+results/oral_readiness_pack_20260707/stage56_final_claim_matrix_20260819/stage56_final_claim_matrix.json
+```
+
+截稿前不应再做的实验：
+
+- 第三个、第四个 linguistic factor；
+- 无理论作用的更多模型；
+- fixed-layer retry；
+- 继续比较 max/mean/min operator；
+- 把 Stage-34/37 的 checkpoint transport 写成 Stage-53/54 construction transport。
+
+如果还有一项 GPU 实验预算，只应实现一个专门的 construction-specific activation
+transport runner，在独立 held-out items 上比较 aligned、shuffled、wrong-channel、
+random 和 zero patch。否则，当前证据已经足以写成一个完整的 behavioral theory +
+non-transportability boundary。该 runner 不能用旧 checkpoint transport runner 的结果
+冒充完成。
+
+人工语言学 validity audit 仍未完成：当前两份提交的 annotation sheets 为空，自动审计
+状态为 `linguistic_validity_waiting_for_annotations`。因此论文可以报告“stimulus validity
+protocol prepared”，不能报告“human-validated linguistic manipulation”。
+## 2026-08-19 双向构式响应重建与 controller 边界
+
+专门针对 clause-order 与 coreference 两个构式的双向 activation intervention 已完成。
+每个方向覆盖 24 个独立 latent items、3 种 typed conflict topology、2 个长度、2 个
+predicate、3 个层和 aligned/item-shuffled/wrong-channel/norm-matched-random/zero
+五类 intervention，共 `4,320` 条真实评分。
+
+结果必须分成两个对象：
+
+1. **Same-item response reconstruction 双向通过。** aligned activation delta 在
+   `-8/-4/-1` 三层均比四类 controls 更好地重建 source construction response。
+   正向 pooled error reduction 相对 shuffled/wrong/random/zero 分别为
+   `3.765/3.309/2.559/2.533`；反向为 `1.991/1.895/2.552/2.598`，全部
+   item-cluster interval 下界为正。
+2. **Typed controller transport 双向失败。** aligned intervention 没有提高 intended
+   `other_agent` argmax。相对 item-shuffled 的 pooled argmax gain 正向为
+   `-0.142 [-0.245,-0.045]`，反向为 `-0.118 [-0.206,-0.030]`；两个方向均为
+   `0/3` controller-passing layers。
+
+因此最强可写结论是：
+
+```text
+construction-specific activation state can causally reconstruct the paired
+source response, but response reconstruction does not identify or control the
+intended typed source.
+```
+
+这不是 mechanism oral promotion，而是一个更清楚的 mechanism
+non-identifiability result：高维同 item activation replacement 足以复制构式响应，
+却不等于获得可迁移的 typed belief controller。禁止写 global belief control、
+construction-general controller 或 unique neural implementation。

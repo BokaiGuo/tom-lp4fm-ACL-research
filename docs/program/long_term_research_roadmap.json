@@ -1,0 +1,193 @@
+{
+  "schema_version": "1.0",
+  "updated": "2026-09-15",
+  "program": {
+    "name": "From Representation to Control",
+    "working_label": "Constructed Relational Control",
+    "canonical_plan": "MASTER_RESEARCH_PLAN.md",
+    "thesis_status": "program_hypothesis",
+    "thesis": "Reasoning depends not only on what a representation entails, but on what it constructs as recoverable, identifiable, accessible, and behaviorally controlling."
+  },
+  "status_vocabulary": [
+    "validated",
+    "partial",
+    "negative",
+    "submitted",
+    "not_evaluated",
+    "exploratory",
+    "conditional",
+    "historical",
+    "superseded"
+  ],
+  "current_priority": {
+    "paper_id": "A1",
+    "object": "context-conditioned rule updating",
+    "phenomenon": "rule-change without fact-change",
+    "design_status": "frozen_oral_shaped",
+    "evidence_status": "not_evaluated",
+    "protocol": "research/frozen_oral_research_design_20260912_zh.md"
+  },
+  "papers": [
+    {
+      "id": "A0",
+      "title": "LP4FM Source Arbitration",
+      "program": "relational_control",
+      "status": "submitted",
+      "evidence_status": "validated_with_boundaries",
+      "dependencies": [],
+      "gates": [],
+      "stop_condition": "Do not extend to a universal controller, item-level law, or broad causal mechanism.",
+      "next_action": "Preserve the submitted manuscript and evidence boundary."
+    },
+    {
+      "id": "A1",
+      "title": "When Context Changes the Rule",
+      "program": "relational_control",
+      "status": "not_evaluated",
+      "design_status": "frozen",
+      "object": "context-conditioned rule updating",
+      "dependencies": ["A0 ontology and design precedent", "independent worlds, prompts, scorer and confirmation split"],
+      "gates": ["paired native rule-swap effect", "content holdout", "label/source/order controls", "diagnostic information beats raw count", "independent model or matched-checkpoint replication", "complete provenance"],
+      "stop_condition": "No native rule-swap effect means pivot to fact updating or policy-identifiability boundary.",
+      "next_action": "Freeze policy family and run a validity-screened paired rule-swap pilot."
+    },
+    {
+      "id": "A2",
+      "title": "Training-Induced Composition Laws",
+      "program": "relational_control",
+      "status": "conditional",
+      "object": "training-time change in source-access composition",
+      "dependencies": ["independent composition replication", "same-family training checkpoints", "frozen stimuli and scorer"],
+      "gates": ["checkpoint-localized reversal", "controlled SFT induction or removal", "primitive accuracy and calibration controls", "ternary operator discrimination"],
+      "stop_condition": "No stage-specific or controlled effect means retain a checkpoint boundary only.",
+      "next_action": "Wait for A1 pilot decision and checkpoint-access audit."
+    },
+    {
+      "id": "B0",
+      "title": "Formal Capability Certificates",
+      "program": "constructed_representation",
+      "status": "incubation",
+      "object": "verifiable formal capability without acceptance bias",
+      "dependencies": ["proven formal class membership", "minimal positive-negative pairs", "mechanical proof verifier"],
+      "gates": ["generator-verifier closure", "pre-registered independent sampling", "anti-shortcut result beyond a known benchmark", "safe separation of theorem and empirical claim"],
+      "stop_condition": "Known task difficulty without a new certificate or anti-shortcut protocol is not a standalone paper.",
+      "next_action": "Audit one restricted object before building a Type-Meaning Cube."
+    },
+    {
+      "id": "B1",
+      "title": "Where Chains of Thought Choose",
+      "program": "constructed_representation",
+      "status": "not_evaluated",
+      "object": "choice complexity",
+      "dependencies": ["formal prover", "step-matched stimuli"],
+      "gates": ["kappa outpredicts step count", "focused scaffold selectively helps high-kappa items", "cross-task replication"],
+      "stop_condition": "If kappa does not beat chain length, abandon a universal choice-complexity law.",
+      "next_action": "Run a small step-matched kappa pilot."
+    },
+    {
+      "id": "B2",
+      "title": "Classically Equivalent, Dynamically Distinct",
+      "program": "constructed_representation",
+      "status": "not_evaluated",
+      "object": "proof-relevant witness accessibility",
+      "dependencies": ["equivalence checker", "validated discourse materials"],
+      "gates": ["classically matched contrast", "under-use and leakage outcomes", "linguistic validity"],
+      "stop_condition": "If truth-conditional predictors dominate, report that boundary rather than forcing a DRT account.",
+      "next_action": "Build the minimal accessibility contrast and validity protocol."
+    },
+    {
+      "id": "B3",
+      "title": "Schemas Are Types",
+      "program": "constructed_representation",
+      "status": "not_evaluated",
+      "object": "constraint migration",
+      "dependencies": ["B1 metric validation", "B2 proof-relevant equivalence", "type-level generator"],
+      "gates": ["implicit-propositional-type factorial", "formal-looking placebo", "out-of-sample structural prediction"],
+      "stop_condition": "No propositional-to-type gain means explicitization may be sufficient.",
+      "next_action": "Defer full experiment until B1 and equivalence tooling stabilize."
+    },
+    {
+      "id": "B4",
+      "title": "Constructed, Not Entailed",
+      "program": "constructed_representation",
+      "status": "conditional_synthesis",
+      "object": "general construction advantage",
+      "dependencies": ["at least two independently validated B1-B3 laws"],
+      "gates": ["shared preregistered prediction", "cross-task and cross-model replication", "common consequence beyond analogy"],
+      "stop_condition": "Heterogeneous results remain separate papers.",
+      "next_action": "Do not execute before component evidence exists."
+    },
+    {
+      "id": "C1",
+      "title": "Same Semantics, Different Computations",
+      "program": "structure_recovery",
+      "status": "not_evaluated",
+      "object": "representation distortion and structure recovery",
+      "dependencies": ["token-matched renderer", "latent graph labels", "answer-leakage-safe intervention"],
+      "gates": ["aligned/random/anti behavioral effect", "structure exceeds format decodability", "out-of-sample recovery prediction", "bidirectional structure-specific intervention"],
+      "stop_condition": "No token-matched effect means restrict claims to natural-format sensitivity.",
+      "next_action": "Run a Program-DAG life-or-death pilot."
+    },
+    {
+      "id": "D1",
+      "title": "Linguistic Relativity of Relational Control",
+      "program": "linguistic_experience",
+      "status": "conditional_observational",
+      "object": "language-stage decomposition",
+      "dependencies": ["stable A1 identification and control measures", "translation and tokenization audit"],
+      "gates": ["language-of-evidence by language-of-query design", "culture and token controls", "stage-specific effect", "cross-model replication"],
+      "stop_condition": "Effects explained by competence, tokenization, or global calibration stop the causal-relativity branch.",
+      "next_action": "Use multilinguality only as external generalization until A1 stabilizes."
+    },
+    {
+      "id": "D2",
+      "title": "Controlled Linguistic Experience",
+      "program": "linguistic_experience",
+      "status": "conditional_causal",
+      "object": "obligatory source marking and transfer",
+      "dependencies": ["stage-specific D1 effect", "matched continued training", "same base checkpoint"],
+      "gates": ["difference-in-differences", "dose response", "cross-task transfer", "cross-interface transfer", "matched irrelevant-marker control"],
+      "stop_condition": "Training-format-only gains do not support reasoning transfer.",
+      "next_action": "Design only after D1 survives confound audit."
+    },
+    {
+      "id": "M1",
+      "title": "When Is a Controller Identifiable?",
+      "program": "validation_layer",
+      "status": "conditional",
+      "object": "readability-control-specificity-transport identifiability",
+      "dependencies": ["two behavioral laws", "two non-isomorphic tasks"],
+      "gates": ["formal multiclass result", "same-subspace different-trajectory counterexample", "bidirectional specificity", "transport audit"],
+      "stop_condition": "Probe-only or task-local effects remain supporting diagnostics.",
+      "next_action": "Accumulate claim-safe counterexamples only."
+    },
+    {
+      "id": "H1",
+      "title": "Artificial Language Learning in Humans and LLMs",
+      "program": "validation_layer",
+      "status": "conditional",
+      "object": "cross-system structural correspondence",
+      "dependencies": ["stable D2 model treatment effect", "cognitive-science collaboration", "ethics approval"],
+      "gates": ["random assignment", "matched language learning", "novel downstream task", "pre-registered structural comparison"],
+      "stop_condition": "Do not spend human-study budget before the model treatment effect stabilizes.",
+      "next_action": "No current execution."
+    },
+    {
+      "id": "X1",
+      "title": "Machine-Designed Reasoning Languages",
+      "program": "capstone",
+      "status": "conditional",
+      "object": "representation synthesis",
+      "dependencies": ["validated metrics from three programs", "semantic-equivalence checker", "search and transfer protocol"],
+      "gates": ["out-of-sample prediction", "unseen-instance improvement", "adjacent-family or unseen-model transfer", "semantic equivalence and no answer leakage"],
+      "stop_condition": "If measures cannot predict before evaluation, the result is prompt optimization rather than representation synthesis.",
+      "next_action": "Capstone only."
+    }
+  ],
+  "next_18_months": [
+    {"priority": 0, "action": "Run the A1 paired rule-swap validity pilot"},
+    {"priority": 1, "action": "Run the B1 step-matched kappa pilot"},
+    {"priority": 1, "action": "Run the C1 token-matched Program-DAG pilot"},
+    {"priority": 2, "action": "Build shared provenance and equivalence tooling only as demanded by passed gates"}
+  ]
+}

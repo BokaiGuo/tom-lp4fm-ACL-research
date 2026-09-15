@@ -4,6 +4,10 @@
 
 更新日期：2026-09-11
 
+> **2026-09-12 oral-shape update：** 设计已压缩为一个中心命题、三张主图和可审计的
+> 晋级门槛；经验状态仍为 `not_evaluated`。完整执行协议、claim ledger 和 display
+> plan 见 [oral-shape 升级包](oral_shape_upgrade_20260912_zh.md)。
+
 当前状态：`not_evaluated`。这是一份基于现有 LP4FM 证据、既有五个分支和
 《The Imperfective Paradox in Large Language Models》的研究推演方案；它不是新规律
 已经成立的经验结论。

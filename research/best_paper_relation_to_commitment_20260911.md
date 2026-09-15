@@ -4,6 +4,11 @@ Chinese counterpart: [Best Paper 级下一阶段方案：Conflict Identifies, Pr
 
 Updated: 2026-09-11
 
+> **2026-09-12 oral-shape update:** The design is now compressed into one central claim,
+> three main figures, and an auditable promotion gate; empirical status remains
+> `not_evaluated`. See the [oral-shape upgrade package](oral_shape_upgrade_20260912.md)
+> for the executable protocol, claim ledger, and display plan.
+
 Status: `not_evaluated`. This is a research projection grounded in the submitted
 LP4FM paper, the existing branches, and *The Imperfective Paradox in Large Language
 Models*. It is not evidence that the proposed law already holds.
