@@ -19,6 +19,7 @@ Private collaboration repository for the submitted LP4FM study and its long-term
 5. [Machine-readable roadmap](docs/program/long_term_research_roadmap.json)
 6. [LP4FM evidence report](evidence/PROJECT_REPORT_zh.md)
 7. [Evidence ledger](evidence/EVIDENCE_LEDGER.md)
+8. [ACL 2027 progress update (2026-11-22)](research/acl2027_progress_update_20261122.md)
 
 ## Repository Structure
 
